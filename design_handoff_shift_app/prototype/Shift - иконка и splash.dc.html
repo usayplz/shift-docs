@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#ECEBFB;font-family:'Nunito Sans',system-ui,sans-serif;color:#3E3F68;-webkit-font-smoothing:antialiased}
+a{color:#5A5FB0}a:hover{color:#3E3F68}
+button{font-family:inherit;color:inherit}
+</style>
+</helmet>
+<div style="padding:48px 48px 0;display:flex;flex-direction:column;gap:8px;max-width:916px">
+    <div style="font:800 30px/1.12 Nunito,sans-serif;letter-spacing:-0.5px">Иконка и splash</div>
+    <div style="font-size:15px;line-height:1.5;color:#64658E;text-wrap:pretty">Все варианты строятся из орба — главного образа Shift. Системный splash (Android 12+, iOS) — знак на однотонном фоне; дальше наша анимация: знак делает вдох и растворяется, открывается «Сегодня». Онбординг — только при первом запуске.</div>
+</div>
+<sc-for list="{{ turns }}" as="t" hint-placeholder-count="2">
+<section data-screen-label="{{ t.label }}" style="padding:28px 48px 48px;display:flex;flex-direction:column;gap:18px">
+  <div style="display:flex;flex-direction:column;gap:4px">
+    <div style="font:800 18px/1.2 Nunito,sans-serif">{{ t.title }}</div>
+    <div style="font-size:14px;line-height:1.45;color:#64658E">{{ t.sub }}</div>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start">
+    <sc-for list="{{ t.opts }}" as="o" hint-placeholder-count="3">
+      <div id="{{ o.id }}" style="width:380px;background:#FFFFFF;border-radius:28px;padding:24px;display:flex;flex-direction:column;gap:22px;box-shadow:0 12px 30px -12px rgba(110,115,210,.18)">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <a href="{{ o.href }}" style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;background:#1E1E22;color:#FFFFFF;padding:6px 9px;border-radius:999px;text-decoration:none">{{ o.id }}</a>
+            <div style="font:800 20px/1.2 Nunito,sans-serif">{{ o.name }}</div>
+          </div>
+          <div style="font-size:14px;line-height:1.45;color:#64658E;text-wrap:pretty">{{ o.idea }}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:20px">
+          <dc-import name="ShiftIcon" concept="{{ o.concept }}" size="132" mask="squircle" variant="{{ o.v }}" hint-size="132px,132px"></dc-import>
+          <div style="display:grid;grid-template-columns:repeat(2,auto);gap:12px 16px;align-items:end">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+              <dc-import name="ShiftIcon" concept="{{ o.concept }}" size="60" mask="circle" variant="{{ o.v }}" hint-size="60px,60px"></dc-import>
+              <div style="font:700 11px/1 'Nunito Sans',sans-serif;color:#6A6B94">Android</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+              <dc-import name="ShiftIcon" concept="{{ o.concept }}" size="60" mask="circle" variant="mono" hint-size="60px,60px"></dc-import>
+              <div style="font:700 11px/1 'Nunito Sans',sans-serif;color:#6A6B94">Themed</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+              <dc-import name="ShiftIcon" concept="{{ o.concept }}" size="60" mask="squircle" variant="{{ o.dv }}" hint-size="60px,60px"></dc-import>
+              <div style="font:700 11px/1 'Nunito Sans',sans-serif;color:#6A6B94">iOS тёмная</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+              <div style="height:60px;display:flex;align-items:flex-end;gap:8px">
+                <dc-import name="ShiftIcon" concept="{{ o.concept }}" size="40" mask="squircle" variant="{{ o.v }}" hint-size="40px,40px"></dc-import>
+                <dc-import name="ShiftIcon" concept="{{ o.concept }}" size="24" mask="squircle" variant="{{ o.v }}" hint-size="24px,24px"></dc-import>
+              </div>
+              <div style="font:700 11px/1 'Nunito Sans',sans-serif;color:#6A6B94">40 · 24</div>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;align-items:center">
+          <div style="align-self:stretch;display:flex;align-items:center;justify-content:space-between">
+            <div style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;color:#6A6B94">SPLASH → СЕГОДНЯ</div>
+            <button onClick="{{ o.replay }}" style="border:none;background:#EBEAFB;color:#5A5FB0;font:700 13px/1 'Nunito Sans',sans-serif;padding:9px 14px;border-radius:999px;cursor:pointer">Повторить</button>
+          </div>
+          <div style="width:300px;height:650px;background:#1E1E22;border-radius:42px;padding:7px;flex:none">
+            <div style="width:286px;height:636px;border-radius:35px;overflow:hidden;position:relative;background:{{ o.appBg }}">
+              <div style="position:absolute;left:0;right:0;top:0;z-index:2;height:40px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;font:600 13px/1 'Nunito Sans',sans-serif;color:{{ o.statusInk }};transition:{{ o.fadeTr }}">
+                <span>9:41</span>
+                <span style="width:10px;height:10px;border-radius:50%;background:#0B0B0D"></span>
+                <span style="width:34px;height:9px;border-radius:3px;background:{{ o.statusInk }};opacity:.8"></span>
+              </div>
+              <div style="position:absolute;inset:0;padding:50px 15px 0;display:flex;flex-direction:column;gap:14px">
+                <div style="font:800 20px/1.15 Nunito,sans-serif;letter-spacing:-0.3px;color:{{ o.c.ink }};opacity:{{ o.inOp }};transform:{{ o.inT }};transition:{{ o.tr0 }}">Добрый вечер</div>
+                <div style="display:flex;flex-direction:column;gap:12px;opacity:{{ o.inOp }};transform:{{ o.inT }};transition:{{ o.tr1 }}">
+                  <div style="display:flex;flex-direction:column;gap:4px">
+                    <div style="font:800 14px/1.2 Nunito,sans-serif;color:{{ o.c.ink }}">Как ты сейчас?</div>
+                    <div style="font-size:10px;line-height:1.4;color:{{ o.c.muted }}">Отметь — подберём практику под состояние</div>
+                  </div>
+                  <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:7px">
+                    <sc-for list="{{ o.cards }}" as="s" hint-placeholder-count="4">
+                      <div style="background:{{ s.bg }};border-radius:17px;padding:11px 12px;min-height:82px;display:flex;flex-direction:column;gap:5px">
+                        <div style="width:10px;height:10px;border-radius:50%;background:{{ s.dot }}"></div>
+                        <div style="font:800 14px/1.15 Nunito,sans-serif;color:{{ s.ink }}">{{ s.name }}</div>
+                        <div style="font-size:10px;line-height:1.35;color:{{ s.ink }};opacity:.85;text-wrap:pretty">{{ s.feel }}</div>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:8px;margin-top:6px;opacity:{{ o.inOp }};transform:{{ o.inT }};transition:{{ o.tr2 }}">
+                  <div style="font:800 14px/1.2 Nunito,sans-serif;color:{{ o.c.ink }}">На сегодня</div>
+                  <sc-for list="{{ rows }}" as="r" hint-placeholder-count="3">
+                    <div style="background:{{ o.c.card }};border-radius:15px;padding:9px;display:flex;align-items:center;gap:10px">
+                      <div style="width:37px;height:37px;border-radius:12px;background:{{ o.c.tile }};color:{{ o.c.accent }};display:flex;align-items:center;justify-content:center;flex:none"><i class="ph {{ r.icon }}" style="font-size:17px"></i></div>
+                      <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px">
+                        <div style="font:800 12.5px/1.2 Nunito,sans-serif;color:{{ o.c.ink }}">{{ r.title }}</div>
+                        <div style="font-size:10px;line-height:1.35;color:{{ o.c.muted }}">{{ r.meta }}</div>
+                      </div>
+                      <i class="ph ph-caret-right" style="font-size:13px;color:{{ o.c.muted }}"></i>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+              <div style="position:absolute;left:13px;right:13px;bottom:20px;height:52px;border-radius:26px;background:{{ o.c.card }};box-shadow:0 12px 30px -12px rgba(110,115,210,.25);display:flex;align-items:center;justify-content:space-around;opacity:{{ o.inOp }};transform:{{ o.inT }};transition:{{ o.tr3 }}">
+                <sc-for list="{{ o.nav }}" as="n" hint-placeholder-count="4">
+                  <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:{{ n.color }}">
+                    <i class="ph {{ n.icon }}" style="font-size:18px"></i>
+                    <div style="font:800 8.5px/1 'Nunito Sans',sans-serif">{{ n.label }}</div>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="position:absolute;inset:0;background:{{ o.splashBg }};opacity:{{ o.layerOp }};transition:{{ o.fadeTr }};pointer-events:none"></div>
+              <div style="position:absolute;left:73px;top:248px;width:140px;height:140px;transform:{{ o.glyphT }};opacity:{{ o.glyphOp }};transition:{{ o.glyphTr }}">
+                <dc-import name="ShiftIcon" concept="{{ o.concept }}" size="140" mask="none" variant="{{ o.splashVariant }}" bg="false" merge="{{ o.merge }}" hint-size="140px,140px"></dc-import>
+              </div>
+              <div style="position:absolute;left:0;right:0;bottom:40px;text-align:center;font:800 22px/1 Nunito,sans-serif;letter-spacing:-0.3px;color:{{ o.splashInk }};opacity:{{ o.wordOp }};transition:{{ o.fadeTr }}">Shift</div>
+              <div style="position:absolute;left:50%;bottom:9px;width:96px;height:4px;margin-left:-48px;border-radius:2px;background:{{ o.statusInk }};opacity:.7;transition:{{ o.fadeTr }}"></div>
+            </div>
+          </div>
+          <div style="font-size:12px;line-height:1.45;color:#6A6B94;text-align:center;text-wrap:pretty">{{ o.note }}</div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+</sc-for>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+const OPTS3 = [
+  { id: '3a', concept: 'goals', v: 'brand', dv: 'dark', name: 'Цели на фиолетовом', idea: 'Круги целей из 2b на насыщенном фоне из 2c. Ярко и заметно на домашнем экране.', splash: '#5A5FB0', ink: '#FFFFFF', note: 'Фон splash #5A5FB0. Круги сходятся в орб и растворяются — открывается «Сегодня».' },
+  { id: '3b', concept: 'shift', v: 'goals', dv: 'goalsDark', name: 'Сдвиг в цветах целей', idea: 'Смещённые кольца из 2c, каждое — в цвете своей цели. Светлый фон, мягко и тепло.', splash: '#F5F4FE', ink: '#3E3F68', note: 'Фон splash #F5F4FE. Кольца выравниваются в орб и растворяются.' },
+  { id: '3c', concept: 'shift', v: 'goalsBrand', dv: 'goalsDark', name: 'Сдвиг в цветах целей на фиолетовом', idea: 'Те же цветные кольца на фирменном фоне. Самый контрастный из трёх.', splash: '#5A5FB0', ink: '#FFFFFF', note: 'Фон splash #5A5FB0. Кольца выравниваются в орб, фон уходит — открывается «Сегодня».' },
+];
+const OPTS = [
+  { id: '2a', concept: 'breath', v: 'color', dv: 'dark', name: 'Орб', idea: 'Тот же орб, что встречает в онбординге и дышит в плеере. Спокойный, сразу связан с продуктом.', splash: '#E4E8FF', ink: '#3E3F68', breathe: true, note: 'Фон splash #E4E8FF. Знак делает вдох, на выдохе растворяется — открывается «Сегодня».' },
+  { id: '2b', concept: 'goals', v: 'color', dv: 'dark', name: 'Четыре цели', idea: 'Четыре круга в цветах целей: Фокус, Сон, Спокойствие, Энергия. Самый яркий на домашнем экране.', splash: '#F5F4FE', ink: '#3E3F68', note: 'Фон splash #F5F4FE. Круги сходятся в орб и растворяются — открывается «Сегодня».' },
+  { id: '2c', concept: 'shift', v: 'color', dv: 'dark', name: 'Сдвиг', idea: 'Кольца орба смещены — как будто он в движении. Насыщенный фирменный фон, белый знак.', splash: '#5A5FB0', ink: '#FFFFFF', note: 'Фон splash #5A5FB0. Кольца выравниваются в орб, фон уходит — открывается «Сегодня».' },
+];
+const STATES = [
+  { name: 'Собран', feel: 'Ясно и спокойно — лучшее состояние', dot: '#9BB36A', bg: '#E8F3E2', ink: '#3F5A2A', dbg: '#212820', dink: '#C6DBAE' },
+  { name: 'На взводе', feel: 'Энергия есть, но всё сжато', dot: '#F3913F', bg: '#FDEBDD', ink: '#8A3E10', dbg: '#30241E', dink: '#F2BF97' },
+  { name: 'Вяло', feel: 'Мало сил, но спокойно', dot: '#8EC0E6', bg: '#E1EEFE', ink: '#284F86', dbg: '#1D2530', dink: '#B3CDEB' },
+  { name: 'Выжат', feel: 'Сил нет, а нервы натянуты', dot: '#B98AF2', bg: '#EEE6FE', ink: '#5531A0', dbg: '#29222F', dink: '#D5C1EF' },
+];
+const ROWS = [
+  { icon: 'ph-moon-stars', title: 'Перед сном', meta: 'Удлинённый выдох · 3 мин, затем тишина' },
+  { icon: 'ph-leaf', title: 'Листья на ручье', meta: 'Медитация · 5–20 мин' },
+  { icon: 'ph-person-simple', title: 'Сканирование тела', meta: 'Медитация · 10–30 мин' },
+];
+const NAV = [
+  { icon: 'ph-house', label: 'Сегодня' }, { icon: 'ph-squares-four', label: 'Каталог' },
+  { icon: 'ph-chart-bar', label: 'Прогресс' }, { icon: 'ph-gear-six', label: 'Настройки' },
+];
+class Component extends DCLogic {
+  state = { ph: { '3a': 0, '3b': 0, '3c': 0, '2a': 0, '2b': 0, '2c': 0 } };
+  timers = {};
+  componentDidMount() { [...OPTS3, ...OPTS].forEach((o, i) => setTimeout(() => this.play(o.id), 600 + i * 250)); }
+  componentWillUnmount() { Object.values(this.timers).flat().forEach(clearTimeout); }
+  setPh(id, v) { this.setState(s => ({ ph: { ...s.ph, [id]: v } })); }
+  play(id) {
+    (this.timers[id] || []).forEach(clearTimeout);
+    this.setPh(id, 0);
+    this.timers[id] = [setTimeout(() => this.setPh(id, 1), 800), setTimeout(() => this.setPh(id, 2), 1900)];
+  }
+  renderVals() {
+    const dark = this.props.theme === 'dark';
+    const ease = 'cubic-bezier(.2,.8,.2,1)';
+    const c = dark
+      ? { bg: '#141416', card: '#1E1E21', ink: '#F1F0F3', muted: '#A3A2AA', tile: '#28282C', accent: '#BDBFF0', navOff: '#6E6D75' }
+      : { bg: 'linear-gradient(175deg,#F1F0FE 0%,#F5F4FE 55%,#F0F0FC 100%)', card: '#FFFFFF', ink: '#3E3F68', muted: '#64658E', tile: '#ECEBFC', accent: '#5A5FB0', navOff: '#A9AACB' };
+    const cards = STATES.map(s => ({ name: s.name, feel: s.feel, dot: s.dot, bg: dark ? s.dbg : s.bg, ink: dark ? s.dink : s.ink }));
+    const nav = NAV.map((n, i) => ({ ...n, color: i === 0 ? c.accent : c.navOff }));
+    const mk = o => {
+      const ph = this.state.ph[o.id];
+      const splashInk = dark ? '#F1F0F3' : o.ink;
+      const inTr = d => ph < 2 ? 'none' : `opacity 500ms ${ease} ${d}ms, transform 600ms ${ease} ${d}ms`;
+      return {
+        ...o, c, cards, nav,
+        href: '#' + o.id,
+        splashBg: dark ? '#141416' : o.splash,
+        appBg: c.bg,
+        splashVariant: dark ? o.dv : o.v,
+        merge: ph >= 1,
+        layerOp: ph >= 2 ? 0 : 1,
+        glyphOp: ph >= 2 ? 0 : 1,
+        wordOp: ph >= 1 ? 0 : 1,
+        splashInk,
+        statusInk: ph >= 2 ? c.ink : splashInk,
+        fadeTr: ph === 0 ? 'none' : `opacity 600ms ${ease}, color 600ms ${ease}, background 600ms ${ease}`,
+        glyphT: ph === 0 ? 'scale(1)' : ph === 1 ? `scale(${o.breathe ? 1.12 : 1})` : 'scale(1.6)',
+        glyphTr: ph === 0 ? 'none' : ph === 1 ? 'transform 1000ms cubic-bezier(.45,0,.55,1)' : `transform 700ms ${ease}, opacity 500ms ${ease}`,
+        inOp: ph >= 2 ? 1 : 0,
+        inT: ph >= 2 ? 'translateY(0px)' : 'translateY(12px)',
+        tr0: inTr(150), tr1: inTr(230), tr2: inTr(310), tr3: inTr(390),
+        replay: () => this.play(o.id),
+      };
+    };
+    return {
+      rows: ROWS,
+      turns: [
+        { label: 'Раунд 3', title: '3 · Смесь 2b и 2c', sub: 'Выбран 3b — ресурсы в compose/android/res, compose/icon-png и compose/ShiftSplash.kt.', opts: OPTS3.map(mk) },
+        { label: 'Раунд 2', title: '2 · Первые варианты', sub: 'Понравились 2b и 2c.', opts: OPTS.map(mk) },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

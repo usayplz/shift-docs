@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#ECEBFB;font-family:'Nunito Sans',system-ui,sans-serif;color:#3E3F68;-webkit-font-smoothing:antialiased}
+a{color:#5A5FB0}a:hover{color:#3E3F68}
+button{font-family:inherit;color:inherit}
+</style>
+</helmet>
+<section data-screen-label="Итог таймера" style="padding:48px;display:flex;flex-direction:column;gap:28px">
+  <div style="display:flex;flex-direction:column;gap:8px;max-width:900px">
+    <div style="font:800 30px/1.12 Nunito,sans-serif;letter-spacing:-0.5px">Итог таймера: три варианта</div>
+    <div style="font-size:15px;line-height:1.5;color:#64658E;text-wrap:pretty">Сейчас после таймера два шага: «N минут тишины», затем «Как теперь?». В <a href="#1a">1a</a> и <a href="#1b">1b</a> они объединены в один экран. В <a href="#1c">1c</a> экраны остаются раздельными, но в итог добавлено время за день и неделю.</div>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start">
+
+    <div id="1a" style="width:360px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;background:#1E1E22;color:#FFFFFF;padding:6px 9px;border-radius:999px">1a</span><span style="font:800 19px/1.2 Nunito,sans-serif">Один экран, итог сверху</span><span style="font:800 11px/1 'Nunito Sans',sans-serif;letter-spacing:.8px;color:#3F5220;background:#E8F3E2;padding:5px 8px;border-radius:999px">РЕКОМЕНДУЮ</span></div>
+        <div style="font-size:13.5px;line-height:1.45;color:#64658E;text-wrap:pretty">Наверху — время и настройки сессии, ниже — та же оценка и заметка, что в «Как теперь?». На один тап меньше. ✕ — сохранить без оценки.</div>
+      </div>
+      <div style="width:360px;height:780px;background:#1E1E22;border-radius:44px;padding:8px;box-sizing:border-box">
+        <div style="width:100%;height:100%;border-radius:37px;overflow:hidden;position:relative;background:#F5F4FE;display:flex;flex-direction:column;padding:44px 20px 26px;box-sizing:border-box;gap:18px">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div style="width:44px;height:44px;border-radius:50%;background:#FFFFFF;display:flex;align-items:center;justify-content:center"><i class="ph ph-x" style="font-size:20px"></i></div>
+            <div style="font:800 16px/1 Nunito,sans-serif">Таймер медитации</div>
+            <div style="width:44px;height:44px"></div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;padding-top:6px">
+            <div style="width:96px;height:96px;border-radius:50%;background:#E3E2F8;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 256 256" style="width:50px;height:50px;color:#5A5FB0" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"><circle cx="128" cy="50" r="22"></circle><path d="M110 94 C92 98 84 108 80 126 L72 170"></path><path d="M146 94 C164 98 172 108 176 126 L184 170"></path><path d="M100 128 C102 144 104 158 106 174"></path><path d="M156 128 C154 144 152 158 150 174"></path><path d="M72 170 C98 166 114 174 128 184 C142 174 158 166 184 170"></path><path d="M72 170 C46 176 34 192 44 202 C62 220 122 212 162 196"></path><path d="M184 170 C210 176 222 192 212 202 C194 220 134 212 94 196"></path></svg></div>
+            <div style="font:800 26px/1.2 Nunito,sans-serif">20 минут тишины</div>
+            <div style="font-size:13px;color:#64658E">Чаша · 2 интервала · 07:15–07:35</div>
+          </div>
+          <div style="height:1px;background:#E3E2F8;margin:4px 0"></div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center">
+            <div style="font:800 22px/1.2 Nunito,sans-serif;color:#5A5FB0">Как теперь?</div>
+            <div style="font-size:13px;color:#64658E">Отметь — увидишь в «Прогрессе», что помогает</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="background:#FFFFFF;border-radius:40px;padding:10px 12px;display:flex;justify-content:space-between">
+              <sc-for list="{{ facesA }}" as="f" hint-placeholder-count="4">
+                <div style="width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:{{ f.ring }}"><svg width="48" height="48" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="{{ f.c }}"></circle><path d="{{ f.e }}" fill="none" stroke="#3E3F68" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"></path><path d="{{ f.m }}" fill="none" stroke="#3E3F68" stroke-width="6" stroke-linecap="round"></path></svg></div>
+              </sc-for>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));text-align:center">
+              <sc-for list="{{ facesA }}" as="f" hint-placeholder-count="4"><span style="font-size:12px;font-weight:{{ f.fw }};color:{{ f.fg }}">{{ f.label }}</span></sc-for>
+            </div>
+          </div>
+          <div style="background:#FFFFFF;border-radius:20px;padding:14px 16px;font-size:14px;color:#8B8CB0;min-height:52px;box-sizing:border-box">Что заметил? Мысли, ощущения…</div>
+          <div style="margin-top:auto;height:56px;border-radius:30px;background:linear-gradient(135deg,#5A5FB0 0%,#6268B8 100%);color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700">Готово</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="1b" style="width:360px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;background:#1E1E22;color:#FFFFFF;padding:6px 9px;border-radius:999px">1b</span><span style="font:800 19px/1.2 Nunito,sans-serif">Обычный «Как теперь?»</span></div>
+        <div style="font-size:13.5px;line-height:1.45;color:#64658E;text-wrap:pretty">Тот же экран, что после любой практики: время вместо «Было:» под заголовком. Предельно единообразно, но итог таймера почти незаметен.</div>
+      </div>
+      <div style="width:360px;height:780px;background:#1E1E22;border-radius:44px;padding:8px;box-sizing:border-box">
+        <div style="width:100%;height:100%;border-radius:37px;overflow:hidden;position:relative;background:#F5F4FE;display:flex;flex-direction:column;padding:44px 20px 26px;box-sizing:border-box;gap:14px">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div style="width:44px;height:44px;border-radius:50%;background:#FFFFFF;display:flex;align-items:center;justify-content:center"><i class="ph ph-x" style="font-size:20px"></i></div>
+            <div style="font:800 16px/1 Nunito,sans-serif">Таймер медитации</div>
+            <div style="width:44px;height:44px"></div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center">
+            <div style="font:800 26px/1.2 Nunito,sans-serif;color:#5A5FB0">Как теперь?</div>
+            <div style="font-size:14px;color:#64658E">20 минут тишины</div>
+          </div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px">
+            <div style="width:186px;height:186px;border-radius:50%;background:radial-gradient(circle,#ECEBFC 55%,#F5F4FE 72%);display:flex;align-items:center;justify-content:center"><svg width="118" height="118" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#E4E2F6"></circle><path d="M37 38 L37 47 M63 38 L63 47" fill="none" stroke="#3E3F68" stroke-width="6" stroke-linecap="round"></path><path d="M37 66 L63 66" fill="none" stroke="#3E3F68" stroke-width="6" stroke-linecap="round"></path></svg></div>
+            <div style="font-size:15px;font-weight:700;color:#4F5079">Отметь, как сейчас</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="background:#FFFFFF;border-radius:40px;padding:10px 12px;display:flex;justify-content:space-between">
+              <sc-for list="{{ facesB }}" as="f" hint-placeholder-count="4">
+                <div style="width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center"><svg width="48" height="48" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="{{ f.c }}"></circle><path d="{{ f.e }}" fill="none" stroke="#3E3F68" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"></path><path d="{{ f.m }}" fill="none" stroke="#3E3F68" stroke-width="6" stroke-linecap="round"></path></svg></div>
+              </sc-for>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));text-align:center">
+              <sc-for list="{{ facesB }}" as="f" hint-placeholder-count="4"><span style="font-size:12px;font-weight:700;color:#64658E">{{ f.label }}</span></sc-for>
+            </div>
+          </div>
+          <div style="background:#FFFFFF;border-radius:20px;padding:14px 16px;font-size:14px;color:#8B8CB0;min-height:52px;box-sizing:border-box">Что заметил? Мысли, ощущения…</div>
+          <div style="height:56px;border-radius:30px;background:linear-gradient(135deg,#5A5FB0 0%,#6268B8 100%);color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700">Готово</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="1c" style="width:360px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;background:#1E1E22;color:#FFFFFF;padding:6px 9px;border-radius:999px">1c</span><span style="font:800 19px/1.2 Nunito,sans-serif">Отдельный итог, плотнее</span></div>
+        <div style="font-size:13.5px;line-height:1.45;color:#64658E;text-wrap:pretty">Экраны остаются раздельными. В итоге — время за сегодня и за неделю из «Прогресса», настройки сессии и выбор: оценить или просто закрыть.</div>
+      </div>
+      <div style="width:360px;height:780px;background:#1E1E22;border-radius:44px;padding:8px;box-sizing:border-box">
+        <div style="width:100%;height:100%;border-radius:37px;overflow:hidden;position:relative;background:#F5F4FE;display:flex;flex-direction:column;padding:60px 20px 26px;box-sizing:border-box;gap:20px">
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center">
+            <div style="width:128px;height:128px;border-radius:50%;background:#E3E2F8;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 256 256" style="width:66px;height:66px;color:#5A5FB0" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"><circle cx="128" cy="50" r="22"></circle><path d="M110 94 C92 98 84 108 80 126 L72 170"></path><path d="M146 94 C164 98 172 108 176 126 L184 170"></path><path d="M100 128 C102 144 104 158 106 174"></path><path d="M156 128 C154 144 152 158 150 174"></path><path d="M72 170 C98 166 114 174 128 184 C142 174 158 166 184 170"></path><path d="M72 170 C46 176 34 192 44 202 C62 220 122 212 162 196"></path><path d="M184 170 C210 176 222 192 212 202 C194 220 134 212 94 196"></path></svg></div>
+            <div style="font:800 28px/1.2 Nunito,sans-serif">20 минут тишины</div>
+            <div style="font-size:13px;color:#64658E">Чаша · 2 интервала · 07:15–07:35</div>
+          </div>
+          <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px">
+            <div style="background:#FFFFFF;border-radius:20px;padding:14px 16px;display:flex;flex-direction:column;gap:2px"><span style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#6A6B94">Сегодня</span><span style="font:800 22px/1.2 Nunito,sans-serif;font-variant-numeric:tabular-nums">35 мин</span><span style="font-size:12px;color:#64658E">2 сессии</span></div>
+            <div style="background:#FFFFFF;border-radius:20px;padding:14px 16px;display:flex;flex-direction:column;gap:2px"><span style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#6A6B94">За неделю</span><span style="font:800 22px/1.2 Nunito,sans-serif;font-variant-numeric:tabular-nums">1 ч 50 мин</span><span style="font-size:12px;color:#64658E">5 дней из 7</span></div>
+          </div>
+          <div style="font-size:13px;line-height:1.5;color:#64658E;text-align:center;text-wrap:pretty">Сессия сохранена. Отметь, как ты сейчас, — увидишь сдвиг.</div>
+          <div style="display:flex;gap:10px"><div style="flex:1;height:56px;border-radius:30px;background:#E3E2F8;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700">Готово</div><div style="flex:2;height:56px;border-radius:30px;background:linear-gradient(135deg,#5A5FB0 0%,#6268B8 100%);color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700">Как теперь?</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const F = [
+  { label: 'Хуже', e: 'M31 42 L43 42 M57 42 L69 42', m: 'M35 69 Q50 62 65 69', c: '#F6B47E' },
+  { label: 'Так же', e: 'M37 38 L37 47 M63 38 L63 47', m: 'M37 66 L63 66', c: '#DCDCEE' },
+  { label: 'Лучше', e: 'M31 42 Q37 48 43 42 M57 42 Q63 48 69 42', m: 'M36 63 Q50 73 64 63', c: '#A6CFEE' },
+  { label: 'Отлично', e: 'M31 46 Q37 37 43 46 M57 46 Q63 37 69 46', m: 'M33 60 Q50 80 67 60', c: '#B6CA8E' },
+];
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      facesA: F.map((f, i) => ({ ...f, ring: i === 2 ? '0 0 0 3px #FFFFFF, 0 0 0 5.5px #5A5FB0' : 'none', fw: i === 2 ? 800 : 700, fg: i === 2 ? '#3E3F68' : '#64658E' })),
+      facesB: F,
+    };
+  }
+}
+</script>
+</body>
+</html>

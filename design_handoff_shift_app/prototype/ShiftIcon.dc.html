@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<div style="width:{{ px }};height:{{ px }};border-radius:{{ radius }};overflow:hidden;background:{{ bgFill }};position:relative;flex:none">
+<sc-if value="{{ isBreath }}" hint-placeholder-val="{{ true }}">
+<svg viewBox="0 0 100 100" style="position:absolute;inset:0;width:100%;height:100%;display:block">
+<circle cx="50" cy="50" r="40" fill="{{ p.r1 }}"></circle>
+<circle cx="50" cy="50" r="30" fill="{{ p.r2 }}"></circle>
+<circle cx="50" cy="50" r="21" fill="{{ p.r3 }}"></circle>
+<circle cx="50" cy="50" r="12.5" fill="{{ p.core }}"></circle>
+</svg>
+</sc-if>
+<sc-if value="{{ isGoals }}" hint-placeholder-val="{{ false }}">
+<svg viewBox="0 0 100 100" style="position:absolute;inset:0;width:100%;height:100%;display:block">
+<sc-for list="{{ circles }}" as="c" hint-placeholder-count="4">
+<circle cx="50" cy="50" r="{{ c.r }}" fill="{{ c.fill }}" style="opacity:{{ c.op }};transform:{{ c.tf }};transform-origin:50px 50px;transform-box:view-box;transition:{{ tr }}"></circle>
+</sc-for>
+</svg>
+</sc-if>
+<sc-if value="{{ isShift }}" hint-placeholder-val="{{ false }}">
+<svg viewBox="0 0 100 100" style="position:absolute;inset:0;width:100%;height:100%;display:block">
+<sc-for list="{{ circles }}" as="c" hint-placeholder-count="4">
+<circle cx="50" cy="50" r="{{ c.r }}" fill="{{ c.fill }}" style="transform:{{ c.tf }};transform-origin:50px 50px;transform-box:view-box;transition:{{ tr }}"></circle>
+</sc-for>
+</svg>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:200,&quot;height&quot;:200},&quot;concept&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;breath&quot;,&quot;goals&quot;,&quot;shift&quot;],&quot;default&quot;:&quot;breath&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;color&quot;,&quot;dark&quot;,&quot;mono&quot;],&quot;default&quot;:&quot;color&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:168,&quot;tsType&quot;:&quot;number&quot;},&quot;mask&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;squircle&quot;,&quot;circle&quot;,&quot;none&quot;],&quot;default&quot;:&quot;squircle&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;bg&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;merge&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+const INK = 'rgba(62,63,104,';
+const P = {
+  breath: {
+    color: { bg: 'linear-gradient(160deg,#F4F4FF 0%,#D7DCFF 100%)', r1: 'rgba(134,153,255,.20)', r2: 'rgba(134,153,255,.32)', r3: 'rgba(134,153,255,.50)', core: '#8699FF' },
+    dark: { bg: 'linear-gradient(160deg,#22222A 0%,#151518 100%)', r1: 'rgba(174,178,242,.13)', r2: 'rgba(174,178,242,.22)', r3: 'rgba(174,178,242,.38)', core: '#AEB2F2' },
+    mono: { bg: '#E4E3F2', r1: INK + '.08)', r2: INK + '.14)', r3: INK + '.26)', core: INK + '.85)' },
+  },
+  goals: {
+    color: { bg: 'linear-gradient(160deg,#FFFFFF 0%,#EFEEFC 100%)', c: ['#F6C95A', '#86BAFF', '#A9C07A', '#8699FF'], op: .62 },
+    dark: { bg: 'linear-gradient(160deg,#22222A 0%,#151518 100%)', c: ['#EBD49A', '#B3CDEB', '#C6DBAE', '#AEB2F2'], op: .5 },
+    mono: { bg: '#E4E3F2', c: [INK + '1)', INK + '1)', INK + '1)', INK + '1)'], op: .22 },
+    brand: { bg: 'linear-gradient(140deg,#6C72CA 0%,#5157A8 100%)', c: ['#F6C95A', '#86BAFF', '#B5CC85', '#B3BEFF'], op: .8 },
+  },
+  shift: {
+    color: { bg: 'linear-gradient(140deg,#6C72CA 0%,#5157A8 100%)', c: ['rgba(255,255,255,.12)', 'rgba(255,255,255,.18)', 'rgba(255,255,255,.30)', '#FFFFFF'] },
+    dark: { bg: 'linear-gradient(160deg,#22222A 0%,#151518 100%)', c: ['rgba(189,191,240,.10)', 'rgba(189,191,240,.17)', 'rgba(189,191,240,.28)', '#BDBFF0'] },
+    mono: { bg: '#E4E3F2', c: [INK + '.08)', INK + '.14)', INK + '.26)', INK + '.85)'] },
+    goals: { bg: 'linear-gradient(160deg,#FFFFFF 0%,#EFEEFC 100%)', c: ['#FBE3A6', '#BCD8FF', '#C9DBA8', '#8699FF'] },
+    goalsBrand: { bg: 'linear-gradient(140deg,#6C72CA 0%,#5157A8 100%)', c: ['#F6C95A', '#86BAFF', '#A9C07A', '#FFFFFF'] },
+    goalsDark: { bg: 'linear-gradient(160deg,#22222A 0%,#151518 100%)', c: ['#4A4128', '#2C4058', '#34432A', '#AEB2F2'] },
+  },
+};
+const GOAL_OFF = [[0, -14], [14, 0], [-14, 0], [0, 14]];
+const GOAL_SCALE = [1.66, 1.25, .875, .52];
+const SHIFT_R = [40, 30, 20.5, 11.5];
+const SHIFT_OFF = [[-3, 3], [2.5, -2.5], [7.5, -7.5], [12, -12]];
+class Component extends DCLogic {
+  renderVals() {
+    const concept = this.props.concept || 'breath';
+    const variant = this.props.variant || 'color';
+    const size = Number(this.props.size) || 120;
+    const mask = this.props.mask || 'squircle';
+    const showBg = !(this.props.bg === false || this.props.bg === 'false');
+    const merge = this.props.merge === true || this.props.merge === 'true';
+    const set = P[concept] || P.breath;
+    const p = set[variant] || set.color;
+    let circles = [];
+    if (concept === 'goals') circles = p.c.map((fill, i) => ({
+      r: 24, fill, op: p.op,
+      tf: merge ? `translate(0px,0px) scale(${GOAL_SCALE[i]})` : `translate(${GOAL_OFF[i][0]}px,${GOAL_OFF[i][1]}px) scale(1)`,
+    }));
+    if (concept === 'shift') circles = p.c.map((fill, i) => ({
+      r: SHIFT_R[i], fill,
+      tf: merge ? 'translate(0px,0px)' : `translate(${SHIFT_OFF[i][0]}px,${SHIFT_OFF[i][1]}px)`,
+    }));
+    return {
+      p, circles,
+      tr: 'transform 900ms cubic-bezier(.45,0,.2,1)',
+      px: size + 'px',
+      radius: mask === 'squircle' ? (size * 0.2237) + 'px' : mask === 'circle' ? '50%' : '0',
+      bgFill: showBg ? p.bg : 'transparent',
+      isBreath: concept === 'breath', isGoals: concept === 'goals', isShift: concept === 'shift',
+    };
+  }
+}
+</script>
+</body>
+</html>

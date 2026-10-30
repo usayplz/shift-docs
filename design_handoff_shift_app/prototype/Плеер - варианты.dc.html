@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#ECEBFB;font-family:'Nunito Sans',system-ui,sans-serif;color:#3E3F68;-webkit-font-smoothing:antialiased}
+a{color:#5A5FB0}a:hover{color:#3E3F68}
+button{font-family:inherit;color:inherit}
+</style>
+</helmet>
+
+<section data-screen-label="2a с подписями" style="padding:48px;display:flex;flex-direction:column;gap:28px">
+  <div style="display:flex;flex-direction:column;gap:10px;max-width:980px">
+    <div style="font:800 30px/1.12 Nunito,sans-serif;letter-spacing:-0.5px"><a href="#2a">2a</a> с подписями</div>
+    <div style="font-size:15px;line-height:1.5;color:#64658E;text-wrap:pretty">Подпись под каждой кнопкой, ↺ «Заново» в ряду всегда — и в игре, и на паузе. Пауза приподнята на 24 px, чтобы её подпись стояла на одной линии с остальными.</div>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start">
+    <div id="3a" style="width:360px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;background:#1E1E22;color:#FFFFFF;padding:6px 9px;border-radius:999px">3a</span><span style="font:800 19px/1.2 Nunito,sans-serif">Во время практики</span></div>
+        <div style="font-size:13.5px;line-height:1.45;color:#64658E;text-wrap:pretty;min-height:39px">Тон выключен: обводка и приглушённая подпись.</div>
+      </div>
+      <div style="width:360px;height:780px;background:#1E1E22;border-radius:44px;padding:8px;box-sizing:border-box">
+        <div style="width:100%;height:100%;border-radius:37px;overflow:hidden;position:relative;background:linear-gradient(180deg,#F2F5EA 0%,#DCE7C6 100%);display:flex;flex-direction:column;padding:44px 20px 24px;box-sizing:border-box">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+            <div style="width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-x" style="font-size:20px;color:#3E3F68"></i></div>
+            <div style="font:800 16px/1.2 Nunito,sans-serif;color:#3E3F68">Квадратное дыхание</div>
+            <div style="width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-heart" style="font-size:20px;color:#3E3F68"></i></div>
+          </div>
+          <div style="margin-top:16px;text-align:center;font:800 22px/1.25 Nunito,sans-serif;color:#3F5220">Вдох</div>
+          <div style="flex:1;position:relative;display:flex;align-items:center;justify-content:center;opacity:1">
+            <div style="position:absolute;width:276px;height:276px;border-radius:50%;background:#A9C07A;opacity:.18"></div>
+            <div style="position:absolute;width:218px;height:218px;border-radius:50%;background:#A9C07A;opacity:.3"></div>
+            <div style="position:absolute;width:160px;height:160px;border-radius:50%;background:#A9C07A;opacity:.55"></div>
+            <div style="position:absolute;width:102px;height:102px;border-radius:50%;background:#A9C07A"></div>
+            <div style="position:relative;font:800 46px/1 Nunito,sans-serif;color:#3F5220">2</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div style="text-align:center;font-size:14px;font-weight:800;color:#3F5220">Дальше: задержка</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="height:4px;border-radius:2px;background:rgba(63,82,32,.16);overflow:hidden"><div style="width:22%;height:100%;background:#3F5220;border-radius:2px"></div></div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:#64658E;font-variant-numeric:tabular-nums"><span>0:42</span><span>−2:18</span></div>
+            </div>
+            <div style="display:flex;align-items:flex-start;justify-content:space-between">
+              <div style="width:56px;display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-microphone" style="font-size:20px;color:#3E3F68"></i></div><span style="font-size:11.5px;font-weight:800;color:#3E3F68;line-height:1">Голос</span></div><div style="width:56px;display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:44px;height:44px;border-radius:50%;box-shadow:inset 0 0 0 1.5px #CFCFF1;display:flex;align-items:center;justify-content:center"><i class="ph ph-bell" style="font-size:20px;color:#64658E"></i></div><span style="font-size:11.5px;font-weight:800;color:#64658E;line-height:1">Тон</span></div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px;margin-top:-24px"><div style="width:68px;height:68px;flex:none;border-radius:50%;background:#FFFFFF;box-shadow:0 14px 30px -10px rgba(40,45,90,.35);display:flex;align-items:center;justify-content:center"><i class="ph-fill ph-pause" style="font-size:28px;color:#3F5220"></i></div><span style="font-size:11.5px;font-weight:800;color:#3F5220;line-height:1">Пауза</span></div>
+              <div style="width:56px;display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-vibrate" style="font-size:20px;color:#3E3F68"></i></div><span style="font-size:11.5px;font-weight:800;color:#3E3F68;line-height:1">Вибро</span></div><div style="width:56px;display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-arrow-counter-clockwise" style="font-size:20px;color:#3E3F68"></i></div><span style="font-size:11.5px;font-weight:800;color:#3E3F68;line-height:1">Заново</span></div>
+            </div>
+            <div style="text-align:center;font-size:14px;font-weight:700;color:#3F5220;padding:4px">Закончить и оценить</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="3b" style="width:360px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;background:#1E1E22;color:#FFFFFF;padding:6px 9px;border-radius:999px">3b</span><span style="font:800 19px/1.2 Nunito,sans-serif">На паузе</span></div>
+        <div style="font-size:13.5px;line-height:1.45;color:#64658E;text-wrap:pretty">⏸ → ▶ «Дальше», в орбе «Пауза», орб приглушён. Ряд не меняется — «Заново» на месте.</div>
+      </div>
+      <div style="width:360px;height:780px;background:#1E1E22;border-radius:44px;padding:8px;box-sizing:border-box">
+        <div style="width:100%;height:100%;border-radius:37px;overflow:hidden;position:relative;background:linear-gradient(180deg,#F2F5EA 0%,#DCE7C6 100%);display:flex;flex-direction:column;padding:44px 20px 24px;box-sizing:border-box">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+            <div style="width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-x" style="font-size:20px;color:#3E3F68"></i></div>
+            <div style="font:800 16px/1.2 Nunito,sans-serif;color:#3E3F68">Квадратное дыхание</div>
+            <div style="width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-heart" style="font-size:20px;color:#3E3F68"></i></div>
+          </div>
+          <div style="margin-top:16px;text-align:center;font:800 22px/1.25 Nunito,sans-serif;color:#3F5220">На паузе</div>
+          <div style="flex:1;position:relative;display:flex;align-items:center;justify-content:center;opacity:.6">
+            <div style="position:absolute;width:276px;height:276px;border-radius:50%;background:#A9C07A;opacity:.18"></div>
+            <div style="position:absolute;width:218px;height:218px;border-radius:50%;background:#A9C07A;opacity:.3"></div>
+            <div style="position:absolute;width:160px;height:160px;border-radius:50%;background:#A9C07A;opacity:.55"></div>
+            <div style="position:absolute;width:102px;height:102px;border-radius:50%;background:#A9C07A"></div>
+            <div style="position:relative;font:800 20px/1 Nunito,sans-serif;color:#3F5220">Пауза</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div style="text-align:center;font-size:14px;font-weight:800;color:#3F5220">Дальше: задержка</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="height:4px;border-radius:2px;background:rgba(63,82,32,.16);overflow:hidden"><div style="width:22%;height:100%;background:#3F5220;border-radius:2px"></div></div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:#64658E;font-variant-numeric:tabular-nums"><span>0:42</span><span>−2:18</span></div>
+            </div>
+            <div style="display:flex;align-items:flex-start;justify-content:space-between">
+              <div style="width:56px;display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-microphone" style="font-size:20px;color:#3E3F68"></i></div><span style="font-size:11.5px;font-weight:800;color:#3E3F68;line-height:1">Голос</span></div><div style="width:56px;display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:44px;height:44px;border-radius:50%;box-shadow:inset 0 0 0 1.5px #CFCFF1;display:flex;align-items:center;justify-content:center"><i class="ph ph-bell" style="font-size:20px;color:#64658E"></i></div><span style="font-size:11.5px;font-weight:800;color:#64658E;line-height:1">Тон</span></div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px;margin-top:-24px"><div style="width:68px;height:68px;flex:none;border-radius:50%;background:#FFFFFF;box-shadow:0 14px 30px -10px rgba(40,45,90,.35);display:flex;align-items:center;justify-content:center"><i class="ph-fill ph-play" style="font-size:28px;color:#3F5220"></i></div><span style="font-size:11.5px;font-weight:800;color:#3F5220;line-height:1">Дальше</span></div>
+              <div style="width:56px;display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-vibrate" style="font-size:20px;color:#3E3F68"></i></div><span style="font-size:11.5px;font-weight:800;color:#3E3F68;line-height:1">Вибро</span></div><div style="width:56px;display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-arrow-counter-clockwise" style="font-size:20px;color:#3E3F68"></i></div><span style="font-size:11.5px;font-weight:800;color:#3E3F68;line-height:1">Заново</span></div>
+            </div>
+            <div style="text-align:center;font-size:14px;font-weight:700;color:#3F5220;padding:4px">Закончить и оценить</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Плеер без «Дыхания»" style="padding:48px;display:flex;flex-direction:column;gap:28px">
+  <div style="display:flex;flex-direction:column;gap:10px;max-width:980px">
+    <div style="font:800 30px/1.12 Nunito,sans-serif;letter-spacing:-0.5px">Плеер без «Дыхания»: три варианта</div>
+    <div style="font-size:15px;line-height:1.5;color:#64658E;text-wrap:pretty">Осталось три переключателя: голос, тон, вибро. Ряд 2 | ⏸ | 1 перекошен — три способа вернуть баланс.</div>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start">
+    <div id="2a" style="width:360px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;background:#1E1E22;color:#FFFFFF;padding:6px 9px;border-radius:999px">2a</span><span style="font:800 19px/1.2 Nunito,sans-serif">Симметрия за счёт «Заново»</span><span style="font:800 11px/1 'Nunito Sans',sans-serif;letter-spacing:.8px;color:#3F5220;background:#E8F3E2;padding:5px 8px;border-radius:999px">РЕКОМЕНДУЮ</span></div>
+        <div style="font-size:13.5px;line-height:1.45;color:#64658E;text-wrap:pretty">Голос и тон слева, вибро и ↺ справа. «Начать заново» переезжает из ссылок в ряд — снова 2 | ⏸ | 2, внизу одна ссылка.</div>
+      </div>
+      <div style="width:360px;height:780px;background:#1E1E22;border-radius:44px;padding:8px;box-sizing:border-box">
+        <div style="width:100%;height:100%;border-radius:37px;overflow:hidden;position:relative;background:linear-gradient(180deg,#F2F5EA 0%,#DCE7C6 100%);display:flex;flex-direction:column;padding:44px 20px 24px;box-sizing:border-box">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+            <div style="width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-x" style="font-size:20px;color:#3E3F68"></i></div>
+            <div style="font:800 16px/1.2 Nunito,sans-serif;color:#3E3F68">Квадратное дыхание</div>
+            <div style="width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-heart" style="font-size:20px;color:#3E3F68"></i></div>
+          </div>
+          <div style="margin-top:16px;text-align:center;font:800 22px/1.25 Nunito,sans-serif;color:#3F5220">Вдох</div>
+          <div style="flex:1;position:relative;display:flex;align-items:center;justify-content:center">
+            <div style="position:absolute;width:276px;height:276px;border-radius:50%;background:#A9C07A;opacity:.18"></div>
+            <div style="position:absolute;width:218px;height:218px;border-radius:50%;background:#A9C07A;opacity:.3"></div>
+            <div style="position:absolute;width:160px;height:160px;border-radius:50%;background:#A9C07A;opacity:.55"></div>
+            <div style="position:absolute;width:102px;height:102px;border-radius:50%;background:#A9C07A"></div>
+            <div style="position:relative;font:800 46px/1 Nunito,sans-serif;color:#3F5220">2</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div style="text-align:center;font-size:14px;font-weight:800;color:#3F5220">Дальше: задержка</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="height:4px;border-radius:2px;background:rgba(63,82,32,.16);overflow:hidden"><div style="width:22%;height:100%;background:#3F5220;border-radius:2px"></div></div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:#64658E;font-variant-numeric:tabular-nums"><span>0:42</span><span>−2:18</span></div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:0 2px">
+              <div style="width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-microphone" style="font-size:20px;color:#3E3F68"></i></div><div style="width:44px;height:44px;flex:none;border-radius:50%;box-shadow:inset 0 0 0 1.5px #CFCFF1;display:flex;align-items:center;justify-content:center"><i class="ph ph-bell" style="font-size:20px;color:#64658E"></i></div><div style="width:68px;height:68px;flex:none;border-radius:50%;background:#FFFFFF;box-shadow:0 14px 30px -10px rgba(40,45,90,.35);display:flex;align-items:center;justify-content:center"><i class="ph-fill ph-pause" style="font-size:28px;color:#3F5220"></i></div><div style="width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-vibrate" style="font-size:20px;color:#3E3F68"></i></div><div style="width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-arrow-counter-clockwise" style="font-size:20px;color:#3E3F68"></i></div>
+            </div>
+            <div style="text-align:center;font-size:14px;font-weight:700;color:#3F5220;padding:4px">Закончить и оценить</div>
+          </div>
+        </div>
+      </div>
+      <div style="font-size:13px;line-height:1.45;color:#64658E;text-wrap:pretty">Если ↺ нужен только на паузе — во время практики на его месте пустой слот той же ширины, ряд не прыгает.</div>
+    </div>
+    <div id="2b" style="width:360px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;background:#1E1E22;color:#FFFFFF;padding:6px 9px;border-radius:999px">2b</span><span style="font:800 19px/1.2 Nunito,sans-serif">Минимум: 1 | ⏸ | 1</span></div>
+        <div style="font-size:13.5px;line-height:1.45;color:#64658E;text-wrap:pretty">Слева одна кнопка звука: тап переключает Голос → Тон → Тишина, подпись показывает режим. Справа вибро. Больше воздуха вокруг паузы.</div>
+      </div>
+      <div style="width:360px;height:780px;background:#1E1E22;border-radius:44px;padding:8px;box-sizing:border-box">
+        <div style="width:100%;height:100%;border-radius:37px;overflow:hidden;position:relative;background:linear-gradient(180deg,#F2F5EA 0%,#DCE7C6 100%);display:flex;flex-direction:column;padding:44px 20px 24px;box-sizing:border-box">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+            <div style="width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-x" style="font-size:20px;color:#3E3F68"></i></div>
+            <div style="font:800 16px/1.2 Nunito,sans-serif;color:#3E3F68">Квадратное дыхание</div>
+            <div style="width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-heart" style="font-size:20px;color:#3E3F68"></i></div>
+          </div>
+          <div style="margin-top:16px;text-align:center;font:800 22px/1.25 Nunito,sans-serif;color:#3F5220">Вдох</div>
+          <div style="flex:1;position:relative;display:flex;align-items:center;justify-content:center">
+            <div style="position:absolute;width:276px;height:276px;border-radius:50%;background:#A9C07A;opacity:.18"></div>
+            <div style="position:absolute;width:218px;height:218px;border-radius:50%;background:#A9C07A;opacity:.3"></div>
+            <div style="position:absolute;width:160px;height:160px;border-radius:50%;background:#A9C07A;opacity:.55"></div>
+            <div style="position:absolute;width:102px;height:102px;border-radius:50%;background:#A9C07A"></div>
+            <div style="position:relative;font:800 46px/1 Nunito,sans-serif;color:#3F5220">2</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div style="text-align:center;font-size:14px;font-weight:800;color:#3F5220">Дальше: задержка</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="height:4px;border-radius:2px;background:rgba(63,82,32,.16);overflow:hidden"><div style="width:22%;height:100%;background:#3F5220;border-radius:2px"></div></div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:#64658E;font-variant-numeric:tabular-nums"><span>0:42</span><span>−2:18</span></div>
+            </div>
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center">
+              <div style="display:flex;justify-content:center"><div style="height:44px;padding:0 14px 0 12px;border-radius:22px;background:rgba(255,255,255,.72);display:flex;align-items:center;gap:7px;font-size:13px;font-weight:800;color:#3E3F68"><i class="ph ph-microphone" style="font-size:18px"></i>Голос</div></div>
+              <div style="width:68px;height:68px;flex:none;border-radius:50%;background:#FFFFFF;box-shadow:0 14px 30px -10px rgba(40,45,90,.35);display:flex;align-items:center;justify-content:center"><i class="ph-fill ph-pause" style="font-size:28px;color:#3F5220"></i></div>
+              <div style="display:flex;justify-content:center"><div style="width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-vibrate" style="font-size:20px;color:#3E3F68"></i></div></div>
+            </div>
+            <div style="text-align:center;font-size:14px;font-weight:700;color:#3F5220;padding:4px">Закончить и оценить</div>
+          </div>
+        </div>
+      </div>
+      <div style="font-size:13px;line-height:1.45;color:#64658E;text-wrap:pretty">Голос и тон редко нужны вместе — один переключатель режима вместо двух тумблеров. «Тишина» — иконка speaker-slash и обводка.</div>
+    </div>
+    <div id="2c" style="width:360px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;background:#1E1E22;color:#FFFFFF;padding:6px 9px;border-radius:999px">2c</span><span style="font:800 19px/1.2 Nunito,sans-serif">Пауза отдельно, настройки капсулой</span></div>
+        <div style="font-size:13.5px;line-height:1.45;color:#64658E;text-wrap:pretty">Пауза одна по центру — главное действие. Под ней компактная капсула из трёх иконок. Управление и настройки разведены.</div>
+      </div>
+      <div style="width:360px;height:780px;background:#1E1E22;border-radius:44px;padding:8px;box-sizing:border-box">
+        <div style="width:100%;height:100%;border-radius:37px;overflow:hidden;position:relative;background:linear-gradient(180deg,#F2F5EA 0%,#DCE7C6 100%);display:flex;flex-direction:column;padding:44px 20px 24px;box-sizing:border-box">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+            <div style="width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-x" style="font-size:20px;color:#3E3F68"></i></div>
+            <div style="font:800 16px/1.2 Nunito,sans-serif;color:#3E3F68">Квадратное дыхание</div>
+            <div style="width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-heart" style="font-size:20px;color:#3E3F68"></i></div>
+          </div>
+          <div style="margin-top:16px;text-align:center;font:800 22px/1.25 Nunito,sans-serif;color:#3F5220">Вдох</div>
+          <div style="flex:1;position:relative;display:flex;align-items:center;justify-content:center">
+            <div style="position:absolute;width:276px;height:276px;border-radius:50%;background:#A9C07A;opacity:.18"></div>
+            <div style="position:absolute;width:218px;height:218px;border-radius:50%;background:#A9C07A;opacity:.3"></div>
+            <div style="position:absolute;width:160px;height:160px;border-radius:50%;background:#A9C07A;opacity:.55"></div>
+            <div style="position:absolute;width:102px;height:102px;border-radius:50%;background:#A9C07A"></div>
+            <div style="position:relative;font:800 46px/1 Nunito,sans-serif;color:#3F5220">2</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div style="text-align:center;font-size:14px;font-weight:800;color:#3F5220">Дальше: задержка</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="height:4px;border-radius:2px;background:rgba(63,82,32,.16);overflow:hidden"><div style="width:22%;height:100%;background:#3F5220;border-radius:2px"></div></div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:#64658E;font-variant-numeric:tabular-nums"><span>0:42</span><span>−2:18</span></div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:14px">
+              <div style="width:68px;height:68px;flex:none;border-radius:50%;background:#FFFFFF;box-shadow:0 14px 30px -10px rgba(40,45,90,.35);display:flex;align-items:center;justify-content:center"><i class="ph-fill ph-pause" style="font-size:28px;color:#3F5220"></i></div>
+              <div style="display:flex;gap:2px;padding:4px;border-radius:26px;background:rgba(255,255,255,.5)">
+                <div style="width:52px;height:40px;border-radius:20px;background:#FFFFFF;display:flex;align-items:center;justify-content:center"><i class="ph ph-microphone" style="font-size:19px;color:#3E3F68"></i></div>
+                <div style="width:52px;height:40px;border-radius:20px;display:flex;align-items:center;justify-content:center"><i class="ph ph-bell-slash" style="font-size:19px;color:#8C8DAE"></i></div>
+                <div style="width:52px;height:40px;border-radius:20px;background:#FFFFFF;display:flex;align-items:center;justify-content:center"><i class="ph ph-vibrate" style="font-size:19px;color:#3E3F68"></i></div>
+              </div>
+            </div>
+            <div style="text-align:center;font-size:14px;font-weight:700;color:#3F5220;padding:4px">Закончить и оценить</div>
+          </div>
+        </div>
+      </div>
+      <div style="font-size:13px;line-height:1.45;color:#64658E;text-wrap:pretty">Тон выключен: сегмент без белой подложки, иконка bell-slash. Капсула ~170 px и не спорит с паузой.</div>
+    </div>
+  </div>
+</section>
+<section data-screen-label="Плеер" style="padding:48px;display:flex;flex-direction:column;gap:28px">
+  <div style="display:flex;flex-direction:column;gap:10px;max-width:980px">
+    <div style="font:800 30px/1.12 Nunito,sans-serif;letter-spacing:-0.5px">Плеер: три варианта</div>
+    <div style="font-size:15px;line-height:1.5;color:#64658E;text-wrap:pretty">Сейчас во время практики кнопки скрыты: тап по экрану — пауза, и только тогда появляются ▶ в орбе и звук. Во всех вариантах ниже пауза — постоянная кнопка под прогрессом, а звук и вибрация видны всегда. Тап по экрану по-прежнему ставит на паузу.</div>
+    <div style="display:flex;flex-direction:column;gap:4px;font-size:14px;line-height:1.5;color:#3E3F68;text-wrap:pretty">
+      <div><b>Перемотка на ±10 с не нужна.</b> Дыхание идёт циклами, сдвиг на 10 с попадает в середину фазы и сбивает ритм. Это не аудиокнига.</div>
+      <div><b>«Следующий шаг» / «к началу шага»</b> полезны только в программах из нескольких шагов. В обычной практике их нет (<a href="#1c">1c</a>).</div>
+      <div><b>«Начать сначала»</b> нужен редко. Предлагаю показывать его только на паузе, под кнопкой ▶ (<a href="#1a">1a</a>).</div>
+    </div>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start">
+
+    <div id="1a" style="width:360px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;background:#1E1E22;color:#FFFFFF;padding:6px 9px;border-radius:999px">1a</span><span style="font:800 19px/1.2 Nunito,sans-serif">Один ряд</span><span style="font:800 11px/1 'Nunito Sans',sans-serif;letter-spacing:.8px;color:#3F5220;background:#E8F3E2;padding:5px 8px;border-radius:999px">РЕКОМЕНДУЮ</span></div>
+        <div style="font-size:13.5px;line-height:1.45;color:#64658E;text-wrap:pretty">Пауза в центре, по бокам по два переключателя: голос и тон слева, вибро и дыхание справа. Один ряд, без подписей, орбу ничего не мешает. «Начать заново» появляется только на паузе.</div>
+      </div>
+      <div style="width:360px;height:780px;background:#1E1E22;border-radius:44px;padding:8px;box-sizing:border-box">
+        <div style="width:100%;height:100%;border-radius:37px;overflow:hidden;position:relative;background:linear-gradient(180deg,#F2F5EA 0%,#DCE7C6 100%);display:flex;flex-direction:column;padding:44px 20px 24px;box-sizing:border-box">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+            <div style="width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-x" style="font-size:20px;color:#3E3F68"></i></div>
+            <div style="font:800 16px/1.2 Nunito,sans-serif;color:#3E3F68">Квадратное дыхание</div>
+            <div style="width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-heart" style="font-size:20px;color:#3E3F68"></i></div>
+          </div>
+          <div style="margin-top:16px;text-align:center;font:800 22px/1.25 Nunito,sans-serif;color:#3F5220">Вдох</div>
+          <div style="flex:1;position:relative;display:flex;align-items:center;justify-content:center">
+            <div style="position:absolute;width:276px;height:276px;border-radius:50%;background:#A9C07A;opacity:.18"></div>
+            <div style="position:absolute;width:218px;height:218px;border-radius:50%;background:#A9C07A;opacity:.3"></div>
+            <div style="position:absolute;width:160px;height:160px;border-radius:50%;background:#A9C07A;opacity:.55"></div>
+            <div style="position:absolute;width:102px;height:102px;border-radius:50%;background:#A9C07A"></div>
+            <div style="position:relative;font:800 46px/1 Nunito,sans-serif;color:#3F5220">2</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div style="text-align:center;font-size:14px;font-weight:800;color:#3F5220">Дальше: задержка</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="height:4px;border-radius:2px;background:rgba(63,82,32,.16);overflow:hidden"><div style="width:22%;height:100%;background:#3F5220;border-radius:2px"></div></div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:#64658E;font-variant-numeric:tabular-nums"><span>0:42</span><span>−2:18</span></div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:0 2px">
+              <div style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-microphone" style="font-size:20px;color:#3E3F68"></i></div>
+              <div style="width:44px;height:44px;border-radius:50%;box-shadow:inset 0 0 0 1.5px #CFCFF1;display:flex;align-items:center;justify-content:center"><i class="ph ph-bell" style="font-size:20px;color:#64658E"></i></div>
+              <div style="width:68px;height:68px;border-radius:50%;background:#FFFFFF;box-shadow:0 14px 30px -10px rgba(40,45,90,.35);display:flex;align-items:center;justify-content:center"><i class="ph-fill ph-pause" style="font-size:28px;color:#3F5220"></i></div>
+              <div style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-vibrate" style="font-size:20px;color:#3E3F68"></i></div>
+              <div style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-wind" style="font-size:20px;color:#3E3F68"></i></div>
+            </div>
+            <div style="text-align:center;font-size:14px;font-weight:700;color:#3F5220;padding:4px">Закончить и оценить</div>
+          </div>
+        </div>
+      </div>
+      <div style="font-size:13px;line-height:1.45;color:#64658E;text-wrap:pretty">Тон выключен: обводка вместо заливки, иконка приглушена. На паузе ⏸ меняется на ▶, в орбе — «Пауза», под рядом — «Начать заново».</div>
+    </div>
+
+    <div id="1b" style="width:360px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;background:#1E1E22;color:#FFFFFF;padding:6px 9px;border-radius:999px">1b</span><span style="font:800 19px/1.2 Nunito,sans-serif">Звук наверху, пульт внизу</span></div>
+        <div style="font-size:13.5px;line-height:1.45;color:#64658E;text-wrap:pretty">Переключатели с подписями — чипы под названием фазы. Внизу только прогресс и крупная пауза. Настройки и управление разведены, подписи понятнее иконок.</div>
+      </div>
+      <div style="width:360px;height:780px;background:#1E1E22;border-radius:44px;padding:8px;box-sizing:border-box">
+        <div style="width:100%;height:100%;border-radius:37px;overflow:hidden;position:relative;background:linear-gradient(180deg,#F2F5EA 0%,#DCE7C6 100%);display:flex;flex-direction:column;padding:44px 20px 24px;box-sizing:border-box">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+            <div style="width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-x" style="font-size:20px;color:#3E3F68"></i></div>
+            <div style="font:800 16px/1.2 Nunito,sans-serif;color:#3E3F68">Квадратное дыхание</div>
+            <div style="width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-heart" style="font-size:20px;color:#3E3F68"></i></div>
+          </div>
+          <div style="margin-top:14px;display:flex;justify-content:center;gap:6px;flex-wrap:wrap">
+            <div style="height:34px;padding:0 12px;border-radius:17px;background:rgba(255,255,255,.72);display:flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:#3E3F68"><i class="ph ph-microphone" style="font-size:16px"></i>Голос</div>
+            <div style="height:34px;padding:0 12px;border-radius:17px;box-shadow:inset 0 0 0 1.5px rgba(62,63,104,.22);display:flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:#8C8DAE"><i class="ph ph-bell-slash" style="font-size:16px"></i>Тон</div>
+            <div style="height:34px;padding:0 12px;border-radius:17px;background:rgba(255,255,255,.72);display:flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:#3E3F68"><i class="ph ph-vibrate" style="font-size:16px"></i>Вибро</div>
+            <div style="height:34px;padding:0 12px;border-radius:17px;background:rgba(255,255,255,.72);display:flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:#3E3F68"><i class="ph ph-wind" style="font-size:16px"></i>Дыхание</div>
+          </div>
+          <div style="margin-top:22px;text-align:center;font:800 22px/1.25 Nunito,sans-serif;color:#3F5220">Вдох</div>
+          <div style="flex:1;position:relative;display:flex;align-items:center;justify-content:center">
+            <div style="position:absolute;width:276px;height:276px;border-radius:50%;background:#A9C07A;opacity:.18"></div>
+            <div style="position:absolute;width:218px;height:218px;border-radius:50%;background:#A9C07A;opacity:.3"></div>
+            <div style="position:absolute;width:160px;height:160px;border-radius:50%;background:#A9C07A;opacity:.55"></div>
+            <div style="position:absolute;width:102px;height:102px;border-radius:50%;background:#A9C07A"></div>
+            <div style="position:relative;font:800 46px/1 Nunito,sans-serif;color:#3F5220">2</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div style="text-align:center;font-size:14px;font-weight:800;color:#3F5220">Дальше: задержка</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="height:4px;border-radius:2px;background:rgba(63,82,32,.16);overflow:hidden"><div style="width:22%;height:100%;background:#3F5220;border-radius:2px"></div></div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:#64658E;font-variant-numeric:tabular-nums"><span>0:42</span><span>−2:18</span></div>
+            </div>
+            <div style="display:flex;justify-content:center"><div style="width:68px;height:68px;border-radius:50%;background:#FFFFFF;box-shadow:0 14px 30px -10px rgba(40,45,90,.35);display:flex;align-items:center;justify-content:center"><i class="ph-fill ph-pause" style="font-size:28px;color:#3F5220"></i></div></div>
+            <div style="text-align:center;font-size:14px;font-weight:700;color:#3F5220;padding:4px">Закончить и оценить</div>
+          </div>
+        </div>
+      </div>
+      <div style="font-size:13px;line-height:1.45;color:#64658E;text-wrap:pretty">Минус: чипы сверху отнимают место у орба. На узких экранах и при крупном шрифте переносятся на вторую строку.</div>
+    </div>
+
+    <div id="1c" style="width:360px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;background:#1E1E22;color:#FFFFFF;padding:6px 9px;border-radius:999px">1c</span><span style="font:800 19px/1.2 Nunito,sans-serif">Программа: по шагам</span></div>
+        <div style="font-size:13.5px;line-height:1.45;color:#64658E;text-wrap:pretty">Для программ из нескольких шагов к <a href="#1a">1a</a> добавляются ⏮ «к началу шага» и ⏭ «следующий шаг». Прогресс разбит на сегменты. Переключатели звука — строкой выше.</div>
+      </div>
+      <div style="width:360px;height:780px;background:#1E1E22;border-radius:44px;padding:8px;box-sizing:border-box">
+        <div style="width:100%;height:100%;border-radius:37px;overflow:hidden;position:relative;background:linear-gradient(180deg,#FBFAFF 0%,#E3DBFD 100%);display:flex;flex-direction:column;padding:44px 20px 24px;box-sizing:border-box">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+            <div style="width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-x" style="font-size:20px;color:#3E3F68"></i></div>
+            <div style="font:800 16px/1.2 Nunito,sans-serif;color:#3E3F68">Утро: проснуться</div>
+            <div style="width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-heart" style="font-size:20px;color:#3E3F68"></i></div>
+          </div>
+          <div style="margin-top:16px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center">
+            <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#5F49B8">Шаг 2 из 3 · Капалабхати</div>
+            <div style="font:800 22px/1.25 Nunito,sans-serif;color:#5F49B8">Выдох</div>
+          </div>
+          <div style="flex:1;position:relative;display:flex;align-items:center;justify-content:center">
+            <div style="position:absolute;width:276px;height:276px;border-radius:50%;background:#B9A6F5;opacity:.18"></div>
+            <div style="position:absolute;width:218px;height:218px;border-radius:50%;background:#B9A6F5;opacity:.3"></div>
+            <div style="position:absolute;width:160px;height:160px;border-radius:50%;background:#B9A6F5;opacity:.55"></div>
+            <div style="position:absolute;width:102px;height:102px;border-radius:50%;background:#B9A6F5"></div>
+            <div style="position:relative;font:800 46px/1 Nunito,sans-serif;color:#5F49B8">1</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div style="display:flex;justify-content:center;gap:14px">
+              <div style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-microphone" style="font-size:18px;color:#3E3F68"></i></div>
+              <div style="width:40px;height:40px;border-radius:50%;box-shadow:inset 0 0 0 1.5px rgba(62,63,104,.22);display:flex;align-items:center;justify-content:center"><i class="ph ph-bell-slash" style="font-size:18px;color:#8C8DAE"></i></div>
+              <div style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-vibrate" style="font-size:18px;color:#3E3F68"></i></div>
+              <div style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-wind" style="font-size:18px;color:#3E3F68"></i></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;gap:4px">
+                <div style="flex:3;height:4px;border-radius:2px;background:#5F49B8"></div>
+                <div style="flex:4;height:4px;border-radius:2px;background:rgba(95,73,184,.18);overflow:hidden"><div style="width:35%;height:100%;background:#5F49B8"></div></div>
+                <div style="flex:2;height:4px;border-radius:2px;background:rgba(95,73,184,.18)"></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:#64658E;font-variant-numeric:tabular-nums"><span>4:24</span><span>−4:36</span></div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:center;gap:28px">
+              <div style="width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center"><i class="ph-fill ph-skip-back" style="font-size:24px;color:#5F49B8"></i></div>
+              <div style="width:68px;height:68px;border-radius:50%;background:#FFFFFF;box-shadow:0 14px 30px -10px rgba(40,45,90,.35);display:flex;align-items:center;justify-content:center"><i class="ph-fill ph-pause" style="font-size:28px;color:#5F49B8"></i></div>
+              <div style="width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center"><i class="ph-fill ph-skip-forward" style="font-size:24px;color:#5F49B8"></i></div>
+            </div>
+            <div style="text-align:center;font-size:14px;font-weight:700;color:#5F49B8;padding:4px">Закончить и оценить</div>
+          </div>
+        </div>
+      </div>
+      <div style="font-size:13px;line-height:1.45;color:#64658E;text-wrap:pretty">⏮ ведёт к началу текущего шага, а повторное нажатие в первые 3 с — к предыдущему шагу. Если шаг один, ⏮ и ⏭ не показываются, и экран выглядит как <a href="#1a">1a</a>.</div>
+    </div>
+
+  </div>
+</section>
+</x-dc>
+</body>
+</html>

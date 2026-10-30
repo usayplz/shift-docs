@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#ECEBFB;font-family:'Nunito Sans',system-ui,sans-serif;color:#3E3F68;-webkit-font-smoothing:antialiased}
+a{color:#5A5FB0}a:hover{color:#3E3F68}
+button{font-family:inherit;color:inherit}
+</style>
+</helmet>
+<section data-screen-label="Состояния · 2a компактно" style="padding:48px;display:flex;flex-direction:column;gap:28px;border-bottom:1.5px solid #DEDDF5">
+  <div style="display:flex;flex-direction:column;gap:8px;max-width:900px">
+    <div style="font:800 30px/1.12 Nunito,sans-serif;letter-spacing:-0.5px">2a компактнее</div>
+    <div style="font-size:15px;line-height:1.5;color:#64658E;text-wrap:pretty">Раскладка как в <a href="#2a">2a</a>, но кружок опущен ближе к названию: между ними 8 dp вместо растяжки. Отступы 20 dp сверху, 14 dp снизу. Рядом для сравнения — исходный <a href="#2a">2a</a>.</div>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start">
+
+    <div id="5a" style="width:360px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;align-items:center;gap:10px"><span style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;background:#1E1E22;color:#FFFFFF;padding:6px 9px;border-radius:999px">5a</span><span style="font:800 19px/1.2 Nunito,sans-serif">Компактно</span></div>
+      <div style="background:#F5F4FE;border-radius:28px;padding:22px 20px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;flex-direction:column;gap:4px"><div style="font:800 18px/1.2 Nunito,sans-serif">Как ты сейчас?</div><div style="font-size:13px;color:#64658E;line-height:1.4">Отметь — подберём практику под состояние</div></div>
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px">
+          <div style="background:#E8F3E2;color:#3F5A2A;border-radius:22px;padding:20px 16px 14px;display:flex;flex-direction:column;gap:2px"><div style="display:flex;flex-direction:column;align-items:flex-start;gap:12px"><div style="width:22px;height:22px;flex:none;border-radius:50%;background:rgba(155,179,106,.35);display:flex;align-items:center;justify-content:center"><div style="width:11px;height:11px;border-radius:50%;background:#9BB36A"></div></div><div style="font-weight:800;font-size:16px;line-height:1.2">В порядке</div></div><div style="font-size:13px;line-height:1.3;opacity:.85">Силы есть, внутри спокойно</div></div>
+          <div style="background:#FDEBDD;color:#8A3E10;border-radius:22px;padding:20px 16px 14px;display:flex;flex-direction:column;gap:2px"><div style="display:flex;flex-direction:column;align-items:flex-start;gap:12px"><div style="width:22px;height:22px;flex:none;border-radius:50%;background:rgba(243,145,63,.35);display:flex;align-items:center;justify-content:center"><div style="width:11px;height:11px;border-radius:50%;background:#F3913F"></div></div><div style="font-weight:800;font-size:16px;line-height:1.2">На взводе</div></div><div style="font-size:13px;line-height:1.3;opacity:.85">Силы есть, внутри всё сжато</div></div>
+          <div style="background:#E1EEFE;color:#284F86;border-radius:22px;padding:20px 16px 14px;display:flex;flex-direction:column;gap:2px"><div style="display:flex;flex-direction:column;align-items:flex-start;gap:12px"><div style="width:22px;height:22px;flex:none;border-radius:50%;background:rgba(142,192,230,.4);display:flex;align-items:center;justify-content:center"><div style="width:11px;height:11px;border-radius:50%;background:#8EC0E6"></div></div><div style="font-weight:800;font-size:16px;line-height:1.2">В тумане</div></div><div style="font-size:13px;line-height:1.3;opacity:.85">Сил мало, внутри спокойно</div></div>
+          <div style="background:#EEE6FE;color:#5531A0;border-radius:22px;padding:20px 16px 14px;display:flex;flex-direction:column;gap:2px"><div style="display:flex;flex-direction:column;align-items:flex-start;gap:12px"><div style="width:22px;height:22px;flex:none;border-radius:50%;background:rgba(185,138,242,.35);display:flex;align-items:center;justify-content:center"><div style="width:11px;height:11px;border-radius:50%;background:#B98AF2"></div></div><div style="font-weight:800;font-size:16px;line-height:1.2">На пределе</div></div><div style="font-size:13px;line-height:1.3;opacity:.85">Сил мало, а нервы натянуты</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="width:360px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;align-items:center;gap:10px"><span style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;background:#FFFFFF;color:#3E3F68;padding:6px 9px;border-radius:999px;box-shadow:inset 0 0 0 1.5px #DEDDF5">2a</span><span style="font:800 19px/1.2 Nunito,sans-serif">Было</span></div>
+      <div style="background:#F5F4FE;border-radius:28px;padding:22px 20px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;flex-direction:column;gap:4px"><div style="font:800 18px/1.2 Nunito,sans-serif">Как ты сейчас?</div><div style="font-size:13px;color:#64658E;line-height:1.4">Отметь — подберём практику под состояние</div></div>
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px">
+          <div style="background:#E8F3E2;color:#3F5A2A;border-radius:22px;min-height:104px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between;gap:10px"><div style="width:22px;height:22px;border-radius:50%;background:rgba(155,179,106,.35);display:flex;align-items:center;justify-content:center"><div style="width:12px;height:12px;border-radius:50%;background:#9BB36A"></div></div><div style="display:flex;flex-direction:column;gap:2px"><div style="font-weight:800;font-size:16px">В порядке</div><div style="font-size:13px;line-height:1.3;opacity:.85">Силы есть, внутри спокойно</div></div></div>
+          <div style="background:#FDEBDD;color:#8A3E10;border-radius:22px;min-height:104px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between;gap:10px"><div style="width:22px;height:22px;border-radius:50%;background:rgba(243,145,63,.35);display:flex;align-items:center;justify-content:center"><div style="width:12px;height:12px;border-radius:50%;background:#F3913F"></div></div><div style="display:flex;flex-direction:column;gap:2px"><div style="font-weight:800;font-size:16px">На взводе</div><div style="font-size:13px;line-height:1.3;opacity:.85">Силы есть, внутри всё сжато</div></div></div>
+          <div style="background:#E1EEFE;color:#284F86;border-radius:22px;min-height:104px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between;gap:10px"><div style="width:22px;height:22px;border-radius:50%;background:rgba(142,192,230,.4);display:flex;align-items:center;justify-content:center"><div style="width:12px;height:12px;border-radius:50%;background:#8EC0E6"></div></div><div style="display:flex;flex-direction:column;gap:2px"><div style="font-weight:800;font-size:16px">В тумане</div><div style="font-size:13px;line-height:1.3;opacity:.85">Сил мало, внутри спокойно</div></div></div>
+          <div style="background:#EEE6FE;color:#5531A0;border-radius:22px;min-height:104px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between;gap:10px"><div style="width:22px;height:22px;border-radius:50%;background:rgba(185,138,242,.35);display:flex;align-items:center;justify-content:center"><div style="width:12px;height:12px;border-radius:50%;background:#B98AF2"></div></div><div style="display:flex;flex-direction:column;gap:2px"><div style="font-weight:800;font-size:16px">На пределе</div><div style="font-size:13px;line-height:1.3;opacity:.85">Сил мало, а нервы натянуты</div></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section data-screen-label="Состояния · без заливки" style="padding:48px;display:flex;flex-direction:column;gap:28px;border-bottom:1.5px solid #DEDDF5">
+  <div style="display:flex;flex-direction:column;gap:8px;max-width:900px">
+    <div style="font:800 30px/1.12 Nunito,sans-serif;letter-spacing:-0.5px">2×2 без заливки, орб крупнее</div>
+    <div style="font-size:15px;line-height:1.5;color:#64658E;text-wrap:pretty">Как <a href="#3a">3a</a>, но без цветного фона: цвет состояния передают только орб и название. Орб 64 dp, как в <a href="#3c">3c</a>. Тап сразу открывает подбор практики.</div>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start">
+
+    <div id="4a" style="width:360px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;background:#1E1E22;color:#FFFFFF;padding:6px 9px;border-radius:999px">4a</span><span style="font:800 19px/1.2 Nunito,sans-serif">Совсем без фона</span></div>
+        <div style="font-size:13.5px;line-height:1.45;color:#64658E;text-wrap:pretty">Самый лёгкий вариант. Орбы стоят прямо на фоне экрана. При нажатии под орбом на мгновение появляется светлый круг — так видно, что это кнопка.</div>
+      </div>
+      <div style="background:#F5F4FE;border-radius:28px;padding:22px 20px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;flex-direction:column;gap:4px"><div style="font:800 18px/1.2 Nunito,sans-serif">Как ты сейчас?</div><div style="font-size:13px;color:#64658E;line-height:1.4">Отметь — подберём практику под состояние</div></div>
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px 8px">
+          <div style="padding:10px 8px 8px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center"><div style="width:64px;height:64px;border-radius:50%;background:rgba(155,179,106,.22);display:flex;align-items:center;justify-content:center"><div style="width:43px;height:43px;border-radius:50%;background:rgba(155,179,106,.5);display:flex;align-items:center;justify-content:center"><div style="width:24px;height:24px;border-radius:50%;background:#9BB36A"></div></div></div><div style="display:flex;flex-direction:column;gap:2px"><div style="font-weight:800;font-size:16px;color:#3F5A2A">В порядке</div><div style="font-size:13px;line-height:1.3;color:#64658E;text-wrap:balance">Силы есть, внутри спокойно</div></div></div>
+          <div style="padding:10px 8px 8px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center"><div style="width:64px;height:64px;border-radius:50%;background:rgba(243,145,63,.22);display:flex;align-items:center;justify-content:center"><div style="width:43px;height:43px;border-radius:50%;background:rgba(243,145,63,.5);display:flex;align-items:center;justify-content:center"><div style="width:24px;height:24px;border-radius:50%;background:#F3913F"></div></div></div><div style="display:flex;flex-direction:column;gap:2px"><div style="font-weight:800;font-size:16px;color:#8A3E10">На взводе</div><div style="font-size:13px;line-height:1.3;color:#64658E;text-wrap:balance">Силы есть, внутри всё сжато</div></div></div>
+          <div style="padding:10px 8px 8px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center"><div style="width:64px;height:64px;border-radius:50%;background:rgba(142,192,230,.28);display:flex;align-items:center;justify-content:center"><div style="width:43px;height:43px;border-radius:50%;background:rgba(142,192,230,.55);display:flex;align-items:center;justify-content:center"><div style="width:24px;height:24px;border-radius:50%;background:#8EC0E6"></div></div></div><div style="display:flex;flex-direction:column;gap:2px"><div style="font-weight:800;font-size:16px;color:#284F86">В тумане</div><div style="font-size:13px;line-height:1.3;color:#64658E;text-wrap:balance">Сил мало, внутри спокойно</div></div></div>
+          <div style="padding:10px 8px 8px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center"><div style="width:64px;height:64px;border-radius:50%;background:rgba(185,138,242,.22);display:flex;align-items:center;justify-content:center"><div style="width:43px;height:43px;border-radius:50%;background:rgba(185,138,242,.5);display:flex;align-items:center;justify-content:center"><div style="width:24px;height:24px;border-radius:50%;background:#B98AF2"></div></div></div><div style="display:flex;flex-direction:column;gap:2px"><div style="font-weight:800;font-size:16px;color:#5531A0">На пределе</div><div style="font-size:13px;line-height:1.3;color:#64658E;text-wrap:balance">Сил мало, а нервы натянуты</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="4b" style="width:360px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;background:#1E1E22;color:#FFFFFF;padding:6px 9px;border-radius:999px">4b</span><span style="font:800 19px/1.2 Nunito,sans-serif">Тонкая обводка</span></div>
+        <div style="font-size:13.5px;line-height:1.45;color:#64658E;text-wrap:pretty">Тоже без заливки, но каждая плитка обведена тонкой линией. Границы нажатия видны, а экран остаётся таким же лёгким.</div>
+      </div>
+      <div style="background:#F5F4FE;border-radius:28px;padding:22px 20px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;flex-direction:column;gap:4px"><div style="font:800 18px/1.2 Nunito,sans-serif">Как ты сейчас?</div><div style="font-size:13px;color:#64658E;line-height:1.4">Отметь — подберём практику под состояние</div></div>
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px">
+          <div style="border-radius:22px;box-shadow:inset 0 0 0 1.5px #DEDDF5;padding:16px 10px 14px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center"><div style="width:64px;height:64px;border-radius:50%;background:rgba(155,179,106,.22);display:flex;align-items:center;justify-content:center"><div style="width:43px;height:43px;border-radius:50%;background:rgba(155,179,106,.5);display:flex;align-items:center;justify-content:center"><div style="width:24px;height:24px;border-radius:50%;background:#9BB36A"></div></div></div><div style="display:flex;flex-direction:column;gap:2px"><div style="font-weight:800;font-size:16px;color:#3F5A2A">В порядке</div><div style="font-size:13px;line-height:1.3;color:#64658E;text-wrap:balance">Силы есть, внутри спокойно</div></div></div>
+          <div style="border-radius:22px;box-shadow:inset 0 0 0 1.5px #DEDDF5;padding:16px 10px 14px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center"><div style="width:64px;height:64px;border-radius:50%;background:rgba(243,145,63,.22);display:flex;align-items:center;justify-content:center"><div style="width:43px;height:43px;border-radius:50%;background:rgba(243,145,63,.5);display:flex;align-items:center;justify-content:center"><div style="width:24px;height:24px;border-radius:50%;background:#F3913F"></div></div></div><div style="display:flex;flex-direction:column;gap:2px"><div style="font-weight:800;font-size:16px;color:#8A3E10">На взводе</div><div style="font-size:13px;line-height:1.3;color:#64658E;text-wrap:balance">Силы есть, внутри всё сжато</div></div></div>
+          <div style="border-radius:22px;box-shadow:inset 0 0 0 1.5px #DEDDF5;padding:16px 10px 14px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center"><div style="width:64px;height:64px;border-radius:50%;background:rgba(142,192,230,.28);display:flex;align-items:center;justify-content:center"><div style="width:43px;height:43px;border-radius:50%;background:rgba(142,192,230,.55);display:flex;align-items:center;justify-content:center"><div style="width:24px;height:24px;border-radius:50%;background:#8EC0E6"></div></div></div><div style="display:flex;flex-direction:column;gap:2px"><div style="font-weight:800;font-size:16px;color:#284F86">В тумане</div><div style="font-size:13px;line-height:1.3;color:#64658E;text-wrap:balance">Сил мало, внутри спокойно</div></div></div>
+          <div style="border-radius:22px;box-shadow:inset 0 0 0 1.5px #DEDDF5;padding:16px 10px 14px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center"><div style="width:64px;height:64px;border-radius:50%;background:rgba(185,138,242,.22);display:flex;align-items:center;justify-content:center"><div style="width:43px;height:43px;border-radius:50%;background:rgba(185,138,242,.5);display:flex;align-items:center;justify-content:center"><div style="width:24px;height:24px;border-radius:50%;background:#B98AF2"></div></div></div><div style="display:flex;flex-direction:column;gap:2px"><div style="font-weight:800;font-size:16px;color:#5531A0">На пределе</div><div style="font-size:13px;line-height:1.3;color:#64658E;text-wrap:balance">Сил мало, а нервы натянуты</div></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section data-screen-label="Состояния · орбы" style="padding:48px;display:flex;flex-direction:column;gap:28px">
+  <div style="display:flex;flex-direction:column;gap:8px;max-width:900px">
+    <div style="font:800 30px/1.12 Nunito,sans-serif;letter-spacing:-0.5px">Орбы с подсказками: три раскладки</div>
+    <div style="font-size:15px;line-height:1.5;color:#64658E;text-wrap:pretty">Доработка <a href="#2c">2c</a>. Подсказка видна у каждого состояния сразу. Тап по любому из них сразу открывает подбор практики, без шага «Дальше». Названия и тексты — как в <a href="#2a">2a</a>.</div>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start">
+
+    <div id="3a" style="width:360px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;background:#1E1E22;color:#FFFFFF;padding:6px 9px;border-radius:999px">3a</span><span style="font:800 19px/1.2 Nunito,sans-serif">Плитки 2×2, орб в центре</span><span style="font:800 11px/1 'Nunito Sans',sans-serif;letter-spacing:.8px;color:#3F5220;background:#E8F3E2;padding:5px 8px;border-radius:999px">РЕКОМЕНДУЮ</span></div>
+        <div style="font-size:13.5px;line-height:1.45;color:#64658E;text-wrap:pretty">Орб — главный образ плитки, текст по центру под ним. Крупные зоны нажатия, цвет состояния читается издалека. По высоте как сейчас.</div>
+      </div>
+      <div style="background:#F5F4FE;border-radius:28px;padding:22px 20px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;flex-direction:column;gap:4px"><div style="font:800 18px/1.2 Nunito,sans-serif">Как ты сейчас?</div><div style="font-size:13px;color:#64658E;line-height:1.4">Отметь — подберём практику под состояние</div></div>
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px">
+          <div style="background:#E8F3E2;color:#3F5A2A;border-radius:22px;padding:16px 12px 14px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center"><div style="width:56px;height:56px;border-radius:50%;background:rgba(155,179,106,.28);display:flex;align-items:center;justify-content:center"><div style="width:38px;height:38px;border-radius:50%;background:rgba(155,179,106,.55);display:flex;align-items:center;justify-content:center"><div style="width:22px;height:22px;border-radius:50%;background:#9BB36A"></div></div></div><div style="display:flex;flex-direction:column;gap:2px"><div style="font-weight:800;font-size:16px">В порядке</div><div style="font-size:13px;line-height:1.3;opacity:.85;text-wrap:balance">Силы есть, внутри спокойно</div></div></div>
+          <div style="background:#FDEBDD;color:#8A3E10;border-radius:22px;padding:16px 12px 14px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center"><div style="width:56px;height:56px;border-radius:50%;background:rgba(243,145,63,.28);display:flex;align-items:center;justify-content:center"><div style="width:38px;height:38px;border-radius:50%;background:rgba(243,145,63,.55);display:flex;align-items:center;justify-content:center"><div style="width:22px;height:22px;border-radius:50%;background:#F3913F"></div></div></div><div style="display:flex;flex-direction:column;gap:2px"><div style="font-weight:800;font-size:16px">На взводе</div><div style="font-size:13px;line-height:1.3;opacity:.85;text-wrap:balance">Силы есть, внутри всё сжато</div></div></div>
+          <div style="background:#E1EEFE;color:#284F86;border-radius:22px;padding:16px 12px 14px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center"><div style="width:56px;height:56px;border-radius:50%;background:rgba(142,192,230,.32);display:flex;align-items:center;justify-content:center"><div style="width:38px;height:38px;border-radius:50%;background:rgba(142,192,230,.6);display:flex;align-items:center;justify-content:center"><div style="width:22px;height:22px;border-radius:50%;background:#8EC0E6"></div></div></div><div style="display:flex;flex-direction:column;gap:2px"><div style="font-weight:800;font-size:16px">В тумане</div><div style="font-size:13px;line-height:1.3;opacity:.85;text-wrap:balance">Сил мало, внутри спокойно</div></div></div>
+          <div style="background:#EEE6FE;color:#5531A0;border-radius:22px;padding:16px 12px 14px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center"><div style="width:56px;height:56px;border-radius:50%;background:rgba(185,138,242,.28);display:flex;align-items:center;justify-content:center"><div style="width:38px;height:38px;border-radius:50%;background:rgba(185,138,242,.55);display:flex;align-items:center;justify-content:center"><div style="width:22px;height:22px;border-radius:50%;background:#B98AF2"></div></div></div><div style="display:flex;flex-direction:column;gap:2px"><div style="font-weight:800;font-size:16px">На пределе</div><div style="font-size:13px;line-height:1.3;opacity:.85;text-wrap:balance">Сил мало, а нервы натянуты</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="3b" style="width:360px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;background:#1E1E22;color:#FFFFFF;padding:6px 9px;border-radius:999px">3b</span><span style="font:800 19px/1.2 Nunito,sans-serif">Список на одной карточке</span></div>
+        <div style="font-size:13.5px;line-height:1.45;color:#64658E;text-wrap:pretty">Белая карточка, четыре строки: орб слева, название и подсказка справа, стрелка «перейти». Цвет только в орбах — спокойнее, похоже на остальные списки «Сегодня». Блок выше, чем 2×2.</div>
+      </div>
+      <div style="background:#F5F4FE;border-radius:28px;padding:22px 20px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;flex-direction:column;gap:4px"><div style="font:800 18px/1.2 Nunito,sans-serif">Как ты сейчас?</div><div style="font-size:13px;color:#64658E;line-height:1.4">Отметь — подберём практику под состояние</div></div>
+        <div style="background:#FFFFFF;border-radius:22px;padding:4px 0;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:14px;padding:10px 14px 10px 12px"><div style="width:46px;height:46px;flex:none;border-radius:50%;background:rgba(155,179,106,.25);display:flex;align-items:center;justify-content:center"><div style="width:30px;height:30px;border-radius:50%;background:rgba(155,179,106,.5);display:flex;align-items:center;justify-content:center"><div style="width:16px;height:16px;border-radius:50%;background:#9BB36A"></div></div></div><div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px"><div style="font-weight:800;font-size:16px;color:#3F5A2A">В порядке</div><div style="font-size:13px;line-height:1.3;color:#64658E">Силы есть, внутри спокойно</div></div><div style="width:9px;height:9px;flex:none;border-right:2.5px solid #C3C4E4;border-top:2.5px solid #C3C4E4;transform:rotate(45deg);margin-right:4px"></div></div>
+          <div style="height:1px;background:#F0EFFB;margin-left:72px"></div>
+          <div style="display:flex;align-items:center;gap:14px;padding:10px 14px 10px 12px"><div style="width:46px;height:46px;flex:none;border-radius:50%;background:rgba(243,145,63,.25);display:flex;align-items:center;justify-content:center"><div style="width:30px;height:30px;border-radius:50%;background:rgba(243,145,63,.5);display:flex;align-items:center;justify-content:center"><div style="width:16px;height:16px;border-radius:50%;background:#F3913F"></div></div></div><div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px"><div style="font-weight:800;font-size:16px;color:#8A3E10">На взводе</div><div style="font-size:13px;line-height:1.3;color:#64658E">Силы есть, внутри всё сжато</div></div><div style="width:9px;height:9px;flex:none;border-right:2.5px solid #C3C4E4;border-top:2.5px solid #C3C4E4;transform:rotate(45deg);margin-right:4px"></div></div>
+          <div style="height:1px;background:#F0EFFB;margin-left:72px"></div>
+          <div style="display:flex;align-items:center;gap:14px;padding:10px 14px 10px 12px"><div style="width:46px;height:46px;flex:none;border-radius:50%;background:rgba(142,192,230,.3);display:flex;align-items:center;justify-content:center"><div style="width:30px;height:30px;border-radius:50%;background:rgba(142,192,230,.6);display:flex;align-items:center;justify-content:center"><div style="width:16px;height:16px;border-radius:50%;background:#8EC0E6"></div></div></div><div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px"><div style="font-weight:800;font-size:16px;color:#284F86">В тумане</div><div style="font-size:13px;line-height:1.3;color:#64658E">Сил мало, внутри спокойно</div></div><div style="width:9px;height:9px;flex:none;border-right:2.5px solid #C3C4E4;border-top:2.5px solid #C3C4E4;transform:rotate(45deg);margin-right:4px"></div></div>
+          <div style="height:1px;background:#F0EFFB;margin-left:72px"></div>
+          <div style="display:flex;align-items:center;gap:14px;padding:10px 14px 10px 12px"><div style="width:46px;height:46px;flex:none;border-radius:50%;background:rgba(185,138,242,.25);display:flex;align-items:center;justify-content:center"><div style="width:30px;height:30px;border-radius:50%;background:rgba(185,138,242,.5);display:flex;align-items:center;justify-content:center"><div style="width:16px;height:16px;border-radius:50%;background:#B98AF2"></div></div></div><div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px"><div style="font-weight:800;font-size:16px;color:#5531A0">На пределе</div><div style="font-size:13px;line-height:1.3;color:#64658E">Сил мало, а нервы натянуты</div></div><div style="width:9px;height:9px;flex:none;border-right:2.5px solid #C3C4E4;border-top:2.5px solid #C3C4E4;transform:rotate(45deg);margin-right:4px"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="3c" style="width:360px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;background:#1E1E22;color:#FFFFFF;padding:6px 9px;border-radius:999px">3c</span><span style="font:800 19px/1.2 Nunito,sans-serif">Один ряд с подсказками</span></div>
+        <div style="font-size:13.5px;line-height:1.45;color:#64658E;text-wrap:pretty">Ближе всего к <a href="#2c">2c</a>: четыре орба в ряд, под каждым название и подсказка мелким шрифтом. Самый низкий блок, но текст узкий, в 3–4 строки. При крупном шрифте придётся переходить на 2×2.</div>
+      </div>
+      <div style="background:#F5F4FE;border-radius:28px;padding:22px 20px;display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;flex-direction:column;gap:4px"><div style="font:800 18px/1.2 Nunito,sans-serif">Как ты сейчас?</div><div style="font-size:13px;color:#64658E;line-height:1.4">Отметь — подберём практику под состояние</div></div>
+        <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;padding:4px 0"><div style="width:64px;height:64px;border-radius:50%;background:rgba(155,179,106,.22);display:flex;align-items:center;justify-content:center"><div style="width:43px;height:43px;border-radius:50%;background:rgba(155,179,106,.5);display:flex;align-items:center;justify-content:center"><div style="width:24px;height:24px;border-radius:50%;background:#9BB36A"></div></div></div><div style="display:flex;flex-direction:column;gap:3px"><div style="font-weight:800;font-size:13px;line-height:1.2;color:#3F5A2A">В порядке</div><div style="font-size:12px;line-height:1.3;color:#64658E;text-wrap:balance">Силы есть, внутри спокойно</div></div></div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;padding:4px 0"><div style="width:64px;height:64px;border-radius:50%;background:rgba(243,145,63,.22);display:flex;align-items:center;justify-content:center"><div style="width:43px;height:43px;border-radius:50%;background:rgba(243,145,63,.5);display:flex;align-items:center;justify-content:center"><div style="width:24px;height:24px;border-radius:50%;background:#F3913F"></div></div></div><div style="display:flex;flex-direction:column;gap:3px"><div style="font-weight:800;font-size:13px;line-height:1.2;color:#8A3E10">На взводе</div><div style="font-size:12px;line-height:1.3;color:#64658E;text-wrap:balance">Силы есть, внутри сжато</div></div></div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;padding:4px 0"><div style="width:64px;height:64px;border-radius:50%;background:rgba(142,192,230,.28);display:flex;align-items:center;justify-content:center"><div style="width:43px;height:43px;border-radius:50%;background:rgba(142,192,230,.55);display:flex;align-items:center;justify-content:center"><div style="width:24px;height:24px;border-radius:50%;background:#8EC0E6"></div></div></div><div style="display:flex;flex-direction:column;gap:3px"><div style="font-weight:800;font-size:13px;line-height:1.2;color:#284F86">В тумане</div><div style="font-size:12px;line-height:1.3;color:#64658E;text-wrap:balance">Сил мало, внутри спокойно</div></div></div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;padding:4px 0"><div style="width:64px;height:64px;border-radius:50%;background:rgba(185,138,242,.22);display:flex;align-items:center;justify-content:center"><div style="width:43px;height:43px;border-radius:50%;background:rgba(185,138,242,.5);display:flex;align-items:center;justify-content:center"><div style="width:24px;height:24px;border-radius:50%;background:#B98AF2"></div></div></div><div style="display:flex;flex-direction:column;gap:3px"><div style="font-weight:800;font-size:13px;line-height:1.2;color:#5531A0">На пределе</div><div style="font-size:12px;line-height:1.3;color:#64658E;text-wrap:balance">Сил мало, нервы натянуты</div></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section data-screen-label="Состояния" style="padding:48px;display:flex;flex-direction:column;gap:28px;border-top:1.5px solid #DEDDF5">
+  <div style="display:flex;flex-direction:column;gap:12px;max-width:1000px">
+    <div style="font:800 30px/1.12 Nunito,sans-serif;letter-spacing:-0.5px">«Как ты сейчас?»: разбор и варианты</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px">
+      <div style="background:#FFFFFF;border-radius:20px;padding:16px 18px;display:flex;flex-direction:column;gap:8px">
+        <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#6A6B94">Что работает</div>
+        <div style="font-size:14px;line-height:1.5;text-wrap:pretty">Четыре карточки, один тап. Разные цвета хорошо различаются. Описания короткие и бытовые, без психологических терминов. «Сил нет, а нервы натянуты» сразу узнаётся.</div>
+      </div>
+      <div style="background:#FFFFFF;border-radius:20px;padding:16px 18px;display:flex;flex-direction:column;gap:8px">
+        <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#6A6B94">Что мешает</div>
+        <div style="display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:1.5;text-wrap:pretty">
+          <div><b>Названия в мужском роде.</b> «Собран», «Выжат» — женщине придётся мысленно переводить. «На взводе» и «Вяло» нейтральны, но это три разных части речи на четыре карточки.</div>
+          <div><b>«Лучшее состояние»</b> — оценка, а не описание. Человек в норме не узнаёт себя по ней, а в остальных карточках звучит как «у тебя хуже».</div>
+          <div><b>Описания построены по-разному.</b> Если писать все по одной схеме «сколько сил + что внутри», выбор занимает секунду: человек сравнивает одно и то же.</div>
+        </div>
+      </div>
+      <div style="background:#FFFFFF;border-radius:20px;padding:16px 18px;display:flex;flex-direction:column;gap:8px">
+        <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#6A6B94">Предлагаю</div>
+        <div style="display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:1.5;text-wrap:pretty">
+          <div><b>Названия:</b> «В порядке · На взводе · В тумане · На пределе» — одна форма, без рода.</div>
+          <div><b>Описания:</b> одна схема для всех: «Силы есть, внутри спокойно» и так далее.</div>
+          <div><b>Пятую карточку не добавлять.</b> «Не знаю» не даёт подобрать практику.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start">
+
+    <div id="2a" style="width:360px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;background:#1E1E22;color:#FFFFFF;padding:6px 9px;border-radius:999px">2a</span><span style="font:800 19px/1.2 Nunito,sans-serif">Те же карточки, новые тексты</span></div>
+        <div style="font-size:13.5px;line-height:1.45;color:#64658E;text-wrap:pretty">Минимальная правка. Названия без рода, описания по одной схеме. Вместо точки — маленький орб.</div>
+      </div>
+      <div style="background:#F5F4FE;border-radius:28px;padding:22px 20px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;flex-direction:column;gap:4px"><div style="font:800 18px/1.2 Nunito,sans-serif">Как ты сейчас?</div><div style="font-size:13px;color:#64658E;line-height:1.4">Отметь — подберём практику под состояние</div></div>
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px">
+          <div style="background:#E8F3E2;color:#3F5A2A;border-radius:22px;min-height:104px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between;gap:10px"><div style="width:22px;height:22px;border-radius:50%;background:rgba(155,179,106,.35);display:flex;align-items:center;justify-content:center"><div style="width:12px;height:12px;border-radius:50%;background:#9BB36A"></div></div><div style="display:flex;flex-direction:column;gap:2px"><div style="font-weight:800;font-size:16px">В порядке</div><div style="font-size:13px;line-height:1.3;opacity:.85">Силы есть, внутри спокойно</div></div></div>
+          <div style="background:#FDEBDD;color:#8A3E10;border-radius:22px;min-height:104px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between;gap:10px"><div style="width:22px;height:22px;border-radius:50%;background:rgba(243,145,63,.35);display:flex;align-items:center;justify-content:center"><div style="width:12px;height:12px;border-radius:50%;background:#F3913F"></div></div><div style="display:flex;flex-direction:column;gap:2px"><div style="font-weight:800;font-size:16px">На взводе</div><div style="font-size:13px;line-height:1.3;opacity:.85">Силы есть, внутри всё сжато</div></div></div>
+          <div style="background:#E1EEFE;color:#284F86;border-radius:22px;min-height:104px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between;gap:10px"><div style="width:22px;height:22px;border-radius:50%;background:rgba(142,192,230,.4);display:flex;align-items:center;justify-content:center"><div style="width:12px;height:12px;border-radius:50%;background:#8EC0E6"></div></div><div style="display:flex;flex-direction:column;gap:2px"><div style="font-weight:800;font-size:16px">В тумане</div><div style="font-size:13px;line-height:1.3;opacity:.85">Сил мало, внутри спокойно</div></div></div>
+          <div style="background:#EEE6FE;color:#5531A0;border-radius:22px;min-height:104px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between;gap:10px"><div style="width:22px;height:22px;border-radius:50%;background:rgba(185,138,242,.35);display:flex;align-items:center;justify-content:center"><div style="width:12px;height:12px;border-radius:50%;background:#B98AF2"></div></div><div style="display:flex;flex-direction:column;gap:2px"><div style="font-weight:800;font-size:16px">На пределе</div><div style="font-size:13px;line-height:1.3;opacity:.85">Сил мало, а нервы натянуты</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="2c" style="width:360px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;background:#1E1E22;color:#FFFFFF;padding:6px 9px;border-radius:999px">2c</span><span style="font:800 19px/1.2 Nunito,sans-serif">Ряд орбов</span></div>
+        <div style="font-size:13.5px;line-height:1.45;color:#64658E;text-wrap:pretty">Самый компактный вариант, в духе визуального языка Shift. Четыре орба в ряд, подпись под каждым. Описание выбранного появляется ниже. Минус: описание видно только после тапа.</div>
+      </div>
+      <div style="background:#F5F4FE;border-radius:28px;padding:22px 20px;display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;flex-direction:column;gap:4px"><div style="font:800 18px/1.2 Nunito,sans-serif">Как ты сейчас?</div><div style="font-size:13px;color:#64658E;line-height:1.4">Отметь — подберём практику под состояние</div></div>
+        <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center"><div style="width:68px;height:68px;border-radius:50%;background:rgba(155,179,106,.22);display:flex;align-items:center;justify-content:center"><div style="width:46px;height:46px;border-radius:50%;background:rgba(155,179,106,.5);display:flex;align-items:center;justify-content:center"><div style="width:26px;height:26px;border-radius:50%;background:#9BB36A"></div></div></div><div style="font-weight:800;font-size:13px;line-height:1.2;color:#3F5A2A">В порядке</div></div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center"><div style="width:68px;height:68px;border-radius:50%;background:rgba(243,145,63,.22);box-shadow:0 0 0 3px #F5F4FE, 0 0 0 5.5px #8A3E10;display:flex;align-items:center;justify-content:center"><div style="width:46px;height:46px;border-radius:50%;background:rgba(243,145,63,.5);display:flex;align-items:center;justify-content:center"><div style="width:26px;height:26px;border-radius:50%;background:#F3913F"></div></div></div><div style="font-weight:800;font-size:13px;line-height:1.2;color:#8A3E10">На взводе</div></div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center"><div style="width:68px;height:68px;border-radius:50%;background:rgba(142,192,230,.28);display:flex;align-items:center;justify-content:center"><div style="width:46px;height:46px;border-radius:50%;background:rgba(142,192,230,.55);display:flex;align-items:center;justify-content:center"><div style="width:26px;height:26px;border-radius:50%;background:#8EC0E6"></div></div></div><div style="font-weight:800;font-size:13px;line-height:1.2;color:#284F86">В тумане</div></div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center"><div style="width:68px;height:68px;border-radius:50%;background:rgba(185,138,242,.22);display:flex;align-items:center;justify-content:center"><div style="width:46px;height:46px;border-radius:50%;background:rgba(185,138,242,.5);display:flex;align-items:center;justify-content:center"><div style="width:26px;height:26px;border-radius:50%;background:#B98AF2"></div></div></div><div style="font-weight:800;font-size:13px;line-height:1.2;color:#5531A0">На пределе</div></div>
+        </div>
+        <div style="background:#FDEBDD;color:#8A3E10;border-radius:20px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px"><div style="display:flex;flex-direction:column;gap:2px;min-width:0"><div style="font-size:14px;font-weight:800">Силы есть, внутри всё сжато</div><div style="font-size:13px;opacity:.85">Подберём, чем выдохнуть</div></div><div style="flex:none;height:40px;padding:0 16px;border-radius:20px;background:#8A3E10;color:#FFFFFF;display:flex;align-items:center;font-size:14px;font-weight:800">Дальше</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Иконка медитации (поза лотоса). Контурная, 24dp, viewport 256 — как Phosphor.
+     Цвет задаётся tint: Icon(painterResource(R.drawable.ic_meditation), null, tint = ...) -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp" android:height="24dp"
+    android:viewportWidth="256" android:viewportHeight="256">
+  <path android:pathData="M106,50 a22,22 0 1,0 44,0 a22,22 0 1,0 -44,0"
+      android:fillColor="#00000000" android:strokeColor="#FF000000"
+      android:strokeWidth="13" android:strokeLineCap="round" android:strokeLineJoin="round"/>
+  <path android:pathData="M110,94 C92,98 84,108 80,126 L72,170"
+      android:fillColor="#00000000" android:strokeColor="#FF000000"
+      android:strokeWidth="13" android:strokeLineCap="round" android:strokeLineJoin="round"/>
+  <path android:pathData="M146,94 C164,98 172,108 176,126 L184,170"
+      android:fillColor="#00000000" android:strokeColor="#FF000000"
+      android:strokeWidth="13" android:strokeLineCap="round" android:strokeLineJoin="round"/>
+  <path android:pathData="M100,128 C102,144 104,158 106,174"
+      android:fillColor="#00000000" android:strokeColor="#FF000000"
+      android:strokeWidth="13" android:strokeLineCap="round" android:strokeLineJoin="round"/>
+  <path android:pathData="M156,128 C154,144 152,158 150,174"
+      android:fillColor="#00000000" android:strokeColor="#FF000000"
+      android:strokeWidth="13" android:strokeLineCap="round" android:strokeLineJoin="round"/>
+  <path android:pathData="M72,170 C98,166 114,174 128,184 C142,174 158,166 184,170"
+      android:fillColor="#00000000" android:strokeColor="#FF000000"
+      android:strokeWidth="13" android:strokeLineCap="round" android:strokeLineJoin="round"/>
+  <path android:pathData="M72,170 C46,176 34,192 44,202 C62,220 122,212 162,196"
+      android:fillColor="#00000000" android:strokeColor="#FF000000"
+      android:strokeWidth="13" android:strokeLineCap="round" android:strokeLineJoin="round"/>
+  <path android:pathData="M184,170 C210,176 222,192 212,202 C194,220 134,212 94,196"
+      android:fillColor="#00000000" android:strokeColor="#FF000000"
+      android:strokeWidth="13" android:strokeLineCap="round" android:strokeLineJoin="round"/>
+</vector>
