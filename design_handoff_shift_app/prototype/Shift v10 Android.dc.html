@@ -365,8 +365,9 @@ button{font-family:inherit;color:inherit}button:focus:not(:focus-visible){outlin
               <button onClick="{{ toggleCatAdd }}" aria-label="Создать" style="width:44px;height:44px;border-radius:50%;border:none;cursor:pointer;background:{{ t.card }};display:flex;align-items:center;justify-content:center"><i class="ph ph-plus" style="font-size:20px;color:{{ t.ink }}"></i></button>
               <sc-if value="{{ catAddOpen }}" hint-placeholder-val="{{ false }}">
                 <div style="position:absolute;right:0;top:46px;z-index:5;min-width:200px;background:{{ t.card }};border-radius:20px;padding:6px;box-shadow:0 18px 40px -12px rgba(20,25,60,.32);display:flex;flex-direction:column">
-                  <button onClick="{{ addTech }}" style="border:none;background:none;cursor:pointer;text-align:left;padding:11px 12px;border-radius:12px;font-size:14px;font-weight:700;color:{{ t.ink }};display:flex;align-items:center;gap:10px"><i class="ph ph-sparkle" style="font-size:20px;color:{{ t.accentText }}"></i>Своя техника</button>
-                  <button onClick="{{ addProg }}" style="border:none;background:none;cursor:pointer;text-align:left;padding:11px 12px;border-radius:12px;font-size:14px;font-weight:700;color:{{ t.ink }};display:flex;align-items:center;gap:10px"><i class="ph ph-stack" style="font-size:20px;color:{{ t.accentText }}"></i>Своя программа</button>
+                  <div style="padding:8px 12px 4px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:{{ t.label }}">Своя практика</div>
+                  <button onClick="{{ addTech }}" style="border:none;background:none;cursor:pointer;text-align:left;padding:11px 12px;border-radius:12px;font-size:14px;font-weight:700;color:{{ t.ink }};display:flex;align-items:center;gap:10px"><i class="ph ph-sparkle" style="font-size:20px;color:{{ t.accentText }}"></i>Дыхательный ритм</button>
+                  <button onClick="{{ addProg }}" style="border:none;background:none;cursor:pointer;text-align:left;padding:11px 12px;border-radius:12px;font-size:14px;font-weight:700;color:{{ t.ink }};display:flex;align-items:center;gap:10px"><i class="ph ph-stack" style="font-size:20px;color:{{ t.accentText }}"></i>Из нескольких практик</button>
                 </div>
               </sc-if>
             </div>
@@ -417,7 +418,7 @@ button{font-family:inherit;color:inherit}button:focus:not(:focus-visible){outlin
               <button onClick="{{ hidBack }}" aria-label="Назад" style="width:44px;height:44px;flex:none;border-radius:50%;border:none;background:{{ t.card }};cursor:pointer;display:flex;align-items:center;justify-content:center"><div style="width:10px;height:10px;border-left:2.5px solid {{ t.ink }};border-bottom:2.5px solid {{ t.ink }};transform:rotate(45deg);margin-left:4px"></div></button>
               <div style="font:800 26px/1.15 Nunito,sans-serif">Скрытое</div>
             </div>
-            <div style="font-size:13px;line-height:1.45;color:{{ t.muted }};text-wrap:pretty">Практики и программы, которые ты попросил не предлагать. Вернёшь — снова появятся в Каталоге и подборках.</div>
+            <div style="font-size:13px;line-height:1.45;color:{{ t.muted }};text-wrap:pretty">Практики, которые ты попросил не предлагать. Вернёшь — снова появятся в Каталоге и подборках.</div>
           </div>
           <sc-for list="{{ hidGroups }}" as="hg" hint-placeholder-count="1">
           <div style="display:flex;flex-direction:column;gap:8px">
@@ -438,7 +439,7 @@ button{font-family:inherit;color:inherit}button:focus:not(:focus-visible){outlin
           </div>
           </sc-for>
           <sc-if value="{{ hidEmpty }}" hint-placeholder-val="{{ false }}">
-            <div style="padding:40px 12px;text-align:center;display:flex;flex-direction:column;gap:6px"><div style="font-weight:800;font-size:15px;color:{{ t.ink }}">Ничего не скрыто</div><div style="font-size:13px;color:{{ t.muted }}">Все практики и программы снова в подборках</div></div>
+            <div style="padding:40px 12px;text-align:center;display:flex;flex-direction:column;gap:6px"><div style="font-weight:800;font-size:15px;color:{{ t.ink }}">Ничего не скрыто</div><div style="font-size:13px;color:{{ t.muted }}">Все практики снова в подборках</div></div>
           </sc-if>
         </div>
       </sc-if>
@@ -836,7 +837,7 @@ button{font-family:inherit;color:inherit}button:focus:not(:focus-visible){outlin
                 </sc-if>
                 <sc-if value="{{ ob.picked }}" hint-placeholder-val="{{ false }}">
                   <div style="display:flex;flex-direction:column;gap:8px;flex:none;animation:shiftObIn .5s cubic-bezier(.22,.8,.24,1) both">
-                    <div style="font-size:14px;line-height:1.5;color:{{ t.body }};text-wrap:pretty">Собраться, успокоиться, заснуть, взбодриться — для каждой цели есть практики, программы и курсы. Таймер и метроном — для своей практики.</div>
+                    <div style="font-size:14px;line-height:1.5;color:{{ t.body }};text-wrap:pretty">Собраться, успокоиться, заснуть, взбодриться — для каждой цели есть практики и курсы. Таймер и метроном — для своей практики.</div>
                     <div style="display:flex;gap:10px;align-items:flex-start;padding:10px 4px 0">
                       <i class="ph ph-first-aid" style="font-size:20px;line-height:1.2;flex:none;color:{{ ob.warnDeep }}"></i>
                       <div style="font-size:13px;line-height:1.5;color:{{ t.body }};text-wrap:pretty"><div>Shift — не медицинская помощь. У части практик есть противопоказания. Они указаны в карточке каждой практики.</div><div>Закружилась голова — остановись и дыши как обычно.</div></div>
@@ -952,7 +953,7 @@ button{font-family:inherit;color:inherit}button:focus:not(:focus-visible){outlin
             </sc-if>
             <sc-if value="{{ acc.delAsk }}" hint-placeholder-val="{{ false }}">
               <div style="background:{{ t.card }};border-radius:22px;padding:16px;display:flex;flex-direction:column;gap:12px">
-                <div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:15px;font-weight:800;color:{{ t.ink }}">Удалить аккаунт?</span><span style="font-size:13px;line-height:1.45;color:{{ t.muted }};text-wrap:pretty">Сессии, свои техники и программы, избранное и прогресс курсов удалятся с сервера навсегда. На этом телефоне данные останутся.</span></div>
+                <div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:15px;font-weight:800;color:{{ t.ink }}">Удалить аккаунт?</span><span style="font-size:13px;line-height:1.45;color:{{ t.muted }};text-wrap:pretty">Сессии, свои практики, избранное и прогресс курсов удалятся с сервера навсегда. На этом телефоне данные останутся.</span></div>
                 <div style="display:flex;gap:8px">
                   <button onClick="{{ acc.delCancel }}" style="flex:1;height:48px;border:none;border-radius:24px;cursor:pointer;background:{{ t.second }};color:{{ t.ink }};font-size:15px;font-weight:700">Отмена</button>
                   <button onClick="{{ acc.delConfirm }}" style="flex:1;height:48px;border:none;border-radius:24px;cursor:pointer;background:{{ t.danger }};color:#fff;font-size:15px;font-weight:800">Удалить</button>
@@ -973,7 +974,7 @@ button{font-family:inherit;color:inherit}button:focus:not(:focus-visible){outlin
               <sc-if value="{{ editSaved }}" hint-placeholder-val="{{ false }}"></sc-if>
               <sc-if value="{{ editIsNew }}" hint-placeholder-val="{{ true }}"></sc-if>
             </div>
-            <input value="{{ edit.name }}" onChange="{{ setName }}" placeholder="Название техники" style="font:800 26px/1.2 Nunito,sans-serif;color:{{ t.ink }};border:none;border-bottom:2px solid {{ t.line }};background:transparent;padding:6px 0 10px;outline:none;width:100%">
+            <input value="{{ edit.name }}" onChange="{{ setName }}" placeholder="Название практики" style="font:800 26px/1.2 Nunito,sans-serif;color:{{ t.ink }};border:none;border-bottom:2px solid {{ t.line }};background:transparent;padding:6px 0 10px;outline:none;width:100%">
             <sc-if value="{{ editSaved }}" hint-placeholder-val="{{ false }}">
               <div style="display:flex;gap:8px">
                 <button onClick="{{ dupTech }}" style="border:none;cursor:pointer;height:40px;padding:0 14px;border-radius:14px;background:{{ t.card }};font-size:13px;font-weight:800;color:{{ t.ink }}">Дублировать</button>
@@ -1040,7 +1041,7 @@ button{font-family:inherit;color:inherit}button:focus:not(:focus-visible){outlin
             <div style="position:absolute;right:60px;top:120px;width:120px;height:110px;border-radius:42% 58% 60% 40%/58% 42% 58% 42%;background:linear-gradient(200deg,{{ pv.ring }} 0%,{{ pv.color }} 100%);opacity:.1;filter:blur(36px)"></div>
             <div style="position:relative;height:44px"></div>
             <div style="position:relative;display:flex;flex-direction:column;gap:8px">
-              <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:{{ pv.deep }}">Программа · одна сессия</div>
+              <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:{{ pv.deep }}">Практика из нескольких шагов</div>
               <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px"><div style="font:800 26px/1.15 Nunito,sans-serif;color:{{ t.ink }};min-width:0;text-wrap:pretty">{{ pv.name }}</div><button onClick="{{ progEdit }}" aria-label="{{ pv.editLabel }}" style="width:44px;height:44px;flex:none;border-radius:50%;border:none;background:{{ t.card }};cursor:pointer;display:flex;align-items:center;justify-content:center"><i class="{{ pv.editIcon }}" style="font-size:20px;color:{{ t.ink }}"></i></button></div>
               <div style="font-size:14px;font-weight:700;color:{{ t.body }}">{{ pv.meta }}</div>
             </div>
@@ -1087,9 +1088,9 @@ button{font-family:inherit;color:inherit}button:focus:not(:focus-visible){outlin
               <sc-if value="{{ peSaved }}" hint-placeholder-val="{{ false }}"><button onClick="{{ delProg }}" style="border:none;background:none;cursor:pointer;height:40px;padding:0 4px;font-size:15px;font-weight:700;color:{{ t.danger }}">Удалить</button></sc-if>
               <sc-if value="{{ peIsNew }}" hint-placeholder-val="{{ true }}"></sc-if>
             </div>
-            <input value="{{ pe.name }}" onChange="{{ setProgName }}" placeholder="Название программы" style="font:800 26px/1.2 Nunito,sans-serif;color:{{ t.ink }};border:none;border-bottom:2px solid {{ t.line }};background:transparent;padding:6px 0 10px;outline:none;width:100%">
+            <input value="{{ pe.name }}" onChange="{{ setProgName }}" placeholder="Название практики" style="font:800 26px/1.2 Nunito,sans-serif;color:{{ t.ink }};border:none;border-bottom:2px solid {{ t.line }};background:transparent;padding:6px 0 10px;outline:none;width:100%">
             <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:{{ t.label }}">Шаги</div>
-            <sc-if value="{{ pe.empty }}" hint-placeholder-val="{{ false }}"><div style="font-size:13px;color:{{ t.muted }};line-height:1.5">Добавь технику или паузу — они пройдутся одной сессией.</div></sc-if>
+            <sc-if value="{{ pe.empty }}" hint-placeholder-val="{{ false }}"><div style="font-size:13px;color:{{ t.muted }};line-height:1.5">Добавь практику или паузу — они пройдут одной сессией.</div></sc-if>
             <sc-for list="{{ peSteps }}" as="st" hint-placeholder-count="3">
               <div style="background:{{ t.card }};border-radius:22px;padding:16px;display:flex;flex-direction:column;gap:10px">
                 <div style="display:flex;align-items:center;gap:10px">
@@ -1124,7 +1125,7 @@ button{font-family:inherit;color:inherit}button:focus:not(:focus-visible){outlin
               </div>
             </sc-for>
             <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px">
-              <button onClick="{{ togglePicker }}" style="height:50px;border:2px dashed {{ t.dash }};background:none;border-radius:20px;font-weight:700;font-size:15px;color:{{ t.accentText }};cursor:pointer">+ Техника</button>
+              <button onClick="{{ togglePicker }}" style="height:50px;border:2px dashed {{ t.dash }};background:none;border-radius:20px;font-weight:700;font-size:15px;color:{{ t.accentText }};cursor:pointer">+ Практика</button>
               <button onClick="{{ addRest }}" style="height:50px;border:2px dashed {{ t.dash }};background:none;border-radius:20px;font-weight:700;font-size:15px;color:{{ t.accentText }};cursor:pointer">+ Пауза</button>
             </div>
             <sc-if value="{{ showPicker }}" hint-placeholder-val="{{ false }}">
@@ -1721,7 +1722,7 @@ const techDur = t => t.rounds * t.blocks.reduce((a, b) => a + cycOf(b) * b.repea
 const patternOf = t => t.blocks.map(b => b.phases.map(p => fmtS(p.d)).join('·') + (b.repeats > 1 ? ' ×' + b.repeats : '')).join(' → ') + (t.rounds > 1 ? ' · ' + t.rounds + ' ' + plural(t.rounds, 'раунд', 'раунда', 'раундов') : '');
 function rules(t) {
   const errors = [];
-  if (!t.name.trim()) errors.push('Дай технике имя');
+  if (!t.name.trim()) errors.push('Дай практике имя');
   if (!t.blocks.length) errors.push('Добавь хотя бы один блок');
   t.blocks.forEach((b, i) => { if (!b.phases.length) errors.push('Блок ' + (i + 1) + ' пустой'); });
   if (t.blocks.length && !t.blocks.some(b => b.phases.some(p => p.k === 'in'))) errors.push('Нужен хотя бы один вдох');
@@ -2251,8 +2252,9 @@ class Component extends DCLogic {
   locked(id) { return !this.free() && !!PM[id] && !FREE.has(id); }
   progLocked(pr) { return !!pr.builtin && !this.free() && !FREE_PROG.has(pr.id); }
   paywall(reason, id) { this.setState(s => ({ pwBack: s.screen === 'paywall' ? s.pwBack : s.screen, screen: 'paywall', pwReason: reason, pwId: id || null, pwPlan: 'year', pwDone: false, catAdd: false })); return true; }
-  techCap() { return !this.free() && this.state.users.length >= 1 && this.paywall('tech'); }
-  progCap() { return !this.free() && this.state.uprogs.length >= 1 && this.paywall('prog'); }
+  ownCount() { return this.state.users.length + this.state.uprogs.length; }
+  techCap() { return !this.free() && this.ownCount() >= 1 && this.paywall('own'); }
+  progCap() { return this.techCap(); }
   pwClose(cb) { const s = this.state; let b = s.pwBack || 'today'; if (['after', 'player', 'paywall', 'timerRun', 'metroRun'].includes(b)) b = 'today'; this.setState({ screen: b, tab: MO_TABS.includes(b) ? b : s.tab, pwDone: false }, cb); }
   docVals(s, plat, T) {
     const ios = plat === 'ios', store = ios ? 'App Store' : 'Google Play', d = s.doc;
@@ -2261,14 +2263,14 @@ class Component extends DCLogic {
     const toast = m => { clearTimeout(this._dt); this.setState({ doc: null, docToast: m }); this._dt = setTimeout(() => this.setState({ docToast: null }), 2600); };
     const D = {
       privacy: { title: 'Политика конфиденциальности', path: 'privacy', sec: [
-        ['Что хранится на устройстве', 'Сессии, оценки состояния до и после практики, свои техники, программы и настройки.'],
+        ['Что хранится на устройстве', 'Сессии, оценки состояния до и после практики, свои практики и настройки.'],
         ['Аккаунт', 'Если ты вошёл через Apple или Google, мы храним имя и почту, чтобы переносить данные между устройствами. Без входа всё остаётся только на телефоне.'],
         ['Что мы не собираем', 'Контакты, геолокацию, звук с микрофона. Данные не продаём и не передаём рекламным сетям.'],
         ['Аналитика и сбои', 'Обезличенная статистика и отчёты о сбоях — без имени и почты. Они нужны, чтобы находить и чинить ошибки.'],
         ['Оплата', 'Платежи обрабатывает ' + store + '. Данные карты мы не видим.'],
         ['Удаление', 'Настройки → Данные → «Удалить мои данные» стирает историю на устройстве. Аккаунт удаляется в его карточке в настройках — вместе с данными на сервере.']] },
       terms: { title: ios ? 'Условия использования и подписки' : 'Условия подписки', path: 'terms', sec: [
-        ['Что даёт Shift Plus', 'Все практики, программы и курсы. Свои техники и программы — без ограничений.'],
+        ['Что даёт Shift Plus', 'Все практики и курсы. Свои практики — без ограничений.'],
         ['Тарифы', 'Неделя — ' + PRICE.week + ', год — ' + PRICE.year + '. Итоговая цена в твоей валюте видна в ' + store + ' перед оплатой.'],
         ['Автопродление', 'Подписка продлевается автоматически, если не отменить её хотя бы за 24 часа до конца периода. Оплата списывается с аккаунта ' + (ios ? 'Apple ID' : 'Google') + '.'],
         ['Как отменить', (ios ? 'В Shift: Настройки → Shift Plus → «Управлять в App Store». Или в Настройках iPhone: твоё имя → Подписки → Shift.' : 'В Shift: Настройки → Shift Plus → «Управлять в Google Play». Или в Google Play: профиль → Платежи и подписки → Подписки → Shift.') + ' Доступ сохранится до конца оплаченного периода.'],
@@ -2293,22 +2295,21 @@ class Component extends DCLogic {
     const yr = (s.pwPlan || 'year') === 'year', store = plat === 'ios' ? 'App Store' : 'Google Play';
     const r = s.pwReason, lp = s.pwId && PM[s.pwId], lpr = s.pwId && PROGS.find(x => x.id === s.pwId), lc = s.pwId && COURSES.find(x => x.id === s.pwId);
     const sub = r === 'practice' && lp ? '«' + lp.title + '» — в Shift Plus. Часть практик для каждой цели открыта бесплатно.'
-      : r === 'program' ? (lpr ? '«' + lpr.name + '» и другие готовые программы — в Shift Plus.' : 'Готовые программы — в Shift Plus.') + ' Свою программу можно собрать и бесплатно.'
-      : r === 'tech' ? 'Бесплатно — одна своя техника. С Plus их может быть сколько угодно.'
-      : r === 'prog' ? 'Бесплатно — одна своя программа. С Plus — без ограничений.'
+      : r === 'program' ? (lpr ? '«' + lpr.name + '» — в Shift Plus. ' : '') + 'Часть практик для каждой цели открыта бесплатно.'
+      : r === 'own' || r === 'tech' || r === 'prog' ? 'Бесплатно — одна своя практика. С Plus их может быть сколько угодно.'
       : r === 'course' ? (lc ? '«' + lc.name + '» целиком — в Shift Plus. ' : '') + 'Первый день каждого курса открыт бесплатно.'
-      : r === 'intro' ? 'Первая неделя позади. Свои техники, программы и история остаются с тобой. Вся библиотека — в Shift Plus.'
-      : 'Все практики, программы и свои техники — без ограничений.';
+      : r === 'intro' ? 'Первая неделя позади. Свои практики и история остаются с тобой. Вся библиотека — в Shift Plus.'
+      : 'Все практики и курсы, свои практики — без ограничений.';
     const plan = (k, name, line, price, badge) => { const on = (s.pwPlan || 'year') === k; return { name, line, price, badge, hasBadge: !!badge, badgeBg: G.focus.soft, badgeFg: G.focus.deep, ring: on ? 'inset 0 0 0 2px ' + T.accentText : 'inset 0 0 0 1.5px ' + T.line, radio: on ? 'inset 0 0 0 2px ' + T.accentText : 'inset 0 0 0 1.5px ' + T.line, dot: on ? T.accentText : 'transparent', pick: () => this.setState({ pwPlan: k }) }; };
     const cont = () => { const r0 = s.pwReason, id = s.pwId; this.pwClose(() => { if (r0 === 'practice' && id) this.openPractice(id); else if (r0 === 'program' && id) this.go('program', { progId: id }); else if (r0 === 'course' && id) this.go('course', { courseId: id }); }); };
     return {
       isPaywall: s.screen === 'paywall',
       pw: { main: !s.pwDone, done: !!s.pwDone, title: 'Вся библиотека — под любое состояние', sub,
-        perks: [['ph-books', 'Все практики и программы', 'Доступны все практики и программы'], ['ph-sparkle', 'Свои техники без лимита', 'Собирай дыхание под свой ритм'], ['ph-stack', 'Свои программы без лимита', 'Связывай практики в один ритуал']].map(([icon, title, line]) => ({ icon, title, line })),
+        perks: [['ph-books', 'Все практики и курсы', 'Под каждую цель и состояние'], ['ph-sparkle', 'Свои практики без лимита', 'Свой ритм дыхания или несколько практик подряд']].map(([icon, title, line]) => ({ icon, title, line })),
         plans: [plan('year', 'Год', '≈ ' + PRICE.yearPerWeek + ' в неделю', PRICE.year, PRICE.save), plan('week', 'Неделя', 'Оплата каждую неделю', PRICE.week, '')],
         cta: yr ? 'Оформить за ' + PRICE.year + ' в год' : 'Оформить за ' + PRICE.week + ' в неделю',
         fine: yr ? PRICE.year + ' в год до отмены. Отмена в любой момент в ' + store + '.' : PRICE.week + ' в неделю до отмены. Отмена в любой момент в ' + store + '.',
-        doneSub: 'Вся библиотека открыта, своих техник и программ — сколько угодно.',
+        doneSub: 'Вся библиотека открыта, своих практик — сколько угодно.',
         close: s.pwDone ? cont : () => this.pwClose(), cont,
         buy: () => this.setState(st => ({ prem: st.pwPlan || 'year', premAt: Date.now(), premCancel: false, pwDone: true })),
         restore: () => this.setState({ prem: 'year', premAt: Date.now(), premCancel: false, pwDone: true }) },
@@ -2317,7 +2318,7 @@ class Component extends DCLogic {
         const wk = s.prem === 'week', cx = !!s.premCancel, sh = s.subSheet;
         const close = () => this.setState({ subSheet: null });
         return { isOff: !s.prem, isOn: !!s.prem, inIntro: !s.prem && !!s.intro,
-          offLine: s.intro ? 'Первая неделя — всё открыто · ещё ' + (s.introLeft || 5) + ' ' + plural(s.introLeft || 5, 'день', 'дня', 'дней') : 'Вся библиотека и свои техники без лимита',
+          offLine: s.intro ? 'Первая неделя — всё открыто · ещё ' + (s.introLeft || 5) + ' ' + plural(s.introLeft || 5, 'день', 'дня', 'дней') : 'Вся библиотека и свои практики без лимита',
           endIntro: () => this.setState({ intro: false }, () => this.paywall('intro')), open: () => this.paywall('settings'), manage: () => this.setState({ subSheet: 'manage', storeOpened: false }),
           planName: cx ? 'Доступ до ' + nd + ' · не продлится' : (wk ? 'Недельная · ' + PRICE.week : 'Годовая · ' + PRICE.year),
           showManage: !!s.prem && sh === 'manage', showCancel: !!s.prem && sh === 'cancel', close,
@@ -2344,7 +2345,7 @@ class Component extends DCLogic {
     this.setState(s => ({ playUid: pu, trial: !!trial, trialBack: trial ? s.screen : null, prev: s.screen === 'player' ? s.prev : s.screen, screen: 'player', plan, total: plan.total, elapsed: -3, running: true, playTitle: title, playTheme: theme, afterTitle: title, sessPid: null, sessProg: progId || null, courseRun: null }));
   }
   startUser(t, trial) {
-    const go = () => this.playPlan([{ kind: 'tech', tid: t.id }], [t, ...this.state.users.filter(u => u.id !== t.id)], t.name || 'Своя техника', 'own', trial);
+    const go = () => this.playPlan([{ kind: 'tech', tid: t.id }], [t, ...this.state.users.filter(u => u.id !== t.id)], t.name || 'Своя практика', 'own', trial);
     this.guard(rules(t).intense, t.name, go);
   }
   progById(id) { return PROGS.find(p => p.id === id) || this.state.uprogs.find(p => p.id === id); }
@@ -2353,7 +2354,7 @@ class Component extends DCLogic {
     const b = PM[st.tid];
     if (b) { const cyc = pCyc(b); const nC = unitOf(b, st) !== 'min' ? Math.max(1, st.cyc || Math.round((st.min || 1) * 60 / cyc)) : Math.max(1, Math.round(st.min * 60 / cyc)); return { title: b.title, cycles: nC, dur: nC * cyc, intense: builtinIntense(b), dot: G[b.goal].color }; }
     const u = this.state.users.find(x => x.id === st.tid);
-    return u ? { title: u.name, dur: techDur(u), intense: rules(u).intense, dot: G.own.color } : { title: 'Техника удалена', dur: 0, intense: false, dot: '#CFCFF1' };
+    return u ? { title: u.name, dur: techDur(u), intense: rules(u).intense, dot: G.own.color } : { title: 'Практика удалена', dur: 0, intense: false, dot: '#CFCFF1' };
   }
   progMeta(pr) {
     const infos = pr.steps.map(st => this.stepInfo(st));
@@ -2444,7 +2445,7 @@ class Component extends DCLogic {
     const counts = Object.fromEntries(Object.keys(Q).map(q => [q, rated.filter(x => x.q === q).length]));
     const hq = s.helpQ || null;
     const helpTop = hq ? tops(hq) : [];
-    const CATN = { breath: 'Дыхание', med: 'Медитация', timer: 'Таймер', body: 'Тело', psy: 'Психотехника', trance: 'Транс', prog: 'Программы' };
+    const CATN = { breath: 'Дыхание', med: 'Медитация', timer: 'Таймер', body: 'Тело', psy: 'Психотехника', trance: 'Транс', prog: 'Из нескольких шагов' };
     const catOf = x => x.kind === 'timer' ? 'timer' : x.pid && PM[x.pid] ? PM[x.pid].dir : s.users.some(u => u.id === x.pid) ? 'breath' : 'prog';
     const nameOf = x => x.title || (x.pid && PM[x.pid] && PM[x.pid].title) || (s.users.find(u => u.id === x.pid) || {}).name || 'Практика';
     const colOf = x => x.kind === 'timer' ? T.accent : x.pid && PM[x.pid] ? G[PM[x.pid].goal].color : x.goal && G[x.goal] ? G[x.goal].color : T.accent;
@@ -2630,7 +2631,7 @@ class Component extends DCLogic {
 
 
 
-        const jumpList = [['splFirst', 'Запуск — первый раз'], ['splNext', 'Запуск — повторный'], ['onbB', 'Онбординг'], ['today', 'Сегодня'], ['recs', 'Подбор практики'], ['detail', 'Карточка практики'], ['player', 'Плеер дыхания'], ['after', '«Как теперь?»'], ['catalog', 'Каталог'], ['hidden', 'Скрытое'], ['editor', 'Редактор техники'], ['progplay', 'Плеер техники с раундами'], ['course', 'Курс'], ['program', 'Программа'], ['progEdit', 'Редактор программы'], ['timer', 'Таймер медитации'], ['timerRun', 'Таймер — сессия'], ['metro', 'Метроном'], ['metroRun', 'Метроном — сессия'], ['progress', 'Прогресс'], ['empty', 'Пустые состояния'], ['settings', 'Настройки'], ['paywall', 'Экран подписки'], ['introEnd', 'Конец первой недели']];
+        const jumpList = [['splFirst', 'Запуск — первый раз'], ['splNext', 'Запуск — повторный'], ['onbB', 'Онбординг'], ['today', 'Сегодня'], ['recs', 'Подбор практики'], ['detail', 'Карточка практики'], ['player', 'Плеер дыхания'], ['after', '«Как теперь?»'], ['catalog', 'Каталог'], ['hidden', 'Скрытое'], ['editor', 'Редактор: ритм'], ['progplay', 'Плеер техники с раундами'], ['course', 'Курс'], ['program', 'Практика из шагов'], ['progEdit', 'Редактор: из шагов'], ['timer', 'Таймер медитации'], ['timerRun', 'Таймер — сессия'], ['metro', 'Метроном'], ['metroRun', 'Метроном — сессия'], ['progress', 'Прогресс'], ['empty', 'Пустые состояния'], ['settings', 'Настройки'], ['paywall', 'Экран подписки'], ['introEnd', 'Конец первой недели']];
     const jumps = jumpList.map(([k, label]) => ({
       label, bg: sc === k || (sc === 'onb' && k === 'onbB') || (k === 'progplay' && sc === 'player' && s.playTheme) ? '#fff' : 'transparent',
       go: () => {
@@ -2681,7 +2682,7 @@ class Component extends DCLogic {
       const r = rules(e);
       editVals = {
         edit: { name: e.name, pattern: e.blocks.length ? patternOf(e) : '—', total: fmtDur(techDur(e)), intense: r.intense, intenseWhy: 'Интенсивная: ' + r.why + '. Перед стартом покажем предупреждение о противопоказаниях.', errors: r.errors.map(t => ({ text: t })), hasErrors: r.errors.length > 0, rounds: String(e.rounds), rest: e.rest ? fmtDur(e.rest) : 'нет', hasRounds: e.rounds > 1 },
-        editTitle: s.editNew ? 'Новая техника' : 'Своя техника',
+        editTitle: s.editNew ? 'Новая практика' : 'Своя практика',
         editSaved: !s.editNew, editIsNew: s.editNew,
         setName: ev => { const v = ev.target.value; upd(x => { x.name = v; }); },
         editBlocks: e.blocks.map((b, bi) => ({
@@ -2747,7 +2748,7 @@ class Component extends DCLogic {
                 pickMin: () => pupd(x => { const t = x.steps[i]; if (t.unit !== 'min') { t.min = Math.max(1, Math.min(30, Math.round((t.cyc || info.cycles) * c / 60))); t.unit = 'min'; } }),
                 pickCyc: () => pupd(x => { const t = x.steps[i]; if (t.unit === 'min') { t.cyc = Math.max(1, Math.round(t.min * 60 / c)); t.unit = 'cyc'; } }) };
             })(),
-            toggleUnit: () => pupd(x => { const t = x.steps[i]; const c = pCyc(PM[t.tid]); if (t.unit !== 'min') { t.min = Math.max(1, Math.min(30, Math.round((t.cyc || info.cycles) * c / 60))); t.unit = 'min'; } else { t.cyc = Math.max(1, Math.round(t.min * 60 / c)); t.unit = 'cyc'; } }), setMin: () => pupd(x => { const t = x.steps[i]; t.unit = 'min'; }), setCyc: () => pupd(x => { const t = x.steps[i]; const c = pCyc(PM[t.tid]); t.cyc = Math.max(1, Math.round(t.min * 60 / c)); t.unit = 'cyc'; }), durNote: st.kind === 'rest' ? 'Пауза' : b ? '≈ ' + fmtDur(info.dur) : fmtDur(info.dur) + ' · длина техники', dot: info.dot, canAdj: adj, fixed: !adj, canUp: i > 0,
+            toggleUnit: () => pupd(x => { const t = x.steps[i]; const c = pCyc(PM[t.tid]); if (t.unit !== 'min') { t.min = Math.max(1, Math.min(30, Math.round((t.cyc || info.cycles) * c / 60))); t.unit = 'min'; } else { t.cyc = Math.max(1, Math.round(t.min * 60 / c)); t.unit = 'cyc'; } }), setMin: () => pupd(x => { const t = x.steps[i]; t.unit = 'min'; }), setCyc: () => pupd(x => { const t = x.steps[i]; const c = pCyc(PM[t.tid]); t.cyc = Math.max(1, Math.round(t.min * 60 / c)); t.unit = 'cyc'; }), durNote: st.kind === 'rest' ? 'Пауза' : b ? '≈ ' + fmtDur(info.dur) : fmtDur(info.dur) + ' · длина практики', dot: info.dot, canAdj: adj, fixed: !adj, canUp: i > 0,
             dec: () => pupd(x => { const t = x.steps[i]; if (t.kind === 'rest') t.sec = Math.max(15, t.sec - 15); else if (t.unit !== 'min') t.cyc = Math.max(1, (t.cyc || info.cycles) - 1); else t.min = Math.max(1, t.min - 1); }),
             inc: () => pupd(x => { const t = x.steps[i]; if (t.kind === 'rest') t.sec = Math.min(1800, t.sec + 15); else if (t.unit !== 'min') t.cyc = Math.min(200, (t.cyc || info.cycles) + 1); else t.min = Math.min(30, t.min + 1); }),
             up: () => pupd(x => { const t = x.steps[i]; x.steps[i] = x.steps[i - 1]; x.steps[i - 1] = t; }),
@@ -2909,7 +2910,7 @@ class Component extends DCLogic {
       hasDoneSteps: !!(s.plan && s.plan.segCount > 1 && sc === 'after'), doneSteps: s.plan ? s.plan.titles.join(' → ') : '',
       skipAfter: () => this.setState(st => ({ note: '', noteOpen: false, screen: 'today', tab: 'today', afterKind: null, sessions: [{ pid: st.sessPid, title: st.afterTitle, kind: st.afterKind === 'timer' ? 'timer' : undefined, b: st.before || { e: 0, t: 0 }, noB: !st.before, r: null, when: 'Только что', sec: this.playedSec(st) }, ...st.sessions], before: null })),
       confirmAfter: () => this.setState(st => { const note = (st.note || '').trim(), r = st.acSt && st.acSt.k === st.sessions.length ? st.acSt.i : null, timer = st.afterKind === 'timer', base = { pid: st.sessPid, title: st.afterTitle, r, note, when: 'Только что', sec: this.playedSec(st) }; return { screen: 'today', tab: 'today', running: false, note: '', noteOpen: false, afterKind: null, sessions: st.before ? [{ ...base, b: st.before }, ...st.sessions] : [{ ...base, kind: timer ? 'timer' : undefined, b: { e: 0, t: 0 }, noB: true }, ...st.sessions] }; }), noteVal: s.note || '', setNote: ev => this.setState({ note: ev.target.value }),
-      hasRecentP: recentIds.length > 0, favEmpty: recentIds.length === 0, recentP: recentIds.map(id => { if (!PM[id]) { const u = s.users.find(x => x.id === id); return { key: id, title: u.name || 'Своя техника', range: Math.max(1, Math.round(techDur(u) / 60)) + ' мин', soft: G.own.soft, deep: G.own.deep, iconCls: 'ph ph-sparkle', open: () => this.openEditor(u, false) }; } const x = this.card(PM[id]); return { key: id, title: x.title, range: x.range, soft: x.soft, deep: x.deep, iconCls: 'ph ' + x.icon, open: x.open }; }),
+      hasRecentP: recentIds.length > 0, favEmpty: recentIds.length === 0, recentP: recentIds.map(id => { if (!PM[id]) { const u = s.users.find(x => x.id === id); return { key: id, title: u.name || 'Своя практика', range: Math.max(1, Math.round(techDur(u) / 60)) + ' мин', soft: G.own.soft, deep: G.own.deep, iconCls: 'ph ph-sparkle', open: () => this.openEditor(u, false) }; } const x = this.card(PM[id]); return { key: id, title: x.title, range: x.range, soft: x.soft, deep: x.deep, iconCls: 'ph ' + x.icon, open: x.open }; }),
       filterOpts: filterKeys.map(k => ({ name: k === 'all' ? 'Все' : G[k].name + ' · ' + P.filter(p => p.goal === k).length, bg: s.filter === k ? T.selBg : T.card, fg: s.filter === k ? T.selFg : T.ink, pick: () => this.setState({ filter: k }) })),
       pr: this.progVals(s, T),
       as: (() => { const pr0 = this.progVals(s, T); const q = (s.asQ || '').trim().toLowerCase(); const list = pr0.allRows.filter(r => !q || r.hay.includes(q));
@@ -2932,9 +2933,9 @@ class Component extends DCLogic {
           delConfirm: () => this.setState({ account: null, accDel: false, accSheet: false }) };
       })(),
       data: (() => { const a = !!s.account, st0 = s.dataDel || 'idle';
-        return { title: a ? 'Синхронизация включена' : 'Только на этом телефоне', line: 'Сессии, свои техники и программы, избранное и прогресс курсов' + (a ? ' сохраняются в аккаунте.' : '. Войди, чтобы они сохранились при смене телефона.'),
+        return { title: a ? 'Синхронизация включена' : 'Только на этом телефоне', line: 'Сессии, свои практики, избранное и прогресс курсов' + (a ? ' сохраняются в аккаунте.' : '. Войди, чтобы они сохранились при смене телефона.'),
           idle: st0 === 'idle', asking: st0 === 'ask', done: st0 === 'done',
-          askText: 'Сессии и заметки, свои техники и программы, избранное и прогресс курсов удалятся ' + (a ? 'с телефона и из аккаунта' : 'с этого телефона') + '. Отменить нельзя.',
+          askText: 'Сессии и заметки, свои практики, избранное и прогресс курсов удалятся ' + (a ? 'с телефона и из аккаунта' : 'с этого телефона') + '. Отменить нельзя.',
           ask: () => this.setState({ dataDel: 'ask' }), cancel: () => this.setState({ dataDel: 'idle' }),
           confirm: () => this.setState({ dataDel: 'done', sessions: [], users: [], uprogs: [], favs: [], cDone: {}, cLast: {}, hidden: [] }) }; })(),
       settingGroups: [
@@ -2951,7 +2952,7 @@ class Component extends DCLogic {
           const pr = this.progById(id), m = this.progMeta(pr), g = G[pr.goal || 'own']; return { prog: true, title: pr.name, sub: m.infos.map(x => x.title).join(' → '), icon: 'ph ph-stack', soft: g.soft, deep: g.deep, hasWave: false, noWave: true, wave: '', restore: restore(id) }; });
         const hp = rows.filter(r => !r.prog), hg = rows.filter(r => r.prog);
         return {
-        hidGroups: [['Практики', hp], ['Программы', hg]].filter(x => x[1].length).map(([name, items]) => ({ name, items })),
+        hidGroups: [['Практики', [...hp, ...hg]]].filter(x => x[1].length).map(([name, items]) => ({ name, items })),
         hasHidden: ids.length > 0, hidEmpty: ids.length === 0, hidLabel: 'Скрытое · ' + ids.length,
         openHidden: () => this.setState({ screen: 'hidden' }), hidBack: () => this.setState({ screen: 'catalog', tab: 'catalog' }), isHiddenScr: sc === 'hidden' }; })(),
       ...(() => {
@@ -2964,12 +2965,12 @@ class Component extends DCLogic {
           items.push(row({ key: 'metro', title: 'Метроном', sub: (mc.ramp.on ? mc.bpm + ' → ' + mc.ramp.to : mc.bpm) + ' уд/мин · ' + mc.beats + '/4', tag: 'Инструмент', icon: 'ph ph-metronome', ...tile, open: () => this.go('metro', {}) }));
           s.users.forEach((u, i) => { const m = myTechs[i]; items.push(row({ key: 'u' + u.id, intense: !!m.intense, title: m.name, sub: m.pattern, meta: Math.max(1, Math.round(techDur(u) / 60)) + ' мин', tag: 'Моя', icon: 'ph ph-sparkle', ...tile, open: () => this.startUser(u), hasEdit: true, edit: m.edit })); });
         }
-        allProgs.forEach((pr, i) => { if (!HID.has(pr.id) && (all || pr.goal === s.filter)) { const pc = progCards[i]; items.push(row({ key: 'p' + i, locked: pc.locked, intense: this.progMeta(pr).intense, title: pc.name, sub: pc.chain, meta: pc.meta, tag: 'Программа', icon: 'ph ph-stack', soft: pc.soft, deep: pc.deep, open: pc.open })); } });
+        allProgs.forEach((pr, i) => { if (!HID.has(pr.id) && (all || pr.goal === s.filter)) { const pc = progCards[i]; items.push(row({ key: 'p' + i, locked: pc.locked, intense: this.progMeta(pr).intense, title: pc.name, sub: pc.chain, meta: pc.meta, tag: pr.builtin ? '' : 'Моя', icon: 'ph ph-stack', soft: pc.soft, deep: pc.deep, open: pc.open })); } });
         COURSES.forEach(cc => { if (all || cc.goal === s.filter) { const k = this.courseCard(cc, T); items.push(row({ key: 'c' + cc.id, title: k.name, sub: k.line, meta: k.days, tag: 'Курс', icon: 'ph ph-calendar-check', soft: k.soft, deep: k.deep, open: k.open })); } });
         showP.forEach(p => { const k = this.card(p); items.push(row({ key: 'x' + p.id, locked: k.locked, intense: builtinIntense(p), title: k.title, sub: k.oneLine, meta: k.range, icon: 'ph ' + k.icon, hasWave: !!k.hasTech, noWave: !k.hasTech, wave: k.wave, soft: k.soft, deep: k.deep, open: k.open })); });
-        const GN = { 'Инструмент': 'Инструменты', 'Моя': 'Мои техники', 'Программа': 'Программы', 'Курс': 'Курсы', '': 'Практики' };
+        const GN = { 'Инструмент': 'Инструменты', 'Моя': 'Мои практики', 'Курс': 'Курсы', '': 'Практики' };
         const exp = s.catExp || {}, LIM = 4;
-        const feedGroups = ['Инструмент', 'Моя', 'Программа', 'Курс', ''].map(k => { const all2 = items.filter(x => x.tag === k).map(x => ({ ...x, hasTag: false, intense: !!x.intense })); const open = exp[k] || all2.length <= LIM + 1; return { name: GN[k], items: open ? all2 : all2.slice(0, LIM), hasMore: all2.length > LIM + 1, moreLabel: exp[k] ? 'Свернуть' : 'Ещё…', toggleMore: () => this.setState(st => ({ catExp: { ...(st.catExp || {}), [k]: !(st.catExp || {})[k] } })) }; }).filter(g => g.items.length);
+        const feedGroups = ['Инструмент', 'Моя', 'Курс', ''].map(k => { const all2 = items.filter(x => x.tag === k).map(x => ({ ...x, hasTag: false, intense: !!x.intense })); const open = exp[k] || all2.length <= LIM + 1; return { name: GN[k], items: open ? all2 : all2.slice(0, LIM), hasMore: all2.length > LIM + 1, moreLabel: exp[k] ? 'Свернуть' : 'Ещё…', toggleMore: () => this.setState(st => ({ catExp: { ...(st.catExp || {}), [k]: !(st.catExp || {})[k] } })) }; }).filter(g => g.items.length);
         return { feedGroups, feedEmpty: items.length === 0,
           catAddOpen: !!s.catAdd, toggleCatAdd: () => this.setState(st => ({ catAdd: !st.catAdd })),
           addTech: () => { this.setState({ catAdd: false }); this.newTech(); },
@@ -3009,7 +3010,7 @@ class Component extends DCLogic {
       dupTech: () => this.techCap() || this.setState(st => { const cp = { ...clone(st.edit), id: uid(), name: st.edit.name + ' (копия)', origin: 'own' }; return { users: [cp, ...st.users], edit: cp, editNew: false }; }),
       askDel: () => this.setState({ del: { id: e.id, name: e.name, kind: 'tech' } }),
       // delete confirm
-      showDel: !!s.del, delTitle: s.del ? 'Удалить «' + s.del.name + '»?' : '', delUsed: delUsed.length > 0, delUsedIn: 'Используется в программах: ' + delUsed.join(', ') + '. Эти шаги перестанут работать.',
+      showDel: !!s.del, delTitle: s.del ? 'Удалить «' + s.del.name + '»?' : '', delUsed: delUsed.length > 0, delUsedIn: 'Используется в практиках: ' + delUsed.join(', ') + '. Эти шаги перестанут работать.',
       cancelDel: () => this.setState({ del: null }),
       doDel: () => this.setState(st => st.del.kind === 'tech' ? { users: st.users.filter(u => u.id !== st.del.id), del: null, edit: null, screen: 'catalog', tab: 'catalog' } : { uprogs: st.uprogs.filter(p => p.id !== st.del.id), del: null, pedit: null, screen: 'catalog', tab: 'catalog' }),
       dm: (() => { const fav = (s.favs ?? FAV0).includes(s.pid), p = PM[s.pid], close = () => this.setState({ dMenu: false });
@@ -3038,8 +3039,8 @@ class Component extends DCLogic {
       peBack: () => this.setState(st => ({ screen: st.prev === 'program' ? 'program' : 'catalog', picker: false })),
       peSaveBg: pe && pe.steps.length && pe.name.trim() ? T.accent : T.disabled,
       savePE: () => { if (!pe || !pe.steps.length || !pe.name.trim()) return; this.setState(st => ({ uprogs: st.uprogs.some(p => p.id === pe.id) ? st.uprogs.map(p => p.id === pe.id ? clone(pe) : p) : [...st.uprogs, clone(pe)], screen: 'program', progId: pe.id, peNew: false, picker: false })); },
-      startPE: () => { if (pe && pe.steps.length) this.playPlan(pe.steps, s.users, pe.name || 'Своя программа', pe.goal || 'own', true); },
-      delProg: () => this.setState({ del: { id: pe.id, name: pe.name || 'программу', kind: 'prog' } }),
+      startPE: () => { if (pe && pe.steps.length) this.playPlan(pe.steps, s.users, pe.name || 'Своя практика', pe.goal || 'own', true); },
+      delProg: () => this.setState({ del: { id: pe.id, name: pe.name || 'практику', kind: 'prog' } }),
       // timer
       timerBack: goCatalog,
       durLabel: durText(c.dur),

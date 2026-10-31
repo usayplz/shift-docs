@@ -19,7 +19,7 @@ enum class SessionKind { PRACTICE, PROGRAM, TIMER }
 /** Категории фильтра «Время практик», в порядке показа. */
 enum class TimeCat(val label: String) {
   BREATH("Дыхание"), MED("Медитация"), TIMER("Таймер"), BODY("Тело"),
-  PSY("Психотехника"), TRANCE("Транс"), PROG("Программы"),
+  PSY("Психотехника"), TRANCE("Транс"), PROG("Из нескольких шагов"),
 }
 
 data class PracticeRef(val id: String, val title: String, val dir: Dir, val goal: Goal, val recMin: Int)
@@ -35,7 +35,7 @@ data class Session(
   val date: LocalDate,
   val time: String,          // «15:40», уже в локальной зоне
   val durationSec: Int,
-  val goal: Goal? = null,    // для программ без pid
+  val goal: Goal? = null,    // для практик из нескольких шагов (без pid)
 )
 
 class Catalog(val practices: Map<String, PracticeRef>, val ownTechIds: Set<String>, val ownTechNames: Map<String, String>)
