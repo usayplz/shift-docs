@@ -48,4 +48,4 @@
 
 ## Промпт для Claude Code
 
-> Прочитай `design_handoff_shift_app/states/README.md`. Замени названия и описания состояний по таблице везде в приложении (строки ресурсов, `QUAD_NAME`, тексты подбора и бесплатного набора). Переделай карточку состояния на «Сегодня» под вариант 5a (`StateCard`, `StateOrb`). Сверяйся с `prototype/Shift v10 Android.dc.html` и `prototype/Состояния - варианты.dc.html` (#5a). Покажи `@Preview`: светлая и тёмная тема, fontScale 2.
+> Прочитай `design/states/README.md`. Замени названия и описания состояний по таблице везде в приложении (строки ресурсов, `QUAD_NAME`, тексты подбора и бесплатного набора). Переделай карточку состояния на «Сегодня» под вариант 5a (`StateCard`, `StateOrb`). Сверяйся с `prototype/Shift v10 Android.dc.html` и `prototype/Состояния - варианты.dc.html` (#5a). Покажи `@Preview`: светлая и тёмная тема, fontScale 2.
