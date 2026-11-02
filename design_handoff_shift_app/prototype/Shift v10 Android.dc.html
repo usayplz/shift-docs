@@ -12,6 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
 <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;display=swap" rel="stylesheet">
 <style>
 body{margin:0;background:#ECEBFB;font-family:'Nunito Sans',system-ui,sans-serif;color:#3E3F68;-webkit-font-smoothing:antialiased}
@@ -211,6 +212,75 @@ button{font-family:inherit;color:inherit}button:focus:not(:focus-visible){outlin
             </sc-for>
           </div>
         </sc-if>
+        <sc-if value="{{ dsh.on }}" hint-placeholder-val="{{ false }}">
+          <div onClick="{{ dsh.close }}" style="position:absolute;inset:0;z-index:7;background:rgba(30,30,50,.36)"></div>
+          <div style="position:absolute;left:0;right:0;bottom:0;z-index:8;background:{{ t.bg }};border-radius:28px 28px 0 0;padding:10px 20px 30px;box-sizing:border-box;display:flex;flex-direction:column;gap:16px;box-shadow:0 -12px 40px -12px rgba(20,25,60,.3)">
+            <div onClick="{{ dsh.close }}" style="width:40px;height:5px;border-radius:3px;background:{{ t.line }};margin:0 auto;flex:none;cursor:pointer"></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px"><div style="font:800 22px/1.2 Nunito,sans-serif;color:{{ t.ink }}">Длительность</div><button onClick="{{ dsh.close }}" aria-label="Закрыть" style="width:44px;height:44px;flex:none;border-radius:50%;border:none;background:{{ t.card }};cursor:pointer;display:flex;align-items:center;justify-content:center"><i class="ph-bold ph-x" style="font-size:18px;color:{{ t.ink }}"></i></button></div>
+            <div style="background:{{ t.card }};border-radius:22px;padding:16px;display:flex;flex-direction:column;gap:14px">
+              <div style="height:34px;display:flex;align-items:center;justify-content:space-between;gap:10px">
+                <div style="display:flex;flex-direction:column;min-width:0">
+                  <div style="display:flex;align-items:baseline;gap:5px;color:{{ t.ink }}"><span style="font:800 30px/1 Nunito,sans-serif;font-variant-numeric:tabular-nums">{{ pdur.num }}</span><span style="font-size:15px;font-weight:700;color:{{ t.muted }}">мин</span></div>
+                </div>
+                <sc-if value="{{ pdur.slider }}" hint-placeholder-val="{{ true }}">
+                  <button onClick="{{ pdur.setRec }}" style="border:none;cursor:pointer;flex:none;height:34px;padding:0 12px;border-radius:17px;display:flex;align-items:center;gap:6px;font-size:13px;font-weight:800;background:{{ pdur.recBg }};color:{{ cur.deep }};box-shadow:{{ pdur.recRing }};transition:background .2s,box-shadow .2s"><i class="ph-bold {{ pdur.recIcon }}" style="font-size:14px"></i>{{ pdur.recChip }}</button>
+                </sc-if>
+              </div>
+              <sc-if value="{{ pdur.slider }}" hint-placeholder-val="{{ true }}">
+                <div style="display:flex;flex-direction:column;gap:4px">
+                  <div onPointerDown="{{ pdur.sl.down }}" onPointerMove="{{ pdur.sl.move }}" onPointerUp="{{ pdur.sl.up }}" onPointerCancel="{{ pdur.sl.up }}" role="slider" aria-label="Длительность" style="position:relative;height:32px;flex:none;width:100%;cursor:pointer;touch-action:none">
+                    <div style="position:absolute;left:0;right:0;top:11px;height:10px;border-radius:5px;background:{{ t.subtle }}"></div>
+                    <div style="position:absolute;left:0;top:11px;height:10px;width:{{ pdur.sl.pct }};border-radius:5px;background:{{ cur.color }}"></div>
+                    <div style="position:absolute;top:3px;left:{{ pdur.sl.pct }};width:26px;height:26px;margin-left:-13px;border-radius:50%;background:#FFFFFE;box-shadow:0 3px 10px rgba(60,70,160,.28), 0 0 0 1px rgba(134,153,255,.2);display:flex;align-items:center;justify-content:center"><div style="width:10px;height:10px;border-radius:50%;background:{{ cur.color }}"></div></div>
+                  </div>
+                  <div style="position:relative;height:16px;font-size:12px;font-weight:700;color:{{ t.muted }}">
+                    <span style="position:absolute;left:0;top:0">{{ pdur.lo }}</span>
+                    <span style="position:absolute;right:0;top:0">{{ pdur.hi }}</span>
+                  </div>
+                </div>
+              </sc-if>
+            </div>
+            <button onClick="{{ ses.center }}" style="height:56px;flex:none;border:none;cursor:pointer;border-radius:30px;background:{{ t.accent }};color:#fff;font-size:16px;font-weight:700">Начать · {{ pdur.val }}</button>
+          </div>
+        </sc-if>
+        <sc-if value="{{ pset.on }}" hint-placeholder-val="{{ false }}">
+          <div onClick="{{ pset.close }}" style="position:absolute;inset:0;z-index:7;background:rgba(30,30,50,.36)"></div>
+          <div onClick="{{ stopEv }}" style="position:absolute;left:0;right:0;bottom:0;z-index:8;background:{{ t.bg }};border-radius:28px 28px 0 0;padding:10px 20px 30px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px;box-shadow:0 -12px 40px -12px rgba(20,25,60,.3);cursor:default">
+            <div onClick="{{ pset.close }}" style="width:40px;height:5px;border-radius:3px;background:{{ t.line }};margin:0 auto;flex:none;cursor:pointer"></div>
+            <div style="font:800 22px/1.2 Nunito,sans-serif;color:{{ t.ink }}">Настройки</div>
+            <sc-if value="{{ pset.hasTune }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:{{ t.label }}">{{ pset.label }}</div>
+                <div style="background:{{ t.card }};border-radius:20px;padding:14px 16px;display:flex;flex-direction:column;gap:12px">
+                  <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+                    <div style="display:flex;align-items:baseline;gap:4px;color:{{ t.ink }}"><span style="font:800 28px/1 Nunito,sans-serif;font-variant-numeric:tabular-nums">{{ pset.num }}</span><span style="font-size:15px;font-weight:700;color:{{ t.muted }}">с</span></div>
+                    <button onClick="{{ pset.setRec }}" style="border:none;cursor:pointer;flex:none;height:32px;padding:0 12px;border-radius:16px;display:flex;align-items:center;gap:6px;font-size:13px;font-weight:800;background:{{ pset.recBg }};color:{{ cur.deep }};box-shadow:{{ pset.recRing }}"><i class="ph-bold {{ pset.recIcon }}" style="font-size:14px"></i>{{ pset.recChip }}</button>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:4px">
+                    <div onPointerDown="{{ pset.sl.down }}" onPointerMove="{{ pset.sl.move }}" onPointerUp="{{ pset.sl.up }}" onPointerCancel="{{ pset.sl.up }}" role="slider" aria-label="{{ pset.label }}" style="position:relative;height:32px;width:100%;cursor:pointer;touch-action:none">
+                      <div style="position:absolute;left:0;right:0;top:11px;height:10px;border-radius:5px;background:{{ t.subtle }}"></div>
+                      <div style="position:absolute;left:0;top:11px;height:10px;width:{{ pset.sl.pct }};border-radius:5px;background:{{ cur.color }}"></div>
+                      <div style="position:absolute;left:{{ pset.recPct }};top:9px;width:2px;height:14px;margin-left:-1px;background:{{ cur.deep }};opacity:.35"></div>
+                      <div style="position:absolute;top:3px;left:{{ pset.sl.pct }};width:26px;height:26px;margin-left:-13px;border-radius:50%;background:#FFFFFE;box-shadow:0 3px 10px rgba(60,70,160,.28), 0 0 0 1px rgba(134,153,255,.2);display:flex;align-items:center;justify-content:center"><div style="width:10px;height:10px;border-radius:50%;background:{{ cur.color }}"></div></div>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:{{ t.muted }}"><span>{{ pset.lo }}</span><span>{{ pset.hi }}</span></div>
+                  </div>
+                  <sc-if value="{{ pset.hasNote }}" hint-placeholder-val="{{ false }}"><div style="font-size:13.5px;color:{{ t.muted }}">{{ pset.note }}</div></sc-if>
+                </div>
+                <div style="font-size:13.5px;color:{{ t.muted }}">Применится со следующего круга</div>
+              </div>
+            </sc-if>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:{{ t.label }}">Ведение</div>
+              <div style="background:{{ t.card }};border-radius:20px;display:flex;flex-direction:column;padding:0 16px">
+                <sc-for list="{{ prow }}" as="r" hint-placeholder-count="3">
+                  <button onClick="{{ r.toggle }}" role="switch" aria-checked="{{ r.on }}" style="height:52px;border:none;border-top:{{ r.bt }};background:none;cursor:pointer;padding:0;display:flex;align-items:center;gap:12px;color:{{ t.ink }};text-align:left"><i class="{{ r.icon0 }}" style="font-size:20px"></i><span style="flex:1;font-size:15px;font-weight:700">{{ r.label }}</span><span style="width:46px;height:28px;flex:none;border-radius:14px;background:{{ r.tb }};position:relative;transition:background .2s"><span style="position:absolute;top:3px;left:{{ r.kx }};width:22px;height:22px;border-radius:50%;background:#fff;transition:left .2s"></span></span></button>
+                </sc-for>
+              </div>
+            </div>
+            <button onClick="{{ pset.close }}" style="height:56px;flex:none;border:none;cursor:pointer;border-radius:30px;background:{{ t.accent }};color:#fff;font-size:16px;font-weight:700">Продолжить</button>
+          </div>
+        </sc-if>
 
         <div style="position:relative;z-index:2;height:96px;flex:none;margin-top:14px;display:flex;flex-direction:column;align-items:center;text-align:center">
           <div style="position:relative;flex:1;width:100%">
@@ -227,16 +297,25 @@ button{font-family:inherit;color:inherit}button:focus:not(:focus-visible){outlin
           </div>
         </div>
 
-        <div style="position:absolute;left:20px;right:20px;top:114px;bottom:{{ ses.dBot }};z-index:2;overflow-y:auto;scrollbar-width:none;opacity:{{ ses.d.op }};transform:{{ ses.d.tf }};pointer-events:{{ ses.d.pe }};transition:opacity .45s ease, transform .6s cubic-bezier(.2,.8,.2,1)">
+        <div ref="{{ dScrRef }}" onScroll="{{ dScroll }}" style="position:absolute;left:20px;right:20px;top:114px;bottom:{{ ses.dBot }};z-index:2;overflow-y:auto;scrollbar-width:none;opacity:{{ ses.d.op }};transform:{{ ses.d.tf }};pointer-events:{{ ses.d.pe }};transition:opacity .45s ease, transform .6s cubic-bezier(.2,.8,.2,1)">
           <div style="display:flex;flex-direction:column;gap:10px;padding:10px 0 8px">
             <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:18px">
               <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:{{ cur.deep }}">{{ cur.dirName }} · {{ cur.goalName }}</div>
-              <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px"><div style="font:800 26px/1.15 Nunito,sans-serif;color:{{ t.ink }};min-width:0;text-wrap:pretty">{{ cur.title }}</div><sc-if value="{{ cust.on }}" hint-placeholder-val="{{ true }}"><button onClick="{{ cust.run }}" aria-label="Настроить под себя" style="width:44px;height:44px;flex:none;border-radius:50%;border:none;background:{{ t.card }};cursor:pointer;display:flex;align-items:center;justify-content:center"><i class="ph ph-sliders-horizontal" style="font-size:20px;color:{{ t.ink }}"></i></button></sc-if></div>
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px"><div style="font:800 26px/1.15 Nunito,sans-serif;color:{{ t.ink }};min-width:0;text-wrap:pretty">{{ cur.title }}</div><div style="display:flex;gap:8px;flex:none"><sc-if value="{{ cust.favD }}" hint-placeholder-val="{{ true }}"><button onClick="{{ cust.fav }}" aria-label="{{ cust.favLabel }}" style="width:44px;height:44px;flex:none;border-radius:50%;border:none;background:{{ t.card }};cursor:pointer;display:flex;align-items:center;justify-content:center"><i class="{{ cust.favIcon }}" style="font-size:20px;color:{{ cust.favIc }}"></i></button></sc-if><sc-if value="{{ cust.on }}" hint-placeholder-val="{{ true }}"><button onClick="{{ cust.run }}" aria-label="Настроить под себя" style="width:44px;height:44px;flex:none;border-radius:50%;border:none;background:{{ t.card }};cursor:pointer;display:flex;align-items:center;justify-content:center"><i class="ph ph-sliders-horizontal" style="font-size:20px;color:{{ t.ink }}"></i></button></sc-if></div></div>
             </div>
-            <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:{{ t.label }}">Почему работает</div>
+            <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:{{ t.label }}">Описание</div>
             <div style="font:800 18px/1.3 Nunito,sans-serif;color:{{ t.ink }};text-wrap:pretty">{{ cur.line }}</div>
-            <div style="font-size:15px;line-height:1.55;color:{{ t.body2 }};text-wrap:pretty">{{ cur.why }}</div>
-            <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:{{ t.label }};margin-top:14px;display:flex;align-items:center;gap:6px">Противопоказания</div>
+            <div style="font-size:15px;line-height:1.55;color:{{ t.body2 }};text-wrap:pretty;max-height:{{ pinfo.descMax }};overflow:hidden">{{ cur.why }}</div>
+            <sc-if value="{{ pinfo.hasMore }}" hint-placeholder-val="{{ false }}"><div style="display:flex"><button onClick="{{ pinfo.toggleMore }}" style="border:none;cursor:pointer;height:34px;padding:0 14px;border-radius:17px;background:{{ t.card }};display:flex;align-items:center;gap:6px;font-size:13.5px;font-weight:800;color:{{ t.accentText }}">{{ pinfo.moreLabel }}<i class="ph-bold {{ pinfo.moreIcon }}" style="font-size:12px"></i></button></div></sc-if>
+            <sc-if value="{{ pinfo.hasEff }}" hint-placeholder-val="{{ true }}">
+              <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:{{ t.label }};margin-top:14px">Эффекты</div>
+              <div style="display:flex;flex-direction:column;gap:6px;font-size:15px;line-height:1.45;color:{{ t.body2 }}">
+                <sc-for list="{{ pinfo.eff }}" as="e" hint-placeholder-count="3">
+                  <div style="display:flex;align-items:baseline;gap:10px;text-wrap:pretty"><i class="ph-bold ph-check" style="font-size:13px;color:{{ cur.deep }};flex:none"></i><span>{{ e.t }}</span></div>
+                </sc-for>
+              </div>
+            </sc-if>
+            <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:{{ t.label }};margin-top:14px">Противопоказания</div>
             <div style="display:flex;flex-direction:column;gap:6px;font-size:15px;line-height:1.45;color:{{ t.body2 }}">
               <sc-for list="{{ pdur.contra }}" as="c" hint-placeholder-count="2">
                 <div style="display:flex;align-items:baseline;gap:10px;text-wrap:pretty"><span style="width:5px;height:5px;border-radius:50%;background:{{ t.muted }};flex:none;transform:translateY(-3px)"></span><span>{{ c.t }}</span></div>
@@ -244,6 +323,14 @@ button{font-family:inherit;color:inherit}button:focus:not(:focus-visible){outlin
               <sc-if value="{{ pinfo.noCare }}" hint-placeholder-val="{{ false }}"><div>Особых ограничений нет.</div></sc-if>
               <div style="color:{{ t.muted }}">Если станет некомфортно — остановись и дыши как обычно.</div>
             </div>
+            <sc-if value="{{ pinfo.hasHow }}" hint-placeholder-val="{{ true }}">
+              <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:{{ t.label }};margin-top:14px">Как выполнять</div>
+              <div style="display:flex;flex-direction:column;gap:12px;font-size:15px;line-height:1.5;color:{{ t.body2 }}">
+                <sc-for list="{{ pinfo.how }}" as="s" hint-placeholder-count="4">
+                  <div style="display:flex;gap:12px"><span style="width:24px;height:24px;flex:none;border-radius:50%;background:{{ t.card }};font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;color:{{ cur.deep }}">{{ s.n }}</span><span style="text-wrap:pretty;padding-top:1px">{{ s.t }}</span></div>
+                </sc-for>
+              </div>
+            </sc-if>
           </div>
         </div>
 
@@ -278,31 +365,9 @@ button{font-family:inherit;color:inherit}button:focus:not(:focus-visible){outlin
         </div>
 
         <div style="position:relative;z-index:2;flex:none;height:{{ ses.bh }};transition:height .7s cubic-bezier(.2,.8,.2,1)">
-          <div style="position:absolute;left:0;right:0;bottom:0;display:flex;flex-direction:column;gap:10px;opacity:{{ ses.d.op }};transform:{{ ses.d.tf }};pointer-events:{{ ses.d.pe }};transition:opacity .45s ease, transform .6s cubic-bezier(.2,.8,.2,1)">
-            <div style="background:{{ t.card }};border-radius:22px;padding:16px;display:flex;flex-direction:column;gap:14px">
-              <div style="height:34px;display:flex;align-items:center;justify-content:space-between;gap:10px">
-                <div style="display:flex;flex-direction:column;min-width:0">
-                  <div style="display:flex;align-items:baseline;gap:5px;color:{{ t.ink }}"><span style="font:800 30px/1 Nunito,sans-serif;font-variant-numeric:tabular-nums">{{ pdur.num }}</span><span style="font-size:15px;font-weight:700;color:{{ t.muted }}">мин</span></div>
-                </div>
-                <sc-if value="{{ pdur.slider }}" hint-placeholder-val="{{ true }}">
-                  <button onClick="{{ pdur.setRec }}" style="border:none;cursor:pointer;flex:none;height:34px;padding:0 12px;border-radius:17px;display:flex;align-items:center;gap:6px;font-size:13px;font-weight:800;background:{{ pdur.recBg }};color:{{ cur.deep }};box-shadow:{{ pdur.recRing }};transition:background .2s,box-shadow .2s"><i class="ph-bold {{ pdur.recIcon }}" style="font-size:14px"></i>{{ pdur.recChip }}</button>
-                </sc-if>
-              </div>
-              <sc-if value="{{ pdur.slider }}" hint-placeholder-val="{{ true }}">
-                <div style="display:flex;flex-direction:column;gap:4px">
-                  <div onPointerDown="{{ pdur.sl.down }}" onPointerMove="{{ pdur.sl.move }}" onPointerUp="{{ pdur.sl.up }}" onPointerCancel="{{ pdur.sl.up }}" role="slider" aria-label="Длительность" style="position:relative;height:32px;flex:none;width:100%;cursor:pointer;touch-action:none">
-                    <div style="position:absolute;left:0;right:0;top:11px;height:10px;border-radius:5px;background:{{ t.subtle }}"></div>
-                    <div style="position:absolute;left:0;top:11px;height:10px;width:{{ pdur.sl.pct }};border-radius:5px;background:{{ cur.color }}"></div>
-                    <div style="position:absolute;top:3px;left:{{ pdur.sl.pct }};width:26px;height:26px;margin-left:-13px;border-radius:50%;background:#FFFFFE;box-shadow:0 3px 10px rgba(60,70,160,.28), 0 0 0 1px rgba(134,153,255,.2);display:flex;align-items:center;justify-content:center"><div style="width:10px;height:10px;border-radius:50%;background:{{ cur.color }}"></div></div>
-                  </div>
-                  <div style="position:relative;height:16px;font-size:12px;font-weight:700;color:{{ t.muted }}">
-                    <span style="position:absolute;left:0;top:0">{{ pdur.lo }}</span>
-                    <span style="position:absolute;right:0;top:0">{{ pdur.hi }}</span>
-                  </div>
-                </div>
-              </sc-if>
-            </div>
-            <button onClick="{{ ses.center }}" style="height:56px;flex:none;border:none;cursor:pointer;border-radius:30px;background:{{ t.accent }};color:#fff;font-size:16px;font-weight:700">Начать · {{ pdur.val }}</button>
+          <div style="position:absolute;left:0;right:0;bottom:0;display:flex;gap:10px;opacity:{{ ses.d.op }};transform:{{ ses.d.tf }};pointer-events:{{ ses.d.pe }};transition:opacity .45s ease, transform .6s cubic-bezier(.2,.8,.2,1)">
+            <button onClick="{{ dsh.open }}" aria-label="Длительность" style="height:56px;flex:none;border:none;cursor:pointer;padding:0 16px 0 18px;border-radius:30px;background:{{ t.card }};display:flex;align-items:center;gap:8px;color:{{ t.ink }}"><span style="font:800 20px/1 Nunito,sans-serif;font-variant-numeric:tabular-nums">{{ pdur.num }}</span><span style="font-size:14px;font-weight:700;color:{{ t.muted }}">мин</span><sc-if value="{{ pdur.slider }}" hint-placeholder-val="{{ true }}"><i class="ph-bold ph-caret-up-down" style="font-size:14px;color:{{ t.muted }}"></i></sc-if></button>
+            <button onClick="{{ ses.center }}" style="flex:1;min-width:0;height:56px;border:none;cursor:pointer;border-radius:30px;background:{{ t.accent }};color:#fff;font-size:16px;font-weight:700">Начать</button>
           </div>
           <div style="position:absolute;left:0;right:0;bottom:0;display:flex;flex-direction:column;align-items:center;gap:12px;opacity:{{ ses.p.op }};transform:{{ ses.p.tf }};pointer-events:{{ ses.p.pe }};transition:opacity .45s ease, transform .6s cubic-bezier(.2,.8,.2,1)">
             <div style="height:20px;font-size:14px;font-weight:800;color:{{ pcur.deep }};text-align:center">{{ play.next }}</div>
@@ -314,10 +379,10 @@ button{font-family:inherit;color:inherit}button:focus:not(:focus-visible){outlin
               </div>
               <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:{{ pt.body2 }};height:18px;font-variant-numeric:tabular-nums"><span>{{ play.elapsedLabel }}</span><span>−{{ play.leftLabel }}</span></div>
             </div>
-            <div style="width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center">
-              <div style="display:flex;justify-content:space-around"><sc-for list="{{ ctlL }}" as="c" hint-placeholder-count="2"><button onClick="{{ c.toggle }}" aria-label="{{ c.hint }}" aria-pressed="{{ c.on }}" style="width:44px;height:44px;flex:none;border-radius:50%;border:none;cursor:pointer;padding:0;background:{{ c.bg }};box-shadow:{{ c.ring }};display:flex;align-items:center;justify-content:center;transition:background .2s,box-shadow .2s"><i class="{{ c.icon }}" style="font-size:20px;color:{{ c.fg }}"></i></button></sc-for></div>
+            <div style="width:100%;display:flex;justify-content:space-evenly;align-items:center">
+              <div style="display:contents"><sc-for list="{{ ctlL }}" as="c" hint-placeholder-count="2"><button onClick="{{ c.toggle }}" aria-label="{{ c.hint }}" aria-pressed="{{ c.on }}" style="width:52px;height:52px;flex:none;border-radius:50%;border:none;cursor:pointer;padding:0;background:{{ c.bg }};box-shadow:{{ c.ring }};display:flex;align-items:center;justify-content:center;transition:background .2s,box-shadow .2s"><i class="{{ c.icon }}" style="font-size:22px;color:{{ c.fg }}"></i></button></sc-for></div>
               <button onClick="{{ ses.center }}" aria-label="{{ pauseLabel }}" style="width:68px;height:68px;border-radius:50%;border:none;background:#fff;box-shadow:0 14px 30px -10px rgba(40,45,90,.35);cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0"><i class="{{ pauseIcon }}" style="font-size:28px;color:{{ pcur.deep }}"></i></button>
-              <div style="display:flex;justify-content:space-around"><sc-for list="{{ ctlR }}" as="c" hint-placeholder-count="2"><button onClick="{{ c.toggle }}" aria-label="{{ c.hint }}" aria-pressed="{{ c.on }}" style="width:44px;height:44px;flex:none;border-radius:50%;border:none;cursor:pointer;padding:0;background:{{ c.bg }};box-shadow:{{ c.ring }};display:flex;align-items:center;justify-content:center;transition:background .2s,box-shadow .2s"><i class="{{ c.icon }}" style="font-size:20px;color:{{ c.fg }}"></i></button></sc-for></div>
+              <div style="display:contents"><sc-for list="{{ ctlR }}" as="c" hint-placeholder-count="2"><button onClick="{{ c.toggle }}" aria-label="{{ c.hint }}" aria-pressed="{{ c.on }}" style="width:52px;height:52px;flex:none;border-radius:50%;border:none;cursor:pointer;padding:0;background:{{ c.bg }};box-shadow:{{ c.ring }};display:flex;align-items:center;justify-content:center;transition:background .2s,box-shadow .2s"><i class="{{ c.icon }}" style="font-size:22px;color:{{ c.fg }}"></i></button></sc-for></div>
             </div>
             <div style="display:flex;justify-content:center;align-items:center;gap:24px;height:28px">
               <sc-if value="{{ false }}" hint-placeholder-val="{{ false }}"><button onClick="{{ restart }}" style="border:none;background:none;cursor:pointer;font-size:14px;font-weight:700;color:{{ pcur.deep }};padding:4px">Начать заново</button></sc-if>
@@ -394,7 +459,7 @@ button{font-family:inherit;color:inherit}button:focus:not(:focus-visible){outlin
                   <div style="font-size:13px;color:{{ t.muted }};line-height:1.35;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical">{{ p.sub }}</div>
                 </div>
                 <div style="font-size:12px;font-weight:800;color:{{ t.muted2 }};white-space:nowrap;flex:none">{{ p.meta }}</div>
-                <sc-if value="{{ p.hasEdit }}" hint-placeholder-val="{{ false }}"><button onClick="{{ p.edit }}" aria-label="Редактировать" style="width:36px;height:36px;margin:-4px -4px -4px -6px;flex:none;border:none;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:50%"><i class="ph ph-pencil-simple" style="font-size:20px;color:{{ t.muted }}"></i></button></sc-if>
+                <sc-if value="{{ p.hasEdit }}" hint-placeholder-val="{{ false }}"><button onClick="{{ p.edit }}" aria-label="Редактировать" style="width:40px;height:40px;margin:-4px -6px -4px -4px;flex:none;border:none;background:{{ t.subtle }};cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:50%"><i class="ph ph-sliders-horizontal" style="font-size:20px;color:{{ t.ink }}"></i></button></sc-if>
               </div>
             </sc-for>
                 <sc-if value="{{ fg.hasMore }}" hint-placeholder-val="{{ false }}"><button onClick="{{ fg.toggleMore }}" style="align-self:flex-start;border:none;background:none;cursor:pointer;padding:4px 4px;font-size:14px;font-weight:800;color:{{ t.accentText }}">{{ fg.moreLabel }}</button></sc-if>
@@ -1010,7 +1075,7 @@ button{font-family:inherit;color:inherit}button:focus:not(:focus-visible){outlin
               </div>
             </sc-for>
             <button onClick="{{ addBlock }}" style="flex:none;height:50px;border:2px dashed {{ t.dash }};background:none;border-radius:20px;font-weight:700;font-size:15px;color:{{ t.accentText }};cursor:pointer">+ Блок</button>
-            <div style="font-size:13px;color:{{ t.muted }};line-height:1.45;margin-top:-6px">Тап по фазе меняет её тип: вдох, довдох, задержка, выдох, задержка на выдохе.</div>
+            <div style="font-size:13px;color:{{ t.muted }};line-height:1.45;margin-top:-6px">Тап по фазе меняет её тип: вдох, выдох, задержка, довдох.</div>
             <div style="background:{{ t.card }};border-radius:22px;padding:6px 14px 10px;display:flex;flex-direction:column;gap:2px">
               <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0 0"><span style="font-size:15px;font-weight:700">Раунды</span><span style="min-width:48px;text-align:right;font-weight:800;font-size:15px;white-space:nowrap;flex:none">{{ edit.rounds }}</span></div>
               <div onPointerDown="{{ roundsSl.down }}" onPointerMove="{{ roundsSl.move }}" onPointerUp="{{ roundsSl.up }}" onPointerCancel="{{ roundsSl.up }}" role="slider" style="position:relative;height:32px;flex:none;width:100%;cursor:pointer;touch-action:none"><div style="position:absolute;left:0;right:0;top:11px;height:10px;border-radius:5px;background:{{ t.subtle }}"></div><div style="position:absolute;left:0;top:11px;height:10px;width:{{ roundsSl.pct }};border-radius:5px;background:{{ t.accent }}"></div><div style="position:absolute;top:3px;left:{{ roundsSl.pct }};width:26px;height:26px;margin-left:-13px;border-radius:50%;background:#FFFFFE;box-shadow:0 3px 10px rgba(60,70,160,.28), 0 0 0 1px rgba(134,153,255,.2);display:flex;align-items:center;justify-content:center"><div style="width:10px;height:10px;border-radius:50%;background:{{ t.accent }}"></div></div></div>
@@ -1693,7 +1758,7 @@ const P = [
   { id: 'name', title: 'Назвать эмоцию', dir: 'psy', goal: 'calm', min: 1, max: 5, rec: 2, contra: [], line: 'Слово снижает накал', why: 'Когда чувство названо словом, его интенсивность снижается — мозг переходит от реакции к наблюдению.', steps: ['Что ты сейчас чувствуешь?', 'Одним словом: «Это — тревога»', 'Где это в теле?', 'Подыши рядом с этим'] },
   { id: 'activate', title: 'Активирующее дыхание', dir: 'breath', goal: 'energy', min: 1, max: 3, rec: 2, contra: ['Беременность','Гипертония и болезни сердца','Эпилепсия','Панические атаки','Головокружение — остановись'], line: 'Взбодриться без кофе', why: 'Активный вдох и короткий выдох в быстром ритме мягко поднимают тонус. Умеренная интенсивность, без задержек.', tech: [['in', 2], ['out', 1]], warn: 'Если есть противопоказания — беременность, эпилепсия, болезни сердца, панические атаки — выбери спокойную практику.' },
   { id: 'move', title: 'Микро-движение', dir: 'body', goal: 'energy', min: 2, max: 10, rec: 5, contra: ['Травмы — выбирай мягкий темп'], line: 'Встать и пройтись', why: 'Пара минут движения поднимает энергию и заодно снижает напряжение.', steps: ['Встань', 'Потянись вверх, затем в стороны', 'Пройдись — хотя бы по комнате', 'Круговые движения плечами'] },
-  { id: 'reson', title: 'Резонансное дыхание', sub: '5,5 · 5,5', dir: 'breath', goal: 'calm', min: 3, max: 20, rec: 10, contra: ['Головокружение — сделай паузу'], line: 'Около шести вдохов в минуту', why: 'На этой частоте дыхание и сердечный ритм синхронизируются, вариабельность пульса растёт сильнее всего, и стресс снижается. Одна из самых изученных дыхательных практик.', tech: [['in', 5.5], ['out', 5.5]] },
+  { id: 'reson', title: 'Резонансное дыхание', sub: '5,5 · 5,5', dir: 'breath', goal: 'calm', min: 3, max: 20, rec: 10, contra: ['Головокружение — сделай паузу'], line: 'Около шести циклов в минуту', why: 'На этой частоте дыхание и сердечный ритм синхронизируются, вариабельность пульса растёт сильнее всего, и стресс снижается. Одна из самых изученных дыхательных практик.', tech: [['in', 5.5], ['out', 5.5]] },
   { id: 'pmr', title: 'Мышечная релаксация', sub: 'по Джекобсону', dir: 'body', goal: 'sleep', min: 5, max: 20, rec: 10, contra: ['Травмы и боль — пропусти эту зону','Гипертония — напрягай мягко, не задерживая дыхание'], line: 'Напрячь, чтобы отпустить', why: 'Короткое напряжение мышц и резкое расслабление помогают почувствовать разницу и снять накопленный зажим. Метод хорошо изучен при бессоннице и тревоге.', steps: ['Ляг или сядь удобно', 'Сожми кулаки на 5 секунд — и отпусти', 'Плечи к ушам — и отпусти', 'Лицо, живот, ноги — по очереди', 'Замечай тепло и тяжесть после'] },
   { id: 'metta', title: 'Метта', sub: 'доброжелательность', dir: 'med', goal: 'calm', min: 5, max: 20, rec: 10, contra: ['Сильная самокритика — начни с близкого человека, не с себя','Поднялись тяжёлые чувства — вернись к дыханию'], line: 'Тёплые пожелания себе и другим', why: 'Повторение доброжелательных фраз тренирует тёплое отношение к себе и людям. В исследованиях регулярная практика усиливает позитивные эмоции и снижает самокритику.', steps: ['Представь человека, которому легко желать добра', 'Мысленно: «Пусть тебе будет спокойно. Пусть ты будешь в безопасности»', 'Теперь себе: «Пусть мне будет спокойно…»', 'Малознакомый человек — те же слова', 'Все люди вокруг: пусть всем будет спокойно'] },
   { id: 'safe', title: 'Безопасное место', sub: 'визуализация', dir: 'trance', goal: 'calm', min: 5, max: 15, rec: 7, contra: ['Психозы, диссоциативные расстройства','Образ вызывает тревогу — открой глаза и выбери другое место'], line: 'Место, где тебе спокойно', why: 'Подробный образ спокойного места задействует те же сенсорные системы, что и реальное восприятие, — тело отвечает расслаблением. Приём используют в терапии тревоги.', steps: ['Закрой глаза или опусти взгляд', 'Представь место, где тебе спокойно — реальное или выдуманное', 'Что ты видишь? Цвета, свет', 'Что слышишь? Что чувствуешь кожей?', 'Побудь там. Сюда можно вернуться в любой момент'] },
@@ -1702,8 +1767,9 @@ const P = [
   { id: 'bestself', title: 'Лучшее возможное «я»', sub: 'визуализация', dir: 'psy', goal: 'energy', min: 3, max: 10, rec: 5, contra: [], line: 'Представить, что всё получилось', why: 'Подробно представить себя в будущем, где всё сложилось хорошо. В исследованиях регулярная практика повышает оптимизм и настроение.', steps: ['Представь себя через год', 'Всё, к чему ты стремишься, получилось', 'Где ты? Что делаешь? Кто рядом?', 'Какое чувство в теле?', 'Какой шаг к этому можно сделать сегодня?'] },
 ];
 const PM = Object.fromEntries(P.map(p => [p.id, p]));
-const PH = { in: 'Вдох', hold: 'Задержка', out: 'Выдох', rest: 'Свободное дыхание', guide: 'Практика', top: 'Довдох', holdEmpty: 'Задержка на выдохе' };
-const KINDS = ['in', 'top', 'hold', 'out', 'holdEmpty'];
+const EFF = { box: ['Собирает внимание в одну точку','Успокаивает без сонливости','Выравнивает дыхание после стресса'], anchor: ['Тренирует возвращать внимание','Снижает фоновую тревогу','Помогает замечать, куда уплывают мысли'], onetask: ['Снимает ступор перед задачей','Превращает «надо» в действие','Снижает прокрастинацию'], exhale: ['Замедляет пульс','Готовит тело ко сну','Снимает напряжение в груди и плечах'], scan: ['Глубокий отдых за короткое время','Помогает заснуть','Возвращает чувство тела'], descent: ['Мягкий переход ко сну','Утихомиривает поток мыслей','Расслабляет всё тело'], sighs: ['Быстро снижает острую тревогу','Успокаивает за 1–2 минуты','Возвращает ровное дыхание'], ground: ['Возвращает в настоящий момент','Помогает при наплыве мыслей','Снижает остроту переживаний'], name: ['Снижает накал эмоции','Даёт паузу перед реакцией','Проясняет, что происходит'], activate: ['Бодрит без кофе','Поднимает уровень энергии','Проясняет голову'], move: ['Снимает вялость','Разгоняет кровь после сидения','Возвращает бодрость'], reson: ['Выравнивает сердечный ритм','Снижает стресс','Даёт устойчивое спокойствие'], pmr: ['Снимает мышечные зажимы','Помогает заснуть','Учит отличать напряжение от расслабления'], metta: ['Смягчает самокритику','Добавляет тепла к себе и другим','Снижает раздражение'], safe: ['Даёт ощущение опоры','Снижает тревогу','Создаёт ресурс, к которому можно вернуться'], leaves: ['Помогает отпустить навязчивые мысли','Учит не цепляться за мысли','Готовит ко сну'], woop: ['Превращает желание в план','Готовит к препятствиям заранее','Повышает шанс довести дело до конца'], bestself: ['Поднимает настроение и мотивацию','Проясняет, чего хочется','Добавляет оптимизма'] };
+const PH = { in: 'Вдох', hold: 'Задержка', out: 'Выдох', rest: 'Свободное дыхание', guide: 'Практика', top: 'Довдох', holdEmpty: 'Задержка' };
+const KINDS = ['in', 'out', 'hold', 'top'];
 const K_SOFT = { in: '#DFEDF7', top: '#DFEDF7', hold: '#FCEFC8', out: '#E9EFDB', holdEmpty: '#EDE1FC' };
 const K_DOT = { in: '#6FA8D6', top: '#9CC8EA', hold: '#E2B23A', out: '#8DA85A', holdEmpty: '#A57BE0' };
 const BELL = { bowl: 'Чаша', gong: 'Гонг', chime: 'Колокольчик', metro: 'Метроном', wood: 'Дерево', vib: 'Вибрация' };
@@ -1728,11 +1794,20 @@ function rules(t) {
   if (t.blocks.length && !t.blocks.some(b => b.phases.some(p => p.k === 'in'))) errors.push('Нужен хотя бы один вдох');
   const longHold = t.blocks.some(b => b.phases.some(p => (p.k === 'hold' || p.k === 'holdEmpty') && p.d > 30));
   const fast = t.blocks.some(b => { const c = cycOf(b); return b.phases.some(p => p.k === 'in') && c > 0 && 60 / c > 20 && c * b.repeats > 60; });
-  return { errors, intense: longHold || fast, why: longHold ? 'задержки дольше 30 с' : fast ? 'темп выше 20 вдохов в минуту дольше минуты' : '' };
+  return { errors, intense: longHold || fast, why: longHold ? 'задержки дольше 30 с' : fast ? 'темп выше 20 циклов в минуту дольше минуты' : '' };
 }
 const builtinIntense = p => !!(p && p.tech && p.warn);
 const PH_SV = [...Array.from({ length: 20 }, (_, i) => (i + 1) / 2), ...Array.from({ length: 20 }, (_, i) => 11 + i), ...Array.from({ length: 18 }, (_, i) => 35 + i * 5)];
 const phIdx = d => PH_SV.reduce((bi, v, i) => Math.abs(v - d) < Math.abs(PH_SV[bi] - d) ? i : bi, 0);
+const fmtN = v => String(Math.round(v * 10) / 10).replace('.', ',');
+const allTo = (t, v) => t.map(([k]) => [k, v]), outTo = (t, v) => t.map(([k, d]) => [k, k === 'out' ? v : d]);
+const TUNE = {
+  box: { label: 'Длительность фазы', lo: 3, hi: 7, step: 1, rec: 4, make: allTo },
+  reson: { label: 'Темп', lo: 4.5, hi: 6.5, step: .5, rec: 5, make: allTo, note: v => '≈ ' + fmtN(60 / (2 * v)) + ' циклов в минуту' },
+  exhale: { label: 'Длительность выдоха', lo: 6, hi: 10, step: 1, rec: 8, make: outTo },
+  sighs: { label: 'Длительность выдоха', lo: 4, hi: 8, step: 1, rec: 6, make: outTo },
+};
+const techOf = (b, tune) => { const T = TUNE[b.id], v = tune && tune[b.id]; return T && v != null ? T.make(b.tech, v) : b.tech; };
 const pCyc = b => b.tech ? b.tech.reduce((a, x) => a + x[1], 0) : 60;
 const unitOf = (b, st) => b.tech ? st.unit : 'min';
 const SEED_U = [
@@ -1756,8 +1831,8 @@ function buildPlan(steps, users) {
     const b = PM[st.tid];
     if (b && b.tech) {
       titles[si] = b.title;
-      const cyc = b.tech.reduce((a, x) => a + x[1], 0), n = st.unit !== 'min' ? Math.max(1, st.cyc || Math.round((st.min || 1) * 60 / cyc)) : Math.max(1, Math.round(st.min * 60 / cyc));
-      for (let i = 0; i < n; i++) b.tech.forEach(([k, d]) => push(k, d, 1, 1));
+      const tech = st.tech || b.tech, cyc = tech.reduce((a, x) => a + x[1], 0), n = st.unit !== 'min' ? Math.max(1, st.cyc || Math.round((st.min || 1) * 60 / cyc)) : Math.max(1, Math.round(st.min * 60 / cyc));
+      for (let i = 0; i < n; i++) tech.forEach(([k, d]) => push(k, d, 1, 1));
       return;
     }
     if (b && b.steps) {
@@ -1830,9 +1905,9 @@ const toR = x => { const { a, ...y } = x; if (y.r != null || !a) return y; const
 const seedSec = x => x.sec != null ? x.sec : x.pid && PM[x.pid] ? Math.max(60, PM[x.pid].rec * 60 + ((x.d || 0) * 37 % 5 - 2) * 30) : 180;
 const RING_C = 2 * Math.PI * 130;
 const COURSES = [
-  { id: 'c1', name: 'Основы дыхания', goal: 'calm', line: 'Пять дыхательных техник на разные случаи', days: [['Быстрый выдох', 'sighs', 2], ['Длинный выдох', 'exhale', 3], ['Ровный ритм', 'box', 3], ['Шесть вдохов в минуту', 'reson', 5], ['Мягкий подъём', 'activate', 2], ['Выдох перед сном', 'exhale', 5], ['Закрепить', 'reson', 10]] },
+  { id: 'c1', name: 'Основы дыхания', goal: 'calm', line: 'Пять дыхательных техник на разные случаи', days: [['Быстрый выдох', 'sighs', 2], ['Длинный выдох', 'exhale', 3], ['Ровный ритм', 'box', 3], ['Шесть циклов в минуту', 'reson', 5], ['Мягкий подъём', 'activate', 2], ['Выдох перед сном', 'exhale', 5], ['Закрепить', 'reson', 10]] },
   { id: 'c2', name: 'Сон без борьбы', goal: 'sleep', line: 'Неделя спокойных вечеров и лёгкого засыпания', days: [['Замедлиться', 'exhale', 3], ['Отпустить тело', 'scan', 10], ['Напрячь и отпустить', 'pmr', 10], ['Спуск', 'descent', 15], ['Тело тяжелеет', 'scan', 15], ['Тихий вечер', 'exhale', 5], ['Глубже вниз', 'descent', 20]] },
-  { id: 'c3', name: 'Устойчивость к стрессу', goal: 'calm', line: 'Возвращать спокойствие за пару минут', days: [['Быстрый выдох', 'sighs', 2], ['Здесь и сейчас', 'ground', 3], ['Назвать чувство', 'name', 2], ['Вздохи в моменте', 'sighs', 3], ['Заземление на ходу', 'ground', 3], ['Шесть вдохов в минуту', 'reson', 5], ['Назвать и выдохнуть', 'name', 2]] },
+  { id: 'c3', name: 'Устойчивость к стрессу', goal: 'calm', line: 'Возвращать спокойствие за пару минут', days: [['Быстрый выдох', 'sighs', 2], ['Здесь и сейчас', 'ground', 3], ['Назвать чувство', 'name', 2], ['Вздохи в моменте', 'sighs', 3], ['Заземление на ходу', 'ground', 3], ['Шесть циклов в минуту', 'reson', 5], ['Назвать и выдохнуть', 'name', 2]] },
   { id: 'c4', name: 'Глубокий фокус', goal: 'focus', line: 'Собирать внимание и удерживать его дольше', days: [['Ровный ритм', 'box', 3], ['Якорь', 'anchor', 5], ['Первый шаг', 'onetask', 3], ['Якорь дольше', 'anchor', 5], ['Ритм перед делом', 'box', 3]] },
   { id: 'c5', name: 'Энергия без кофе', goal: 'energy', line: 'Поднимать тонус мягко, без перегруза', days: [['Активирующее дыхание', 'activate', 2], ['Встать и пройтись', 'move', 3], ['Первый шаг', 'onetask', 2], ['Дыхание и движение', 'activate', 2], ['Свой запуск', 'move', 5]] },
 ];
@@ -2332,12 +2407,18 @@ class Component extends DCLogic {
       })(),
     };
   }
-  openPractice(id) { if (this.locked(id)) return this.paywall('practice', id); const p = PM[id], mem = (this.state.durMem || {})[id]; this.go('detail', { whyOpen: false, infoTab: 'about', careOpen: false, sheetOpen: false, pid: id, minutes: mem ?? p.rec ?? fit(p, this.state.recMinutes) }); }
+  dScroll = ev => { const v = ev.currentTarget.scrollTop > 64; if (v !== !!this.state.dScr) this.setState({ dScr: v }); };
+  dScrRef = el => { this._dEl = el; if (el && this.state.dScr) this.setState({ dScr: false }); };
+  closePSet() { this.setState(st => { const out = { pSet: false, pSetChanged: false, running: !!st.pSetRun }; const p = PM[st.sessPid];
+    if (st.pSetChanged && st.plan && p && p.tech) { const tech = techOf(p, st.tune), cyc = tech.reduce((a, x) => a + x[1], 0), plan = buildPlan([{ kind: 'tech', tid: p.id, min: st.minutes, tech }], st.users);
+      out.plan = plan; out.total = plan.total; out.elapsed = st.elapsed < 0 ? st.elapsed : Math.min(plan.total - 1, Math.floor(st.elapsed / cyc) * cyc); }
+    return out; }); }
+  openPractice(id) { if (this.locked(id)) return this.paywall('practice', id); const p = PM[id], mem = (this.state.durMem || {})[id]; if (this._dEl) this._dEl.scrollTop = 0; this.go('detail', { descOpen: false, durSheet: false, dScr: false, whyOpen: false, infoTab: 'about', careOpen: false, sheetOpen: false, pid: id, minutes: mem ?? p.rec ?? fit(p, this.state.recMinutes) }); }
   start(id, m, o = {}) {
     if (!o.free && this.locked(id)) return this.paywall('practice', id);
     const p = PM[id];
-    const plan = p.tech ? buildPlan([{ kind: 'tech', tid: id, min: m }], this.state.users) : null;
-    this.setState(s => ({ prev: s.screen === 'player' ? s.prev : s.screen, screen: 'player', trial: false, playUid: null, pid: id, minutes: m, plan, total: plan ? plan.total : m * 60, elapsed: -3, running: true, playTitle: p.title, playTheme: null, afterTitle: p.title, sessPid: id, courseRun: o.course || null }));
+    const plan = p.tech ? buildPlan([{ kind: 'tech', tid: id, min: m, tech: techOf(p, this.state.tune) }], this.state.users) : null;
+    this.setState(s => ({ pSet: false, pSetChanged: false, prev: s.screen === 'player' ? s.prev : s.screen, screen: 'player', trial: false, playUid: null, pid: id, minutes: m, plan, total: plan ? plan.total : m * 60, elapsed: -3, running: true, playTitle: p.title, playTheme: null, afterTitle: p.title, sessPid: id, courseRun: o.course || null }));
   }
   playPlan(steps, users, title, theme, trial, progId) {
     const plan = buildPlan(steps, users);
@@ -2696,7 +2777,7 @@ class Component extends DCLogic {
           repSl: this.slider('rep' + bi, 1, Math.max(60, b.repeats), b.repeats, n => { if (n !== b.repeats) upd(x => { x.blocks[bi].repeats = n; }); }),
           phases: b.phases.map((p, pi) => ({
             label: PH[p.k], bg: K_SOFT[p.k], dot: K_DOT[p.k], dur: fmtS(p.d) + ' с',
-            cycle: () => upd(x => { const ph = x.blocks[bi].phases[pi]; ph.k = KINDS[(KINDS.indexOf(ph.k) + 1) % KINDS.length]; }),
+            cycle: () => upd(x => { const ph = x.blocks[bi].phases[pi]; const ci = KINDS.indexOf(ph.k === 'holdEmpty' ? 'hold' : ph.k); ph.k = KINDS[(ci + 1) % KINDS.length]; }),
             inc: () => upd(x => { const ph = x.blocks[bi].phases[pi]; ph.d = Math.min(120, ph.d + (ph.d >= 10 ? 1 : .5)); }),
             dec: () => upd(x => { const ph = x.blocks[bi].phases[pi]; ph.d = Math.max(.5, ph.d - (ph.d > 10 ? 1 : .5)); }),
             remove: () => upd(x => { x.blocks[bi].phases.splice(pi, 1); }),
@@ -2796,22 +2877,22 @@ class Component extends DCLogic {
       const how = p.tech ? p.tech.map(([k, d], i) => ({ n: String(i + 1), t: PH[k] + ' — ' + d + ' с' })) : all;
       const tb = (k, label, dot) => ({ label, dot: !!dot, bg: tab === k ? T.card : 'transparent', fg: tab === k ? T.ink : T.muted, sh: tab === k ? '0 1px 4px rgba(20,25,60,.12)' : 'none', pick: () => this.setState({ infoTab: k }) });
       return { tabs: [tb('about', 'О практике'), tb('care', 'Противопоказания', cs.length)], isAbout: tab === 'about', isCare: tab === 'care', careNote: cs.length <= 3,
-        ov: tab === 'care' ? 'hidden' : 'auto', mask: tab === 'care' ? 'none' : 'linear-gradient(180deg,#000 0%,#000 72%,transparent 100%)', how, noCare: !cs.length, howMore: !p.tech && st.length > 0, howMoreL: 'Все шаги · ' + st.length, allSteps: all, hasSteps: !p.tech && st.length > 0 };
+        ov: tab === 'care' ? 'hidden' : 'auto', mask: tab === 'care' ? 'none' : 'linear-gradient(180deg,#000 0%,#000 72%,transparent 100%)', how, noCare: !cs.length, howMore: !p.tech && st.length > 0, howMoreL: 'Все шаги · ' + st.length, allSteps: all, hasSteps: !p.tech && st.length > 0, eff: (p.effects || EFF[p.id] || []).map(t => ({ t })), hasEff: !!(p.effects || EFF[p.id] || []).length, hasHow: how.length > 0, hasMore: (p.why || '').length > 115, descMax: s.descOpen ? 'none' : '70px', moreLabel: s.descOpen ? 'Свернуть' : 'Подробнее', moreIcon: s.descOpen ? 'ph-caret-up' : 'ph-caret-down', toggleMore: () => this.setState(st => ({ descOpen: !st.descOpen })) };
     })();
     const ses = (() => {
       const D = sc === 'detail', P = sc === 'player', A = sc === 'after', showPlay = P && !s.running;
       const f = k => sc === k ? { op: 1, pe: 'auto', tf: 'none' } : { op: 0, pe: 'none', tf: k === 'detail' ? 'translateY(-10px)' : 'translateY(14px)' };
       return { d: f('detail'), p: f('player'), a: f('after'),
-        bh: D ? pdur.bh + 'px' : P ? '204px' : '282px', stageTop: A ? '170px' : '238px', cursor: P ? 'pointer' : 'default',
+        bh: D ? '56px' : P ? '204px' : '282px', stageTop: A ? '170px' : '238px', cursor: P ? 'pointer' : 'default',
         tap: ev => { if (this.state.screen === 'player') this.tglPause(ev); },
-        center: ev => { ev.stopPropagation(); if (this.state.screen === 'detail') { this.setState({ whyOpen: false, sheetOpen: false }); this.start(this.state.pid, this.state.minutes); } else this.tglPause(ev); },
+        center: ev => { ev.stopPropagation(); if (this.state.screen === 'detail') { this.setState({ whyOpen: false, sheetOpen: false, durSheet: false }); this.start(this.state.pid, this.state.minutes); } else this.tglPause(ev); },
         centerLabel: D ? 'Начать' : 'Продолжить',
         playOp: showPlay ? 1 : 0, playSc: showPlay ? 1 : .6, playPe: showPlay ? 'auto' : 'none', playInk: P ? pcur.deep : cur.deep,
         labelOp: P ? 1 : 0,
-        orbOp: P ? 1 : 0, dBot: (30 + pdur.bh + 14) + 'px', orbTf: A ? 'scale(.72)' : D ? 'scale(.6)' : 'none',
+        orbOp: P ? 1 : 0, dBot: '100px', orbTf: A ? 'scale(.72)' : D ? 'scale(.6)' : 'none',
         orbTr: A ? 'opacity .55s ease .45s, transform .9s cubic-bezier(.2,.8,.2,1)' : 'opacity .4s ease, transform .9s cubic-bezier(.2,.8,.2,1)',
         faceOn: P || A, faceTf: A ? 'scale(.9)' : 'scale(1)',
-        title: D ? '' : P ? (s.trial ? 'Пробный запуск' : s.playTitle) : (s.afterTitle || cur.title), titleColor: P ? PT.ink : T.ink };
+        title: D ? (s.dScr ? cur.title : '') : P ? (s.trial ? 'Пробный запуск' : s.playTitle) : (s.afterTitle || cur.title), titleColor: P ? PT.ink : T.ink };
     })();
     const sa = (() => { const e = s.sadd; const open = () => this.openAdd(0); if (!e) return { on: false, open };
       const upd = p => this.setState(st => ({ sadd: { ...st.sadd, ...p } })), close = () => this.setState({ sadd: null });
@@ -2849,7 +2930,7 @@ class Component extends DCLogic {
       se, sa,
       jumps,
       isSession: sc === 'detail' || sc === 'player' || sc === 'after',
-      pdur, pinfo, ses, whyOn: sc === 'detail' && !!s.whyOpen, closeWhy: () => this.setState({ whyOpen: false }), isTodayB: sc === 'today', isRecs: sc === 'recs', isAfter: sc === 'after', isAllSess: sc === 'allSess', isProgress: sc === 'progress', isSettings: sc === 'settings',
+      pdur, pinfo, ses, dScroll: this.dScroll, dScrRef: this.dScrRef, dsh: { on: sc === 'detail' && !!s.durSheet, open: () => { if (pdur.slider) this.setState({ durSheet: true }); }, close: () => this.setState({ durSheet: false }) }, whyOn: sc === 'detail' && !!s.whyOpen, closeWhy: () => this.setState({ whyOpen: false }), isTodayB: sc === 'today', isRecs: sc === 'recs', isAfter: sc === 'after', isAllSess: sc === 'allSess', isProgress: sc === 'progress', isSettings: sc === 'settings',
       isEditor: sc === 'editor' && !!e, isProgram: sc === 'program', isProgEdit: sc === 'progEdit' && !!pe, isTimer: sc === 'timer', isTimerRun: sc === 'timerRun', isTimerDone: sc === 'timerDone', isMetro: sc === 'metro',
       isOnb: sc === 'onb', ob: this.obVals(s, T, dark), spl: this.splVals(s, dark),
       stop: ev => ev.stopPropagation(),
@@ -2883,7 +2964,7 @@ class Component extends DCLogic {
       main: { ...this.card(mainP), meta: DIRS[mainP.dir] + (mainP.sub ? ' · ' + mainP.sub : ''), minLabel: mainMin + ' мин', start: () => this.start(mainP.id, mainMin) },
       alts: rec.ids.slice(1, 3).map(id => this.card(PM[id])),
       cur,
-      ...(() => { const pv = this.pvS(), paused = sc === 'player' && !s.running; return { play: pv, orbLabel: paused ? 'Пауза' : pv.label, orbLabelSize: paused ? '26px/1' : pv.labelSize, pauseIcon: s.running ? 'ph-fill ph-pause' : 'ph-fill ph-play', pauseLabel: s.running ? 'Пауза' : 'Продолжить', canRestart: paused && s.elapsed > 0, restart: ev => { ev.stopPropagation(); try { window.speechSynthesis && window.speechSynthesis.cancel(); } catch (e) { } this.setState({ elapsed: -3, running: true }); } }; })(),
+      ...(() => { const pv = this.pvS(), paused = sc === 'player' && !s.running; return { play: pv, orbLabel: pv.label, orbLabelSize: pv.labelSize, pauseIcon: s.running ? 'ph-fill ph-pause' : 'ph-fill ph-play', pauseLabel: s.running ? 'Пауза' : 'Продолжить', canRestart: paused && s.elapsed > 0, restart: ev => { ev.stopPropagation(); try { window.speechSynthesis && window.speechSynthesis.cancel(); } catch (e) { } this.setState({ elapsed: -3, running: true }); } }; })(),
       orbInk: G_L[playGoal].deep,
       labelMax: '260px',
       orbShadow: 'none',
@@ -2899,13 +2980,25 @@ class Component extends DCLogic {
           knob: on ? '18px' : '2px', trackBg: on ? pcur.deep : PT.track,
           toggle: ev => { ev.stopPropagation(); if (key === 'voice') { try { window.speechSynthesis && window.speechSynthesis.cancel(); } catch (e) { } } this.setState(st => ({ [key]: !(st[key] !== false) })); } });
         const ctl = [
-          mk('voice', 'Голос', 'ph-microphone', s.voice, 'Ведение голосом'),
+          mk('voice', 'Голос', s.voice !== false ? 'ph-microphone' : 'ph-microphone-slash', s.voice, 'Ведение голосом'),
           mk('sound', 'Тон', 'ph-bell', s.sound, 'Звук смены фазы'),
           mk('vib', 'Вибро', 'ph-vibrate', s.vib, 'Отклик на вдохе и выдохе'),
           { key: 'restart', label: 'Заново', icon: 'ph ph-arrow-counter-clockwise', hint: 'Начать заново', bg: PT.pill, ring: 'none', fg: PT.ink,
             toggle: ev => { ev.stopPropagation(); try { window.speechSynthesis && window.speechSynthesis.cancel(); } catch (e) { } this.setState({ elapsed: -3, running: true }); } },
         ];
-        return { ctl, ctlL: ctl.slice(0, 2), ctlR: ctl.slice(2), stopEv: ev => ev.stopPropagation() };
+        const RL = { voice: 'Голос', sound: 'Тон смены фазы', vib: 'Вибро' }, RI = { voice: 'ph ph-microphone', sound: 'ph ph-bell', vib: 'ph ph-vibrate' };
+        const prow = ctl.slice(0, 3).map((c, i) => ({ ...c, label: RL[c.key], icon0: RI[c.key], bt: i ? '1px solid ' + T.divider : 'none', kx: c.on !== false ? '21px' : '3px', tb: c.on !== false ? T.accent : T.line }));
+        const setBtn = { key: 'pset', label: 'Настройки', icon: 'ph ph-sliders-horizontal', hint: 'Настройки', on: true, bg: PT.pill, ring: 'none', fg: PT.ink, toggle: ev => { ev.stopPropagation(); this.setState(st => ({ pSet: true, pSetRun: st.running, running: false })); } };
+        const pset = (() => { const pp = PM[s.sessPid], Tn = pp && TUNE[pp.id] && s.plan && s.plan.segCount === 1 ? TUNE[pp.id] : null;
+          const base = { on: sc === 'player' && !!s.pSet, close: ev => { if (ev) ev.stopPropagation(); this.closePSet(); }, hasTune: !!Tn };
+          if (!Tn) return base;
+          const v = (s.tune || {})[pp.id] ?? Tn.rec, n = Math.round((Tn.hi - Tn.lo) / Tn.step), idx = Math.round((v - Tn.lo) / Tn.step);
+          const set = val => this.setState(st => ({ tune: { ...(st.tune || {}), [pp.id]: val }, pSetChanged: true }));
+          const sl = this.slider('tune', 0, n, idx, i => { const val = Math.round((Tn.lo + i * Tn.step) * 10) / 10; if (val !== ((this.state.tune || {})[pp.id] ?? Tn.rec)) set(val); });
+          const ir = v === Tn.rec;
+          return { ...base, label: Tn.label, num: fmtN(v), sl, lo: fmtN(Tn.lo) + ' с', hi: fmtN(Tn.hi) + ' с', recPct: ((Tn.rec - Tn.lo) / (Tn.hi - Tn.lo) * 100) + '%',
+            recChip: ir ? 'рекомендуем' : 'рек. ' + fmtN(Tn.rec) + ' с', recIcon: ir ? 'ph-check' : 'ph-sparkle', recBg: ir ? T.subtle : 'transparent', recRing: ir ? 'none' : 'inset 0 0 0 1.5px ' + T.line, setRec: () => set(Tn.rec), hasNote: !!Tn.note, note: Tn.note ? Tn.note(v) : '' }; })();
+        return { ctl, ctlL: [ctl[0]], ctlR: [setBtn], prow, pset, stopEv: ev => ev.stopPropagation() };
       })(),
       hasDoneSteps: !!(s.plan && s.plan.segCount > 1 && sc === 'after'), doneSteps: s.plan ? s.plan.titles.join(' → ') : '',
       skipAfter: () => this.setState(st => ({ note: '', noteOpen: false, screen: 'today', tab: 'today', afterKind: null, sessions: [{ pid: st.sessPid, title: st.afterTitle, kind: st.afterKind === 'timer' ? 'timer' : undefined, b: st.before || { e: 0, t: 0 }, noB: !st.before, r: null, when: 'Только что', sec: this.playedSec(st) }, ...st.sessions], before: null })),
@@ -3020,7 +3113,7 @@ class Component extends DCLogic {
         return { open: !!s.dMenu && sc === 'detail', items, close, toggle: () => this.setState(st => ({ dMenu: !st.dMenu })) }; })(),
       cust: (() => { const p = PM[s.pid], fav = (s.favs ?? FAV0).includes(s.pid);
         const cyc = p && p.tech ? p.tech.reduce((a, x) => a + x[1], 0) : 0;
-        return { on: !!(p && p.tech),
+        return { on: !!(p && p.tech), favD: !!p,
           run: () => { if (!p || !p.tech) return; this.openEditor({ id: uid(), name: p.title + ' — моя', blocks: [{ phases: p.tech.map(([k, d]) => ({ k, d })), repeats: Math.max(1, Math.round(this.state.minutes * 60 / cyc)) }], rounds: 1, rest: 0, origin: 'copied' }, true); },
           fav: () => this.setState(st => { const f = st.favs ?? FAV0; return { favs: f.includes(st.pid) ? f.filter(x => x !== st.pid) : [...f, st.pid] }; }),
           favLabel: fav ? 'Убрать из избранного' : 'В избранное', favIcon: fav ? 'ph-fill ph-heart' : 'ph ph-heart', favIc: fav ? '#E86A6A' : T.ink,

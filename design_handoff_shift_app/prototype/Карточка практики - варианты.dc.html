@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#ECEBFB;font-family:'Nunito Sans',system-ui,sans-serif;color:#3E3F68;-webkit-font-smoothing:antialiased}
+a{color:#5A5FB0}a:hover{color:#3E3F68}
+button{font-family:inherit;color:inherit}
+</style>
+</helmet>
+
+<section data-screen-label="1 Карточка практики — больше текста" style="padding:48px;display:flex;flex-direction:column;gap:28px">
+  <div style="display:flex;flex-direction:column;gap:10px;max-width:980px">
+    <div style="font:800 30px/1.12 Nunito,sans-serif;letter-spacing:-0.5px">Карточка практики: описание, эффекты, противопоказания, как выполнять</div>
+    <div style="font-size:15px;line-height:1.5;color:#64658E;text-wrap:pretty">Четыре раздела в четырёх подачах: вкладки (<a href="#1a">1a</a>), лента с компактным низом (<a href="#1b">1b</a>), описание на карточке + листы (<a href="#1c">1c</a>), сворачивающаяся шапка (<a href="#1d">1d</a>). <a href="#1b">1b</a> и <a href="#1d">1d</a> сочетаются.</div>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:36px;align-items:flex-start">
+
+    <!-- 1a ВКЛАДКИ -->
+    <div id="1a" style="width:360px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;background:#1E1E22;color:#FFFFFF;padding:6px 9px;border-radius:999px">1a</span><span style="font:800 19px/1.2 Nunito,sans-serif">Вкладки</span></div>
+        <div style="font-size:13.5px;line-height:1.45;color:#64658E;text-wrap:pretty;min-height:58px">Четыре короткие вкладки под заголовком, низ не меняется. У каждой вкладки своя прокрутка. Точка на «Риски» — если противопоказания есть.</div>
+      </div>
+      <div style="width:360px;height:780px;background:#1E1E22;border-radius:44px;padding:8px;box-sizing:border-box">
+        <div style="width:100%;height:100%;border-radius:37px;overflow:hidden;position:relative;background:linear-gradient(180deg,#F2F5EA 0%,#F5F4FE 40%);display:flex;flex-direction:column;padding:44px 20px 24px;box-sizing:border-box">
+          <div style="width:44px;height:44px;flex:none;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center"><i class="ph-bold ph-caret-left" style="font-size:18px;color:#3E3F68"></i></div>
+          <div style="margin-top:20px;display:flex;flex-direction:column;gap:8px">
+            <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#3F5220">Дыхание · Фокус</div>
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px"><div style="font:800 26px/1.15 Nunito,sans-serif;color:#3E3F68">Квадратное дыхание</div><div style="display:flex;gap:8px;flex:none"><div style="width:44px;height:44px;flex:none;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center"><i class="ph ph-heart" style="font-size:20px;color:#3E3F68"></i></div><div style="width:44px;height:44px;flex:none;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center"><i class="ph ph-sliders-horizontal" style="font-size:20px;color:#3E3F68"></i></div></div></div>
+          </div>
+          <div style="margin-top:16px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px;padding:4px;border-radius:22px;background:#ECEBFB;flex:none">
+            <div style="height:36px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:800;color:#64658E">Суть</div>
+            <div style="height:36px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:800;color:#64658E">Эффекты</div>
+            <div style="height:36px;border-radius:18px;display:flex;align-items:center;justify-content:center;gap:5px;font-size:12.5px;font-weight:800;color:#64658E">Риски<span style="width:6px;height:6px;border-radius:50%;background:#D9A21B"></span></div>
+            <div style="height:36px;border-radius:18px;background:#fff;box-shadow:0 2px 8px rgba(60,70,160,.12);display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:800;color:#3E3F68">Шаги</div>
+          </div>
+          <div style="flex:1;min-height:0;overflow:hidden;position:relative;margin-top:18px">
+            <div style="display:flex;flex-direction:column;gap:14px;font-size:15px;line-height:1.5;color:#4F5078">
+              <div style="display:flex;gap:12px"><span style="width:24px;height:24px;flex:none;border-radius:50%;background:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;color:#3F5220">1</span><div style="display:flex;flex-direction:column;gap:2px"><b style="color:#3E3F68">Устройся</b><span style="text-wrap:pretty">Сядь ровно, плечи вниз. Выдохни до конца.</span></div></div>
+              <div style="display:flex;gap:12px"><span style="width:24px;height:24px;flex:none;border-radius:50%;background:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;color:#3F5220">2</span><div style="display:flex;flex-direction:column;gap:2px"><b style="color:#3E3F68">Вдох и задержка</b><span style="text-wrap:pretty">Вдох носом на 4 счёта. Задержи на 4 — горло мягкое.</span></div></div>
+              <div style="display:flex;gap:12px"><span style="width:24px;height:24px;flex:none;border-radius:50%;background:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;color:#3F5220">3</span><div style="display:flex;flex-direction:column;gap:2px"><b style="color:#3E3F68">Выдох и пауза</b><span style="text-wrap:pretty">Медленный выдох на 4, пауза на 4 без вдоха.</span></div></div>
+              <div style="display:flex;gap:12px"><span style="width:24px;height:24px;flex:none;border-radius:50%;background:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;color:#3F5220">4</span><div style="display:flex;flex-direction:column;gap:2px"><b style="color:#3E3F68">Повторяй</b><span style="text-wrap:pretty">Считать не нужно — орб и голос ведут ритм.</span></div></div>
+            </div>
+            <div style="position:absolute;left:0;right:0;bottom:0;height:28px;background:linear-gradient(180deg,rgba(245,244,254,0),#F5F4FE)"></div>
+          </div>
+          <div style="flex:none;margin-top:12px;display:flex;flex-direction:column;gap:10px">
+            <div style="background:#fff;border-radius:22px;padding:16px;display:flex;flex-direction:column;gap:14px">
+              <div style="height:34px;display:flex;align-items:center;justify-content:space-between"><div style="display:flex;align-items:baseline;gap:5px"><span style="font:800 30px/1 Nunito,sans-serif">3</span><span style="font-size:15px;font-weight:700;color:#64658E">мин</span></div><div style="height:34px;padding:0 12px;border-radius:17px;box-shadow:inset 0 0 0 1.5px #D6E2BE;display:flex;align-items:center;font-size:13px;font-weight:800;color:#3F5220">рек. 4 мин</div></div>
+              <div style="position:relative;height:26px"><div style="position:absolute;left:0;right:0;top:8px;height:10px;border-radius:5px;background:#ECEBFB"></div><div style="position:absolute;left:0;top:8px;height:10px;width:12%;border-radius:5px;background:#A9C07A"></div><div style="position:absolute;left:12%;top:0;width:26px;height:26px;margin-left:-13px;border-radius:50%;background:#fff;box-shadow:0 3px 10px rgba(60,70,160,.28)"></div></div>
+            </div>
+            <div style="height:56px;border-radius:30px;background:linear-gradient(135deg,#5A5FB0 0%,#6268B8 100%);color:#fff;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center">Начать · 3 мин</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1b ЛЕНТА + КОМПАКТНЫЙ НИЗ -->
+    <div id="1b" style="width:360px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;background:#1E1E22;color:#FFFFFF;padding:6px 9px;border-radius:999px">1b</span><span style="font:800 19px/1.2 Nunito,sans-serif">Лента и компактный низ</span></div>
+        <div style="font-size:13.5px;line-height:1.45;color:#64658E;text-wrap:pretty;min-height:58px">Длительность — пилюля у «Начать», слайдер в листе по тапу. Все четыре раздела идут одной лентой с подзаголовками.</div>
+      </div>
+      <div style="width:360px;height:780px;background:#1E1E22;border-radius:44px;padding:8px;box-sizing:border-box">
+        <div style="width:100%;height:100%;border-radius:37px;overflow:hidden;position:relative;background:linear-gradient(180deg,#F2F5EA 0%,#F5F4FE 40%);display:flex;flex-direction:column;padding:44px 20px 24px;box-sizing:border-box">
+          <div style="width:44px;height:44px;flex:none;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center"><i class="ph-bold ph-caret-left" style="font-size:18px;color:#3E3F68"></i></div>
+          <div style="flex:1;min-height:0;overflow:hidden;position:relative;margin-top:20px">
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px">
+                <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#3F5220">Дыхание · Фокус</div>
+                <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px"><div style="font:800 26px/1.15 Nunito,sans-serif;color:#3E3F68">Квадратное дыхание</div><div style="display:flex;gap:8px;flex:none"><div style="width:44px;height:44px;flex:none;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center"><i class="ph ph-heart" style="font-size:20px;color:#3E3F68"></i></div><div style="width:44px;height:44px;flex:none;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center"><i class="ph ph-sliders-horizontal" style="font-size:20px;color:#3E3F68"></i></div></div></div>
+              </div>
+              <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#8A8BB0">Описание</div>
+              <div style="font-size:15px;line-height:1.55;color:#4F5078;text-wrap:pretty">Ровный ритм из четырёх равных отрезков: вдох, задержка, выдох и пауза — по 4 счёта.</div><div style="display:flex;margin-top:2px"><div style="height:34px;padding:0 14px;border-radius:17px;background:#fff;display:flex;align-items:center;gap:6px;font-size:13.5px;font-weight:800;color:#5A5FB0">Подробнее<i class="ph-bold ph-caret-right" style="font-size:12px"></i></div></div>
+              <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#8A8BB0;margin-top:12px">Эффекты</div>
+              <div style="display:flex;flex-direction:column;gap:6px;font-size:15px;line-height:1.45;color:#4F5078">
+                <div style="display:flex;align-items:baseline;gap:10px"><i class="ph-bold ph-check" style="font-size:13px;color:#3F5220;flex:none"></i><span>Собирает внимание в одну точку</span></div>
+                <div style="display:flex;align-items:baseline;gap:10px"><i class="ph-bold ph-check" style="font-size:13px;color:#3F5220;flex:none"></i><span>Успокаивает без сонливости</span></div>
+                <div style="display:flex;align-items:baseline;gap:10px"><i class="ph-bold ph-check" style="font-size:13px;color:#3F5220;flex:none"></i><span>Выравнивает дыхание после стресса</span></div>
+              </div>
+              <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#8A8BB0;margin-top:12px">Противопоказания</div>
+              <div style="display:flex;flex-direction:column;gap:6px;font-size:15px;line-height:1.45;color:#4F5078">
+                <div style="display:flex;align-items:baseline;gap:10px"><span style="width:5px;height:5px;border-radius:50%;background:#D9A21B;flex:none;transform:translateY(-3px)"></span><span>Беременность — без задержек</span></div>
+                <div style="display:flex;align-items:baseline;gap:10px"><span style="width:5px;height:5px;border-radius:50%;background:#D9A21B;flex:none;transform:translateY(-3px)"></span><span>Панические атаки — без задержек</span></div>
+              </div>
+              <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#8A8BB0;margin-top:12px">Как выполнять</div>
+              <div style="font-size:15px;line-height:1.55;color:#4F5078;text-wrap:pretty">Сядь ровно, выдохни до конца. Вдох носом, задержка без напряжения в горле…</div>
+            </div>
+            <div style="position:absolute;left:0;right:0;bottom:0;height:36px;background:linear-gradient(180deg,rgba(245,244,254,0),#F5F4FE)"></div>
+          </div>
+          <div style="flex:none;margin-top:12px;display:flex;gap:10px">
+            <div style="height:56px;flex:none;padding:0 16px 0 18px;border-radius:30px;background:#fff;display:flex;align-items:center;gap:8px"><span style="font:800 20px/1 Nunito,sans-serif">3</span><span style="font-size:14px;font-weight:700;color:#64658E">мин</span><i class="ph-bold ph-caret-up-down" style="font-size:14px;color:#64658E"></i></div>
+            <div style="flex:1;height:56px;border-radius:30px;background:linear-gradient(135deg,#5A5FB0 0%,#6268B8 100%);color:#fff;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center">Начать</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1b+ ЛИСТ ДЛИТЕЛЬНОСТИ -->
+    <div id="1b-sheet" style="width:360px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;background:#1E1E22;color:#FFFFFF;padding:6px 9px;border-radius:999px">1b</span><span style="font:800 19px/1.2 Nunito,sans-serif">Тап на «3 мин»</span></div>
+        <div style="font-size:13.5px;line-height:1.45;color:#64658E;text-wrap:pretty;min-height:58px">Снизу выезжает короткий лист: значение, слайдер, рекомендация. «Начать» прямо в листе — выбрал и пошёл. Тап мимо или свайп вниз — закрыть, значение сохраняется.</div>
+      </div>
+      <div style="width:360px;height:780px;background:#1E1E22;border-radius:44px;padding:8px;box-sizing:border-box">
+        <div style="width:100%;height:100%;border-radius:37px;overflow:hidden;position:relative;background:linear-gradient(180deg,#F2F5EA 0%,#F5F4FE 40%);padding:44px 20px 24px;box-sizing:border-box;display:flex;flex-direction:column">
+          <div style="width:44px;height:44px;flex:none;border-radius:50%;background:#fff"></div>
+          <div style="margin-top:20px;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#3F5220">Дыхание · Фокус</div>
+          <div style="margin-top:8px;font:800 26px/1.15 Nunito,sans-serif;color:#3E3F68;max-width:200px">Квадратное дыхание</div>
+          <div style="margin-top:20px;font-size:15px;line-height:1.55;color:#4F5078">Ровный ритм из четырёх равных отрезков: вдох, задержка, выдох и пауза — по 4 счёта.</div>
+          <div style="position:absolute;inset:0;background:rgba(30,30,50,.36)"></div>
+          <div style="position:absolute;left:0;right:0;bottom:0;background:#F5F4FE;border-radius:28px 28px 0 0;padding:10px 20px 24px;box-sizing:border-box;display:flex;flex-direction:column;gap:20px">
+            <div style="width:40px;height:5px;border-radius:3px;background:#CFCFF1;margin:0 auto;flex:none"></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+              <div style="font:800 22px/1.2 Nunito,sans-serif">Длительность</div>
+              <div style="height:34px;padding:0 12px;border-radius:17px;box-shadow:inset 0 0 0 1.5px #D6E2BE;display:flex;align-items:center;font-size:13px;font-weight:800;color:#3F5220">рек. 4 мин</div>
+            </div>
+            <div style="display:flex;align-items:baseline;justify-content:center;gap:6px"><span style="font:800 56px/1 Nunito,sans-serif">3</span><span style="font-size:18px;font-weight:700;color:#64658E">мин</span></div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="position:relative;height:26px"><div style="position:absolute;left:0;right:0;top:8px;height:10px;border-radius:5px;background:#ECEBFB"></div><div style="position:absolute;left:0;top:8px;height:10px;width:12%;border-radius:5px;background:#A9C07A"></div><div style="position:absolute;left:12%;top:0;width:26px;height:26px;margin-left:-13px;border-radius:50%;background:#fff;box-shadow:0 3px 10px rgba(60,70,160,.28)"></div></div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:#8A8BB0"><span>1 мин</span><span>20 мин</span></div>
+            </div>
+            <div style="height:56px;border-radius:30px;background:linear-gradient(135deg,#5A5FB0 0%,#6268B8 100%);color:#fff;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center">Начать · 3 мин</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1c ОПИСАНИЕ + ЛИСТЫ -->
+    <div id="1c" style="display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:6px;max-width:756px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;background:#1E1E22;color:#FFFFFF;padding:6px 9px;border-radius:999px">1c</span><span style="font:800 19px/1.2 Nunito,sans-serif">Описание на карточке, остальное — листы</span></div>
+        <div style="font-size:13.5px;line-height:1.45;color:#64658E;text-wrap:pretty;min-height:58px">Описание видно сразу. Эффекты, противопоказания и шаги — строки, каждая открывает лист почти на весь экран. Справа — лист «Как выполнять».</div>
+      </div>
+      <div style="display:flex;gap:36px;flex-wrap:wrap">
+      <div style="width:360px;height:780px;background:#1E1E22;border-radius:44px;padding:8px;box-sizing:border-box">
+        <div style="width:100%;height:100%;border-radius:37px;overflow:hidden;position:relative;background:linear-gradient(180deg,#F2F5EA 0%,#F5F4FE 40%);display:flex;flex-direction:column;padding:44px 20px 24px;box-sizing:border-box">
+          <div style="width:44px;height:44px;flex:none;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center"><i class="ph-bold ph-caret-left" style="font-size:18px;color:#3E3F68"></i></div>
+          <div style="margin-top:20px;display:flex;flex-direction:column;gap:8px">
+            <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#3F5220">Дыхание · Фокус</div>
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px"><div style="font:800 26px/1.15 Nunito,sans-serif;color:#3E3F68">Квадратное дыхание</div><div style="display:flex;gap:8px;flex:none"><div style="width:44px;height:44px;flex:none;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center"><i class="ph ph-heart" style="font-size:20px;color:#3E3F68"></i></div><div style="width:44px;height:44px;flex:none;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center"><i class="ph ph-sliders-horizontal" style="font-size:20px;color:#3E3F68"></i></div></div></div>
+          </div>
+          <div style="margin-top:14px;font-size:15px;line-height:1.55;color:#4F5078;text-wrap:pretty">Ровный ритм из четырёх равных отрезков: вдох, задержка, выдох и пауза — по 4 счёта.</div><div style="display:flex;margin-top:10px"><div style="height:34px;padding:0 14px;border-radius:17px;background:#fff;display:flex;align-items:center;gap:6px;font-size:13.5px;font-weight:800;color:#5A5FB0">Подробнее<i class="ph-bold ph-caret-right" style="font-size:12px"></i></div></div>
+          <div style="margin-top:18px;background:#fff;border-radius:20px;display:flex;flex-direction:column;padding:4px 0">
+            <div style="height:52px;padding:0 14px 0 16px;display:flex;align-items:center;gap:12px"><i class="ph ph-sparkle" style="font-size:20px;color:#3F5220"></i><span style="flex:1;font-size:15px;font-weight:700">Эффекты</span><span style="font-size:13px;font-weight:700;color:#64658E">3</span><i class="ph-bold ph-caret-right" style="font-size:14px;color:#8A8BB0"></i></div>
+            <div style="height:1px;background:#ECEBFB;margin:0 16px"></div>
+            <div style="height:52px;padding:0 14px 0 16px;display:flex;align-items:center;gap:12px"><i class="ph ph-warning-circle" style="font-size:20px;color:#9A6B0E"></i><span style="flex:1;font-size:15px;font-weight:700">Противопоказания</span><span style="font-size:13px;font-weight:700;color:#64658E">3</span><i class="ph-bold ph-caret-right" style="font-size:14px;color:#8A8BB0"></i></div>
+            <div style="height:1px;background:#ECEBFB;margin:0 16px"></div>
+            <div style="height:52px;padding:0 14px 0 16px;display:flex;align-items:center;gap:12px"><i class="ph ph-list-numbers" style="font-size:20px;color:#3F5220"></i><span style="flex:1;font-size:15px;font-weight:700">Как выполнять</span><span style="font-size:13px;font-weight:700;color:#64658E">4 шага</span><i class="ph-bold ph-caret-right" style="font-size:14px;color:#8A8BB0"></i></div>
+          </div>
+          <div style="flex:1"></div>
+          <div style="flex:none;display:flex;flex-direction:column;gap:10px">
+            <div style="background:#fff;border-radius:22px;padding:16px;display:flex;flex-direction:column;gap:14px">
+              <div style="height:34px;display:flex;align-items:center;justify-content:space-between"><div style="display:flex;align-items:baseline;gap:5px"><span style="font:800 30px/1 Nunito,sans-serif">3</span><span style="font-size:15px;font-weight:700;color:#64658E">мин</span></div><div style="height:34px;padding:0 12px;border-radius:17px;box-shadow:inset 0 0 0 1.5px #D6E2BE;display:flex;align-items:center;font-size:13px;font-weight:800;color:#3F5220">рек. 4 мин</div></div>
+              <div style="position:relative;height:26px"><div style="position:absolute;left:0;right:0;top:8px;height:10px;border-radius:5px;background:#ECEBFB"></div><div style="position:absolute;left:0;top:8px;height:10px;width:12%;border-radius:5px;background:#A9C07A"></div><div style="position:absolute;left:12%;top:0;width:26px;height:26px;margin-left:-13px;border-radius:50%;background:#fff;box-shadow:0 3px 10px rgba(60,70,160,.28)"></div></div>
+            </div>
+            <div style="height:56px;border-radius:30px;background:linear-gradient(135deg,#5A5FB0 0%,#6268B8 100%);color:#fff;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center">Начать · 3 мин</div>
+          </div>
+        </div>
+      </div>
+      <div style="width:360px;height:780px;background:#1E1E22;border-radius:44px;padding:8px;box-sizing:border-box">
+        <div style="width:100%;height:100%;border-radius:37px;overflow:hidden;position:relative;background:#F5F4FE">
+          <div style="position:absolute;inset:0;background:rgba(30,30,50,.36)"></div>
+          <div style="position:absolute;left:0;right:0;bottom:0;top:96px;background:#F5F4FE;border-radius:28px 28px 0 0;padding:10px 20px 24px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px">
+            <div style="width:40px;height:5px;border-radius:3px;background:#CFCFF1;margin:0 auto;flex:none"></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px"><div style="font:800 22px/1.2 Nunito,sans-serif">Как выполнять</div><div style="width:44px;height:44px;flex:none;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center"><i class="ph-bold ph-x" style="font-size:18px"></i></div></div>
+            <div style="display:flex;flex-direction:column;gap:14px;font-size:15px;line-height:1.5;color:#4F5078">
+              <div style="display:flex;gap:12px"><span style="width:24px;height:24px;flex:none;border-radius:50%;background:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;color:#3F5220">1</span><div style="display:flex;flex-direction:column;gap:2px"><b style="color:#3E3F68">Устройся</b><span style="text-wrap:pretty">Сядь ровно, плечи вниз, руки на коленях. Выдохни до конца.</span></div></div>
+              <div style="display:flex;gap:12px"><span style="width:24px;height:24px;flex:none;border-radius:50%;background:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;color:#3F5220">2</span><div style="display:flex;flex-direction:column;gap:2px"><b style="color:#3E3F68">Вдох и задержка</b><span style="text-wrap:pretty">Вдох носом на 4 счёта, животом. Задержи на 4 — горло мягкое.</span></div></div>
+              <div style="display:flex;gap:12px"><span style="width:24px;height:24px;flex:none;border-radius:50%;background:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;color:#3F5220">3</span><div style="display:flex;flex-direction:column;gap:2px"><b style="color:#3E3F68">Выдох и пауза</b><span style="text-wrap:pretty">Медленный выдох на 4, затем пауза на 4 без вдоха.</span></div></div>
+              <div style="display:flex;gap:12px"><span style="width:24px;height:24px;flex:none;border-radius:50%;background:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;color:#3F5220">4</span><div style="display:flex;flex-direction:column;gap:2px"><b style="color:#3E3F68">Повторяй</b><span style="text-wrap:pretty">Считать не нужно — орб и голос ведут ритм до конца сессии.</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <!-- 1d СВОРАЧИВАЮЩАЯСЯ ШАПКА -->
+    <div id="1d" style="width:360px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;background:#1E1E22;color:#FFFFFF;padding:6px 9px;border-radius:999px">1d</span><span style="font:800 19px/1.2 Nunito,sans-serif">Сворачивающаяся шапка</span></div>
+        <div style="font-size:13.5px;line-height:1.45;color:#64658E;text-wrap:pretty;min-height:58px">Лента как в <a href="#1b">1b</a>, но при прокрутке заголовок уезжает в верхнюю панель. Показано состояние после прокрутки — видны противопоказания и шаги.</div>
+      </div>
+      <div style="width:360px;height:780px;background:#1E1E22;border-radius:44px;padding:8px;box-sizing:border-box">
+        <div style="width:100%;height:100%;border-radius:37px;overflow:hidden;position:relative;background:#F5F4FE;display:flex;flex-direction:column;padding:44px 20px 24px;box-sizing:border-box">
+          <div style="height:44px;flex:none;display:flex;align-items:center;gap:8px">
+            <div style="width:44px;height:44px;flex:none;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center"><i class="ph-bold ph-caret-left" style="font-size:18px;color:#3E3F68"></i></div>
+            <div style="flex:1;min-width:0;text-align:center;font:800 15px/1.15 Nunito,sans-serif;text-wrap:balance">Квадратное дыхание</div>
+            <div style="display:flex;gap:8px;flex:none"><div style="width:44px;height:44px;flex:none;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center"><i class="ph ph-heart" style="font-size:20px;color:#3E3F68"></i></div><div style="width:44px;height:44px;flex:none;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center"><i class="ph ph-sliders-horizontal" style="font-size:20px;color:#3E3F68"></i></div></div>
+          </div>
+          <div style="flex:1;min-height:0;overflow:hidden;position:relative;margin-top:12px">
+            <div style="position:absolute;left:0;right:0;top:0;height:20px;background:linear-gradient(180deg,#F5F4FE,rgba(245,244,254,0));z-index:1"></div>
+            <div style="display:flex;flex-direction:column;gap:8px;margin-top:-14px">
+              <div style="display:flex;flex-direction:column;gap:6px;font-size:15px;line-height:1.45;color:#4F5078">
+                <div style="display:flex;align-items:baseline;gap:10px"><i class="ph-bold ph-check" style="font-size:13px;color:#3F5220;flex:none"></i><span>Выравнивает дыхание после стресса</span></div>
+              </div>
+              <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#8A8BB0;margin-top:12px">Противопоказания</div>
+              <div style="display:flex;flex-direction:column;gap:6px;font-size:15px;line-height:1.45;color:#4F5078">
+                <div style="display:flex;align-items:baseline;gap:10px"><span style="width:5px;height:5px;border-radius:50%;background:#D9A21B;flex:none;transform:translateY(-3px)"></span><span>Беременность — без задержек</span></div>
+                <div style="display:flex;align-items:baseline;gap:10px"><span style="width:5px;height:5px;border-radius:50%;background:#D9A21B;flex:none;transform:translateY(-3px)"></span><span>Панические атаки — без задержек</span></div>
+                <div style="display:flex;align-items:baseline;gap:10px"><span style="width:5px;height:5px;border-radius:50%;background:#D9A21B;flex:none;transform:translateY(-3px)"></span><span>Головокружение — сделай паузу</span></div>
+              </div>
+              <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#8A8BB0;margin-top:12px">Как выполнять</div>
+              <div style="display:flex;flex-direction:column;gap:12px;font-size:15px;line-height:1.5;color:#4F5078">
+                <div style="display:flex;gap:12px"><span style="width:24px;height:24px;flex:none;border-radius:50%;background:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;color:#3F5220">1</span><span style="text-wrap:pretty">Сядь ровно, плечи вниз. Выдохни до конца.</span></div>
+                <div style="display:flex;gap:12px"><span style="width:24px;height:24px;flex:none;border-radius:50%;background:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;color:#3F5220">2</span><span style="text-wrap:pretty">Вдох носом на 4 счёта. Задержи на 4 — горло мягкое.</span></div>
+                <div style="display:flex;gap:12px"><span style="width:24px;height:24px;flex:none;border-radius:50%;background:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;color:#3F5220">3</span><span style="text-wrap:pretty">Медленный выдох на 4, пауза на 4 без вдоха.</span></div>
+                <div style="display:flex;gap:12px"><span style="width:24px;height:24px;flex:none;border-radius:50%;background:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;color:#3F5220">4</span><span style="text-wrap:pretty">Считать не нужно — орб и голос ведут ритм.</span></div>
+              </div>
+            </div>
+            <div style="position:absolute;left:0;right:0;bottom:0;height:36px;background:linear-gradient(180deg,rgba(245,244,254,0),#F5F4FE)"></div>
+          </div>
+          <div style="flex:none;margin-top:12px;display:flex;gap:10px">
+            <div style="height:56px;flex:none;padding:0 16px 0 18px;border-radius:30px;background:#fff;display:flex;align-items:center;gap:8px"><span style="font:800 20px/1 Nunito,sans-serif">3</span><span style="font-size:14px;font-weight:700;color:#64658E">мин</span><i class="ph-bold ph-caret-up-down" style="font-size:14px;color:#64658E"></i></div>
+            <div style="flex:1;height:56px;border-radius:30px;background:linear-gradient(135deg,#5A5FB0 0%,#6268B8 100%);color:#fff;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center">Начать</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+</x-dc>
+</body>
+</html>
