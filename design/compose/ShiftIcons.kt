@@ -25,16 +25,16 @@ object ShiftIcons {
             viewportWidth = 256f, viewportHeight = 256f,
         ).apply {
             listOf(
-                "M128,56 C100,84 100,140 128,176 C156,140 156,84 128,56 Z",
-                "M112,172 C84,166 58,144 52,108 C78,108 100,120 112,136",
-                "M144,172 C172,166 198,144 204,108 C178,108 156,120 144,136",
-                "M56,204 L200,204",
+                "M128,35 C93,70 93,141 128,186 C163,141 163,70 128,35 Z",
+                "M108,181 C73,173 40,146 33,100 C65,100 93,115 108,136",
+                "M148,181 C183,173 216,146 223,100 C191,100 163,115 148,136",
+                "M38,221 L218,221",
             ).forEach { d ->
                 addPath(
                     pathData = addPathNodes(d),
                     fill = null,
                     stroke = SolidColor(Color.Black),
-                    strokeLineWidth = 13f,
+                    strokeLineWidth = 16f,
                     strokeLineCap = StrokeCap.Round,
                     strokeLineJoin = StrokeJoin.Round,
                 )
