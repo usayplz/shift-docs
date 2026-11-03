@@ -145,7 +145,7 @@ M3 не покрывает цвета целей и состояний — их 
 |---|---|---|
 | Вход | Sign in with Apple | Sign in with Google (Credential Manager) |
 | Вибрация | `UIImpactFeedbackGenerator` | `Vibrator` / `HapticFeedback` |
-| Голос | `AVSpeechSynthesizer` | `TextToSpeech` |
+| Голос (записанные mp3) | `AVAudioEngine` | `MediaPlayer` |
 | Не гасить экран | `isIdleTimerDisabled` | `FLAG_KEEP_SCREEN_ON` |
 | Фоновое аудио (таймер, метроном) | AVAudioSession `.playback` | Foreground Service + MediaSession |
 
@@ -280,7 +280,7 @@ Splash ─┬─▶ Онбординг (только первый запуск) 
 - Пауза — кнопкой или тапом по пустому месту экрана. На паузе орб замирает и показывает последнее значение (фазу и счёт), слова «Пауза» нет. Подробно — `player/README.md`.
 - За 3,5 с до смены шага — подсказка «Дальше: …».
 - Сегментированный прогресс по шагам; прошло / −осталось; кнопка «Завершить».
-- **Практики с шагами** (медитации, визуализации, психотехники, тело): длительность делится поровну между шагами. На экране — номер шага в орбе и текст шага под ним; голос зачитывает текст в начале шага. Орб медленно «дышит» (цикл 10 с), звук дыхания не играет.
+- **Практики с шагами** (медитации, визуализации, психотехники, тело): длительность делится поровну между шагами. На экране — номер шага в орбе и текст шага под ним; в начале шага звучит его запись (`voice`); если файла нет, шаг идёт без голоса. Орб медленно «дышит» (цикл 10 с), звук дыхания не играет.
 
 **C. «Как теперь?»**
 - Заголовок, «Было: ● состояние», для практик из нескольких шагов — «Пройдено: …».
@@ -682,7 +682,7 @@ shared/
                    Progress, AllSessions, Settings
   domain/          recommend(), defaultGoal(), buildPlan(), rules(), rating()
   data/            Repositories (sessions, prefs, user techs, programs), Content (встроенные)
-  platform/        expect: Haptics, Speech, AudioEngine, KeepAwake, AuthProvider
+  platform/        expect: Haptics, AudioEngine, KeepAwake, AuthProvider
 androidApp/ iosApp/   actual-реализации
 ```
 
