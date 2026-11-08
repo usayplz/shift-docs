@@ -124,7 +124,7 @@ button{font-family:inherit;color:inherit}button:focus:not(:focus-visible){outlin
               </button>
             </sc-for>
             <button onClick="{{ openTimer }}" style="flex:none;border:none;cursor:pointer;text-align:left;background:{{ t.card }};border-radius:20px;padding:12px 16px 12px 12px;display:flex;align-items:center;gap:14px">
-              <div style="width:48px;height:48px;flex:none;border-radius:16px;background:{{ t.dot }};display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 256 256" style="width:28px;height:28px;display:block;color:{{ t.ink }}" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"><path d="M128 56 C100 84 100 140 128 176 C156 140 156 84 128 56 Z"></path><path d="M112 172 C84 166 58 144 52 108 C78 108 100 120 112 136"></path><path d="M144 172 C172 166 198 144 204 108 C178 108 156 120 144 136"></path><path d="M56 204 L200 204"></path></svg></div>
+              <div style="width:48px;height:48px;flex:none;border-radius:16px;background:{{ t.dot }};display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 256 256" style="width:28px;height:28px;display:block;color:{{ t.ink }}" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><path d="M128 35 C93 70 93 141 128 186 C163 141 163 70 128 35 Z"></path><path d="M108 181 C73 173 40 146 33 100 C65 100 93 115 108 136"></path><path d="M148 181 C183 173 216 146 223 100 C191 100 163 115 148 136"></path><path d="M38 221 L218 221"></path></svg></div>
               <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:3px"><div style="font-weight:800;font-size:15px;color:{{ t.ink }}">Посидеть в тишине</div><div style="font-size:13px;color:{{ t.muted }}">Таймер медитации · {{ timerSummary }}</div></div>
               <i class="ph ph-caret-right" style="font-size:20px;color:{{ t.label }};flex:none"></i>
             </button>
@@ -286,6 +286,7 @@ button{font-family:inherit;color:inherit}button:focus:not(:focus-visible){outlin
           <div style="position:relative;flex:1;width:100%">
                         <div style="position:absolute;left:0;right:0;top:0;opacity:{{ ses.p.op }};transform:{{ ses.p.tf }};pointer-events:{{ ses.p.pe }};transition:opacity .45s ease, transform .6s cubic-bezier(.2,.8,.2,1)">
               <div style="font:800 22px/1.25 Nunito,sans-serif;color:{{ pcur.deep }};text-wrap:balance">{{ play.subtitle }}</div>
+              <sc-if value="{{ play.walk }}" hint-placeholder-val="{{ false }}"><div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:{{ pcur.deep }}">{{ play.wStage }}</div></sc-if>
             </div>
             <div style="position:absolute;left:0;right:0;top:0;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:{{ ses.a.op }};transform:{{ ses.a.tf }};pointer-events:{{ ses.a.pe }};transition:opacity .45s ease, transform .6s cubic-bezier(.2,.8,.2,1)">
               <div style="font:800 22px/1.25 Nunito,sans-serif;color:{{ t.accentText }}">{{ afterHeading }}</div>
@@ -344,10 +345,16 @@ button{font-family:inherit;color:inherit}button:focus:not(:focus-visible){outlin
             <div style="position:relative;opacity:{{ ses.labelOp }};transition:opacity .3s">
               <div ref="{{ labelRef }}" style="transform:{{ labelScale }};display:flex;flex-direction:column;align-items:center;gap:8px;max-width:{{ labelMax }};text-align:center">
                 <div style="font:800 {{ orbLabelSize }} Nunito,sans-serif;color:{{ orbInk }};text-shadow:{{ orbShadow }};text-wrap:balance">{{ orbLabel }}</div>
+                <sc-if value="{{ play.walk }}" hint-placeholder-val="{{ false }}"><i class="{{ play.wIcon }}" style="font-size:46px;color:{{ orbInk }}"></i></sc-if>
               </div>
             </div>
           </div>
-          
+          <sc-if value="{{ play.walk }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;left:20px;right:20px;top:calc(50% + 115px);display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;pointer-events:none;opacity:{{ ses.labelOp }};transition:opacity .3s">
+              <div style="font:800 26px/1.2 Nunito,sans-serif;color:{{ pcur.deep }}">{{ play.wTitle }}</div>
+              <div style="font-size:15px;line-height:1.45;font-weight:600;color:{{ pt.ink }};max-width:280px;text-wrap:pretty">{{ play.wCue }}</div>
+            </div>
+          </sc-if>
           <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none">
             <sc-if value="{{ ses.faceOn }}" hint-placeholder-val="{{ false }}">
               <div style="width:210px;height:210px;border-radius:50%;background:{{ ac.ring3 }};display:flex;align-items:center;justify-content:center;flex:none;opacity:{{ ses.a.op }};transform:{{ ses.faceTf }};transition:opacity .45s ease .2s, transform .9s cubic-bezier(.2,.8,.2,1), background .35s">
@@ -452,7 +459,7 @@ button{font-family:inherit;color:inherit}button:focus:not(:focus-visible){outlin
               <div onClick="{{ p.open }}" style="cursor:pointer;background:{{ t.card }};border-radius:22px;padding:16px;display:flex;align-items:center;gap:14px">
                 <div style="width:48px;height:48px;flex:none;border-radius:16px;background:{{ p.soft }};display:flex;align-items:center;justify-content:center">
                   <sc-if value="{{ p.hasWave }}" hint-placeholder-val="{{ false }}"><svg width="52" height="52" viewBox="0 0 52 52"><path d="{{ p.wave }}" fill="none" stroke="{{ p.deep }}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></sc-if>
-                  <sc-if value="{{ p.noWave }}" hint-placeholder-val="{{ true }}"><i class="{{ p.icon }}" style="font-size:24px;line-height:1;color:{{ p.deep }}"></i></sc-if><sc-if value="{{ p.isLotus }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 256 256" style="width:26px;height:26px;display:block;color:{{ p.deep }}" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"><path d="M128 56 C100 84 100 140 128 176 C156 140 156 84 128 56 Z"></path><path d="M112 172 C84 166 58 144 52 108 C78 108 100 120 112 136"></path><path d="M144 172 C172 166 198 144 204 108 C178 108 156 120 144 136"></path><path d="M56 204 L200 204"></path></svg></sc-if>
+                  <sc-if value="{{ p.noWave }}" hint-placeholder-val="{{ true }}"><i class="{{ p.icon }}" style="font-size:24px;line-height:1;color:{{ p.deep }}"></i></sc-if><sc-if value="{{ p.isLotus }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 256 256" style="width:24px;height:24px;display:block;color:{{ p.deep }}" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><path d="M128 35 C93 70 93 141 128 186 C163 141 163 70 128 35 Z"></path><path d="M108 181 C73 173 40 146 33 100 C65 100 93 115 108 136"></path><path d="M148 181 C183 173 216 146 223 100 C191 100 163 115 148 136"></path><path d="M38 221 L218 221"></path></svg></sc-if>
                 </div>
                 <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:3px">
                   <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap"><span style="font-weight:800;font-size:15px;color:{{ t.ink }}">{{ p.title }}</span><sc-if value="{{ p.locked }}" hint-placeholder-val="{{ false }}"><i class="ph-fill ph-lock-simple" aria-label="Shift Plus" style="font-size:14px;color:{{ t.muted }}"></i></sc-if></div>
@@ -491,7 +498,7 @@ button{font-family:inherit;color:inherit}button:focus:not(:focus-visible){outlin
             <div style="background:{{ t.card }};border-radius:22px;padding:14px 14px 14px 16px;display:flex;align-items:center;gap:14px">
               <div style="width:48px;height:48px;flex:none;border-radius:16px;background:{{ p.soft }};display:flex;align-items:center;justify-content:center">
                 <sc-if value="{{ p.hasWave }}" hint-placeholder-val="{{ false }}"><svg width="52" height="52" viewBox="0 0 52 52"><path d="{{ p.wave }}" fill="none" stroke="{{ p.deep }}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></sc-if>
-                <sc-if value="{{ p.noWave }}" hint-placeholder-val="{{ true }}"><i class="{{ p.icon }}" style="font-size:24px;line-height:1;color:{{ p.deep }}"></i></sc-if><sc-if value="{{ p.isLotus }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 256 256" style="width:26px;height:26px;display:block;color:{{ p.deep }}" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"><path d="M128 56 C100 84 100 140 128 176 C156 140 156 84 128 56 Z"></path><path d="M112 172 C84 166 58 144 52 108 C78 108 100 120 112 136"></path><path d="M144 172 C172 166 198 144 204 108 C178 108 156 120 144 136"></path><path d="M56 204 L200 204"></path></svg></sc-if>
+                <sc-if value="{{ p.noWave }}" hint-placeholder-val="{{ true }}"><i class="{{ p.icon }}" style="font-size:24px;line-height:1;color:{{ p.deep }}"></i></sc-if><sc-if value="{{ p.isLotus }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 256 256" style="width:24px;height:24px;display:block;color:{{ p.deep }}" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><path d="M128 35 C93 70 93 141 128 186 C163 141 163 70 128 35 Z"></path><path d="M108 181 C73 173 40 146 33 100 C65 100 93 115 108 136"></path><path d="M148 181 C183 173 216 146 223 100 C191 100 163 115 148 136"></path><path d="M38 221 L218 221"></path></svg></sc-if>
               </div>
               <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:3px">
                 <div style="font-weight:800;font-size:15px;color:{{ t.ink }}">{{ p.title }}</div>
@@ -1345,7 +1352,7 @@ button{font-family:inherit;color:inherit}button:focus:not(:focus-visible){outlin
       <sc-if value="{{ isTimerDone }}" hint-placeholder-val="{{ false }}">
         <div style="position:absolute;inset:0;padding:66px 20px 30px;display:flex;flex-direction:column;gap:22px">
           <div data-screen-label="Итог таймера" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center">
-            <div style="width:128px;height:128px;border-radius:50%;background:{{ t.subtle }};display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 256 256" style="width:66px;height:66px;display:block;color:{{ t.accentText }}" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"><path d="M128 56 C100 84 100 140 128 176 C156 140 156 84 128 56 Z"></path><path d="M112 172 C84 166 58 144 52 108 C78 108 100 120 112 136"></path><path d="M144 172 C172 166 198 144 204 108 C178 108 156 120 144 136"></path><path d="M56 204 L200 204"></path></svg></div>
+            <div style="width:128px;height:128px;border-radius:50%;background:{{ t.subtle }};display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 256 256" style="width:66px;height:66px;display:block;color:{{ t.accentText }}" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"><path d="M128 35 C93 70 93 141 128 186 C163 141 163 70 128 35 Z"></path><path d="M108 181 C73 173 40 146 33 100 C65 100 93 115 108 136"></path><path d="M148 181 C183 173 216 146 223 100 C191 100 163 115 148 136"></path><path d="M38 221 L218 221"></path></svg></div>
             <div style="font:800 28px/1.2 Nunito,sans-serif;text-wrap:balance">{{ tdTitle }}</div>
             <div style="font-size:13px;color:{{ t.muted }}">{{ tdMeta }}</div>
           </div>
@@ -1744,6 +1751,17 @@ const K_SOFT_D = { in: '#1D2530', top: '#1D2530', hold: '#29251A', out: '#212820
 const LIGHT_M = { ...LIGHT, accent: 'linear-gradient(135deg,#5A5FB0 0%,#6268B8 100%)', accentText: '#5A5FB0', selBg: '#1E1E22', selFg: '#fff' };
 const TM_LM = { ...TM_L, accent: '#5A5FB0', glow: 'rgba(90,95,176,.16)', glow0: 'rgba(90,95,176,0)' };
 function setTheme(dark) { Object.keys(G).forEach(k => Object.assign(G[k], dark ? GDK[k] : G_L[k])); Object.assign(K_SOFT, dark ? K_SOFT_D : K_SOFT_L); }
+const WALK = [
+  { t: 'Шаг', cue: 'Обычный шаг. Стопы, руки, спокойный выдох', icon: 'footprints', at: 0, ph: [[0, 'Иди своим обычным шагом. Глаза открыты, за дорогой следи как всегда. Почувствуй, как стопы касаются земли… как двигаются руки. Сделай пару спокойных выдохов. Спешить некуда.']] },
+  { t: 'Слух', cue: 'Звуки рядом и вдали, громкие и едва слышные', icon: 'ear', at: 120, ph: [[121.2, 'Теперь прислушайся. Какие звуки рядом, а какие далеко? Громкие и едва слышные. Просто замечай, как они появляются и уходят.'], [210, 'Если мысли увели, это нормально. Мягко вернись.']] },
+  { t: 'Зрение', cue: 'Свет и тени, цвета, движение', icon: 'eye', at: 300, ph: [[301.2, 'Переведи внимание на то, что видно. Свет и тени, цвета, движение. Иногда поднимай взгляд выше: к деревьям, крышам, небу.'], [390, 'Если мысли увели, это нормально. Мягко вернись.']] },
+  { t: 'Запахи и воздух', cue: 'Тёплый или прохладный? Ветер, слабые запахи', icon: 'wind', at: 480, ph: [[481.2, 'Теперь запахи и воздух. Какой воздух на лице и руках: тёплый или прохладный? Есть ли ветер? Замечай любые запахи, даже слабые.']] },
+  { t: 'Тело', cue: 'Перекат стопы, ритм шагов, движение рук', icon: 'person-simple-walk', at: 630, ph: [[631.2, 'Перенеси внимание в тело. Перекат стопы, ритм шагов, движение рук. Дыхание само подстроилось под шаг. Ничего не меняй, просто чувствуй.']] },
+  { t: 'Удивительное', cue: 'Найди то, мимо чего обычно проходишь', icon: 'sparkle', at: 780, ph: [[781.2, 'Теперь поищи что-то удивительное. Широкий вид, большое дерево, необычный свет, деталь, мимо которой обычно проходишь. Задержись на этом. Почувствуй, какой большой мир вокруг.'], [870, 'Если мысли увели, это нормально. Мягко вернись.']] },
+  { t: 'Всё сразу', cue: 'Звуки, свет, воздух, шаги. Ничего не выбирай', icon: 'circles-three', at: 960, ph: [[961.2, 'Открой внимание всему сразу. Звуки, свет, воздух, шаги. Ничего не выбирай. Пусть всё просто будет.'], [1050, 'Если мысли увели, это нормально. Мягко вернись.']] },
+  { t: 'Остановка', cue: 'Замедлись. Вдох… и выдох. Как ты сейчас?', icon: 'flower-lotus', at: 1140, ph: [[1141.2, 'Замедли шаг или остановись. Сделай спокойный вдох… и выдох. Заметь, как ты себя чувствуешь сейчас.']] },
+];
+const walkAt = (p, total) => { const k = total / 1200; return p.walk.map(w => ({ ...w, at: w.at * k, ph: (w.ph || []).map(([t, x]) => [w.at * k + (t - w.at < 2 ? t - w.at : (t - w.at) * k), x]) })); };
 const DIRS = { breath: 'Дыхание', med: 'Медитация', trance: 'Транс', psy: 'Психотехника', body: 'Тело' };
 const P = [
   { id: 'box', title: 'Квадратное дыхание', sub: '4 · 4 · 4 · 4', dir: 'breath', goal: 'focus', min: 2, max: 10, rec: 4, contra: ['Беременность — без задержек','Панические атаки — без задержек','Головокружение — сделай паузу'], line: 'Ровный ритм собирает внимание', why: 'Равные отрезки вдоха, задержки, выдоха и паузы выравнивают ритм и возвращают внимание в одну точку.', tech: [['in', 4], ['hold', 4], ['out', 4], ['holdEmpty', 4]] },
@@ -1757,13 +1775,14 @@ const P = [
   { id: 'name', title: 'Назвать эмоцию', dir: 'psy', goal: 'calm', min: 1, max: 5, rec: 2, contra: [], line: 'Слово снижает накал', why: 'Когда чувство названо словом, его интенсивность снижается — мозг переходит от реакции к наблюдению.', steps: ['Что ты сейчас чувствуешь?', 'Одним словом: «Это — тревога»', 'Где это в теле?', 'Подыши рядом с этим'] },
   { id: 'activate', title: 'Активирующее дыхание', dir: 'breath', goal: 'energy', min: 1, max: 3, rec: 2, contra: ['Беременность','Гипертония и болезни сердца','Эпилепсия','Панические атаки','Головокружение — остановись'], line: 'Взбодриться без кофе', why: 'Активный вдох и короткий выдох в быстром ритме мягко поднимают тонус. Умеренная интенсивность, без задержек.', tech: [['in', 2], ['out', 1]], warn: 'Если есть противопоказания — беременность, эпилепсия, болезни сердца, панические атаки — выбери спокойную практику.' },
   { id: 'move', title: 'Микро-движение', dir: 'body', goal: 'energy', min: 2, max: 10, rec: 5, contra: ['Травмы — выбирай мягкий темп'], line: 'Встать и пройтись', why: 'Пара минут движения поднимает энергию и заодно снижает напряжение.', steps: ['Встань', 'Потянись вверх, затем в стороны', 'Пройдись — хотя бы по комнате', 'Круговые движения плечами'] },
-  { id: 'reson', title: 'Резонансное дыхание', sub: '5 · 5', dir: 'breath', goal: 'calm', min: 3, max: 30, rec: 10, contra: ['Головокружение — сделай паузу'], line: 'Около шести циклов в минуту', why: 'На этой частоте дыхание и сердечный ритм синхронизируются, вариабельность пульса растёт сильнее всего, и стресс снижается. Одна из самых изученных дыхательных практик.', tech: [['in', 5], ['out', 5]] },
+  { id: 'reson', title: 'Резонансное дыхание', sub: '5 · 5', dir: 'breath', goal: 'calm', min: 3, max: 30, rec: 10, contra: ['Головокружение — сделай паузу'], line: 'Около шести вдохов в минуту', why: 'На этой частоте дыхание и сердечный ритм синхронизируются, вариабельность пульса растёт сильнее всего, и стресс снижается. Одна из самых изученных дыхательных практик.', tech: [['in', 5], ['out', 5]] },
   { id: 'pmr', title: 'Мышечная релаксация', sub: 'по Джекобсону', dir: 'body', goal: 'sleep', min: 5, max: 20, rec: 10, contra: ['Травмы и боль — пропусти эту зону','Гипертония — напрягай мягко, не задерживая дыхание'], line: 'Напрячь, чтобы отпустить', why: 'Короткое напряжение мышц и резкое расслабление помогают почувствовать разницу и снять накопленный зажим. Метод хорошо изучен при бессоннице и тревоге.', steps: ['Ляг или сядь удобно', 'Сожми кулаки на 5 секунд — и отпусти', 'Плечи к ушам — и отпусти', 'Лицо, живот, ноги — по очереди', 'Замечай тепло и тяжесть после'] },
   { id: 'metta', title: 'Метта', sub: 'доброжелательность', dir: 'med', goal: 'calm', min: 5, max: 20, rec: 10, contra: ['Сильная самокритика — начни с близкого человека, не с себя','Поднялись тяжёлые чувства — вернись к дыханию'], line: 'Тёплые пожелания себе и другим', why: 'Повторение доброжелательных фраз тренирует тёплое отношение к себе и людям. В исследованиях регулярная практика усиливает позитивные эмоции и снижает самокритику.', steps: ['Представь человека, которому легко желать добра', 'Мысленно: «Пусть тебе будет спокойно. Пусть ты будешь в безопасности»', 'Теперь себе: «Пусть мне будет спокойно…»', 'Малознакомый человек — те же слова', 'Все люди вокруг: пусть всем будет спокойно'] },
   { id: 'safe', title: 'Безопасное место', sub: 'визуализация', dir: 'trance', goal: 'calm', min: 5, max: 15, rec: 7, contra: ['Психозы, диссоциативные расстройства','Образ вызывает тревогу — открой глаза и выбери другое место'], line: 'Место, где тебе спокойно', why: 'Подробный образ спокойного места задействует те же сенсорные системы, что и реальное восприятие, — тело отвечает расслаблением. Приём используют в терапии тревоги.', steps: ['Закрой глаза или опусти взгляд', 'Представь место, где тебе спокойно — реальное или выдуманное', 'Что ты видишь? Цвета, свет', 'Что слышишь? Что чувствуешь кожей?', 'Побудь там. Сюда можно вернуться в любой момент'] },
   { id: 'leaves', title: 'Листья на ручье', sub: 'визуализация', dir: 'med', goal: 'sleep', min: 5, max: 20, rec: 10, contra: [], line: 'Отпустить мысли по течению', why: 'Мысль кладётся на лист и уплывает — так тренируется дистанция от мыслей вместо борьбы с ними. Приём из терапии принятия и ответственности (ACT), помогает, когда мысли не дают уснуть.', steps: ['Представь тихий ручей и листья на воде', 'Появилась мысль — положи её на лист', 'Смотри, как лист уплывает', 'Мысль вернулась — снова на лист', 'Ручей течёт сам. Ничего не нужно делать'] },
   { id: 'woop', title: 'Мысленное контрастирование', sub: 'WOOP', dir: 'psy', goal: 'focus', min: 3, max: 10, rec: 5, contra: [], line: 'Цель, препятствие и план', why: 'Сначала представить результат, затем — главное внутреннее препятствие и план «если — то». В исследованиях это работает лучше, чем одна позитивная визуализация.', steps: ['Желание: чего ты хочешь сегодня? Одной фразой', 'Результат: представь, как это будет, в деталях', 'Препятствие: что внутри тебя может помешать?', 'План: «Если [препятствие], то я [действие]»'] },
   { id: 'bestself', title: 'Лучшее возможное «я»', sub: 'визуализация', dir: 'psy', goal: 'energy', min: 3, max: 10, rec: 5, contra: [], line: 'Представить, что всё получилось', why: 'Подробно представить себя в будущем, где всё сложилось хорошо. В исследованиях регулярная практика повышает оптимизм и настроение.', steps: ['Представь себя через год', 'Всё, к чему ты стремишься, получилось', 'Где ты? Что делаешь? Кто рядом?', 'Какое чувство в теле?', 'Какой шаг к этому можно сделать сегодня?'] },
+  { id: 'walk5', title: 'Прогулка пяти чувств', sub: 'на улице', dir: 'med', goal: 'calm', min: 10, max: 30, rec: 20, durs: [10, 20, 30], contra: ['Глаза открыты — за дорогой следи как всегда', 'Оживлённая улица — один наушник или режим прозрачности'], line: 'Внимательность на ходу', why: 'Восемь коротких этапов: шаг, слух, зрение, воздух, тело, удивительное, всё сразу, остановка. Внимание переходит от чувства к чувству, чаша отмечает смену этапа. Идёшь своим обычным шагом, телефон можно убрать в карман.', effects: ['Возвращает в «здесь и сейчас» на ходу', 'Снижает прокручивание мыслей', 'Обычная прогулка становится отдыхом'], steps: WALK.map(w => w.t + ' — ' + w.cue.charAt(0).toLowerCase() + w.cue.slice(1)), walk: WALK },
 ];
 const PM = Object.fromEntries(P.map(p => [p.id, p]));
 const EFF = { box: ['Собирает внимание в одну точку','Успокаивает без сонливости','Выравнивает дыхание после стресса'], anchor: ['Тренирует возвращать внимание','Снижает фоновую тревогу','Помогает замечать, куда уплывают мысли'], onetask: ['Снимает ступор перед задачей','Превращает «надо» в действие','Снижает прокрастинацию'], exhale: ['Замедляет пульс','Готовит тело ко сну','Снимает напряжение в груди и плечах'], scan: ['Глубокий отдых за короткое время','Помогает заснуть','Возвращает чувство тела'], descent: ['Мягкий переход ко сну','Утихомиривает поток мыслей','Расслабляет всё тело'], sighs: ['Быстро снижает острую тревогу','Успокаивает за 1–2 минуты','Возвращает ровное дыхание'], ground: ['Возвращает в настоящий момент','Помогает при наплыве мыслей','Снижает остроту переживаний'], name: ['Снижает накал эмоции','Даёт паузу перед реакцией','Проясняет, что происходит'], activate: ['Бодрит без кофе','Поднимает уровень энергии','Проясняет голову'], move: ['Снимает вялость','Разгоняет кровь после сидения','Возвращает бодрость'], reson: ['Выравнивает сердечный ритм','Снижает стресс','Даёт устойчивое спокойствие'], pmr: ['Снимает мышечные зажимы','Помогает заснуть','Учит отличать напряжение от расслабления'], metta: ['Смягчает самокритику','Добавляет тепла к себе и другим','Снижает раздражение'], safe: ['Даёт ощущение опоры','Снижает тревогу','Создаёт ресурс, к которому можно вернуться'], leaves: ['Помогает отпустить навязчивые мысли','Учит не цепляться за мысли','Готовит ко сну'], woop: ['Превращает желание в план','Готовит к препятствиям заранее','Повышает шанс довести дело до конца'], bestself: ['Поднимает настроение и мотивацию','Проясняет, чего хочется','Добавляет оптимизма'] };
@@ -1776,7 +1795,7 @@ const SFX = { bowl: [196, [[1, 1, 1], [1.004, .6, 1], [2.71, .4, .6], [5.15, .15
 // sounds/*.wav: записанные звуки (CC0 / Public domain, см. sounds/CREDITS.md) + тоны интерфейса; SFX — запасной синтез, если файл не загрузился
 const SMP_GAIN = { bowl: 2.4, gong: 2.4, chime: 2.2, metro: 1.2, wood: 1.3, drum: 1.4, tick: 1.6, phase: 1.6, go: 1.6 };
 const DUR = [1, 2, 3, 5, 10, 15, 20];
-const durOptsOf = p => { const o = DUR.filter(d => d >= p.min && d <= p.max); return o.length ? o : [p.min]; };
+const durOptsOf = p => { if (p.durs) return p.durs; const o = DUR.filter(d => d >= p.min && d <= p.max); return o.length ? o : [p.min]; };
 const fit = (p, m) => { const o = durOptsOf(p); return o.reduce((b, d) => Math.abs(d - m) < Math.abs(b - m) ? d : b, o[0]); };
 const mmss = s => { s = Math.max(0, Math.round(s)); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); };
 const plural = (n, a, b, c) => { const m10 = n % 10, m100 = n % 100; return m10 === 1 && m100 !== 11 ? a : m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14) ? b : c; };
@@ -1793,7 +1812,7 @@ function rules(t) {
   if (t.blocks.length && !t.blocks.some(b => b.phases.some(p => p.k === 'in'))) errors.push('Нужен хотя бы один вдох');
   const longHold = t.blocks.some(b => b.phases.some(p => (p.k === 'hold' || p.k === 'holdEmpty') && p.d > 30));
   const fast = t.blocks.some(b => { const c = cycOf(b); return b.phases.some(p => p.k === 'in') && c > 0 && 60 / c > 20 && c * b.repeats > 60; });
-  return { errors, intense: longHold || fast, why: longHold ? 'задержки дольше 30 с' : fast ? 'темп выше 20 циклов в минуту дольше минуты' : '' };
+  return { errors, intense: longHold || fast, why: longHold ? 'задержки дольше 30 с' : fast ? 'темп выше 20 вдохов в минуту дольше минуты' : '' };
 }
 const builtinIntense = p => !!(p && p.tech && p.warn);
 const PH_SV = [...Array.from({ length: 20 }, (_, i) => (i + 1) / 2), ...Array.from({ length: 20 }, (_, i) => 11 + i), ...Array.from({ length: 18 }, (_, i) => 35 + i * 5)];
@@ -1872,7 +1891,7 @@ function recommend(q, goal, tod, minutes) {
 }
 const FAV0 = ['sighs', 'exhale'];
 const FREE_Q = { calmEnergy: ['box', 'anchor'], tenseEnergy: ['sighs', 'ground'], calmTired: ['move', 'onetask'], tenseTired: ['exhale', 'name'] };
-const FREE = new Set([...Object.values(FREE_Q).flat(), 'leaves', 'bestself']);
+const FREE = new Set([...Object.values(FREE_Q).flat(), 'leaves', 'bestself', 'walk5']);
 const FREE_PROG = new Set(['pr1', 'pr2']);
 const PRICE = { year: '1 990 ₽', week: '249 ₽', yearPerWeek: '38 ₽', save: '−85%' };
 const HID = new Set();
@@ -1904,9 +1923,9 @@ const toR = x => { const { a, ...y } = x; if (y.r != null || !a) return y; const
 const seedSec = x => x.sec != null ? x.sec : x.pid && PM[x.pid] ? Math.max(60, PM[x.pid].rec * 60 + ((x.d || 0) * 37 % 5 - 2) * 30) : 180;
 const RING_C = 2 * Math.PI * 130;
 const COURSES = [
-  { id: 'c1', name: 'Основы дыхания', goal: 'calm', line: 'Пять дыхательных техник на разные случаи', days: [['Быстрый выдох', 'sighs', 2], ['Длинный выдох', 'exhale', 3], ['Ровный ритм', 'box', 3], ['Шесть циклов в минуту', 'reson', 5], ['Мягкий подъём', 'activate', 2], ['Выдох перед сном', 'exhale', 5], ['Закрепить', 'reson', 10]] },
+  { id: 'c1', name: 'Основы дыхания', goal: 'calm', line: 'Пять дыхательных техник на разные случаи', days: [['Быстрый выдох', 'sighs', 2], ['Длинный выдох', 'exhale', 3], ['Ровный ритм', 'box', 3], ['Шесть вдохов в минуту', 'reson', 5], ['Мягкий подъём', 'activate', 2], ['Выдох перед сном', 'exhale', 5], ['Закрепить', 'reson', 10]] },
   { id: 'c2', name: 'Сон без борьбы', goal: 'sleep', line: 'Неделя спокойных вечеров и лёгкого засыпания', days: [['Замедлиться', 'exhale', 3], ['Отпустить тело', 'scan', 10], ['Напрячь и отпустить', 'pmr', 10], ['Спуск', 'descent', 15], ['Тело тяжелеет', 'scan', 15], ['Тихий вечер', 'exhale', 5], ['Глубже вниз', 'descent', 20]] },
-  { id: 'c3', name: 'Устойчивость к стрессу', goal: 'calm', line: 'Возвращать спокойствие за пару минут', days: [['Быстрый выдох', 'sighs', 2], ['Здесь и сейчас', 'ground', 3], ['Назвать чувство', 'name', 2], ['Вздохи в моменте', 'sighs', 3], ['Заземление на ходу', 'ground', 3], ['Шесть циклов в минуту', 'reson', 5], ['Назвать и выдохнуть', 'name', 2]] },
+  { id: 'c3', name: 'Устойчивость к стрессу', goal: 'calm', line: 'Возвращать спокойствие за пару минут', days: [['Быстрый выдох', 'sighs', 2], ['Здесь и сейчас', 'ground', 3], ['Назвать чувство', 'name', 2], ['Вздохи в моменте', 'sighs', 3], ['Заземление на ходу', 'ground', 3], ['Шесть вдохов в минуту', 'reson', 5], ['Назвать и выдохнуть', 'name', 2]] },
   { id: 'c4', name: 'Глубокий фокус', goal: 'focus', line: 'Собирать внимание и удерживать его дольше', days: [['Ровный ритм', 'box', 3], ['Якорь', 'anchor', 5], ['Первый шаг', 'onetask', 3], ['Якорь дольше', 'anchor', 5], ['Ритм перед делом', 'box', 3]] },
   { id: 'c5', name: 'Энергия без кофе', goal: 'energy', line: 'Поднимать тонус мягко, без перегруза', days: [['Активирующее дыхание', 'activate', 2], ['Встать и пройтись', 'move', 3], ['Первый шаг', 'onetask', 2], ['Дыхание и движение', 'activate', 2], ['Свой запуск', 'move', 5]] },
 ];
@@ -2187,6 +2206,8 @@ class Component extends DCLogic {
     try { this.moFavPop(); } catch (e) { }
     try { this.sfx(); } catch (e) { }
     if (s.screen === 'player' && !this.bSrc && s.breath !== false) { try { this.loadBreath(this.actx || (this.actx = new (window.AudioContext || window.webkitAudioContext)())); } catch (e) { } }
+    const pwk = PM[s.pid];
+    if (s.screen === 'player' && !s.plan && pwk && pwk.walk) this.walkTick(walkAt(pwk, s.total)); else if (s.screen !== 'player') this.wLast = null;
     if (s.screen !== 'player' || !s.running || s.elapsed < 0 || !s.plan) { if (s.screen !== 'player') { this.spoken = null; this.breathed = null; this.phased = null; } if (!s.running) this.stopBreath(); return; }
     const sl = s.plan.slots.find(x => s.elapsed < x.t0 + x.d);
     if (!sl) return;
@@ -2320,7 +2341,39 @@ class Component extends DCLogic {
     return h < 12 ? 'morning' : h < 19 ? 'day' : 'evening';
   }
   pvS() { const v = this.playView(), sc = this.state.screen; return sc === 'player' ? v : { ...v, scale: sc === 'after' ? .5 : .62 }; }
-  tglPause(ev) { if (ev) ev.stopPropagation(); this.chromeUntil = Date.now() + 3000; this.setState(st => ({ running: !st.running })); }
+  tglPause(ev) {
+    if (ev) ev.stopPropagation(); this.chromeUntil = Date.now() + 3000;
+    const s = this.state, wk = s.screen === 'player' && !s.plan && PM[s.pid] && PM[s.pid].walk;
+    if (wk && s.running) { this.wHold = true; try { window.speechSynthesis && window.speechSynthesis.cancel(); } catch (x) { } }
+    if (wk && !s.running) { this.wHold = false; if (this.wSaying) this.walkSay(this.wSaying); }
+    this.setState(st => ({ running: !st.running }));
+  }
+  walkSkip(d) {
+    const s = this.state, pw = PM[s.pid]; if (!pw || !pw.walk) return; const W = walkAt(pw, s.total);
+    const e = Math.max(0, s.elapsed); let i = W.findIndex((w, k) => k === W.length - 1 || e < W[k + 1].at);
+    if (d < 0) { if (e - W[i].at < 3 && i > 0) i--; }
+    else { if (i >= W.length - 1) { this.setState(st => ({ running: false, screen: 'after', draft: st.before || { e: 0, t: 0 } })); return; } i++; }
+    try { window.speechSynthesis && window.speechSynthesis.cancel(); } catch (x) { }
+    this.wSaying = null; this.wHold = false; this.wLast = W[i].at - .05; this.chromeUntil = Date.now() + 3000;
+    this.setState({ elapsed: W[i].at, running: true });
+  }
+  walkSay(txt) {
+    this.wSaying = txt;
+    try { const u = new SpeechSynthesisUtterance(txt); u.lang = 'ru-RU'; u.rate = .88; u.pitch = .95; u.onend = () => { if (this.wSaying === txt && !this.wHold) this.wSaying = null; }; window.speechSynthesis.cancel(); window.speechSynthesis.speak(u); } catch (x) { }
+  }
+  walkTick(W) {
+    const s = this.state;
+    if (!s.running) return;
+    if (s.elapsed < 0) { this.wLast = -1; return; }
+    const el = s.elapsed, last = this.wLast == null ? el - .11 : this.wLast; this.wLast = el;
+    if (el < last || el - last > 2) return;
+    const ev = []; W.forEach((w, i) => { if (i > 0) ev.push([w.at, 'bowl']); (w.ph || []).forEach(p => ev.push([p[0], 'say', p[1]])); }); ev.push([s.total - .25, 'bowl']);
+    ev.forEach(([t, k, txt]) => {
+      if (!(t > last && t <= el)) return;
+      if (k === 'bowl') { this.bell('bowl', { vol: .45 }); if (s.vib !== false) this.buzz(60); }
+      else this.walkSay(txt);
+    });
+  }
   go(screen, extra) { this.setState(s => ({ prev: s.screen, screen, ...extra })); }
   free() { return !!this.state.prem || !!this.state.intro; }
   locked(id) { return !this.free() && !!PM[id] && !FREE.has(id); }
@@ -2571,7 +2624,7 @@ class Component extends DCLogic {
   card(p) {
     const g = G[p.goal];
     return { ...p, ...g, locked: this.locked(p.id), goalName: g.name, dirName: DIRS[p.dir], meta: DIRS[p.dir] + ' · ' + (p.min === p.max ? p.min : p.min + '–' + p.max) + ' мин', range: (p.min === p.max ? p.min : p.min + '–' + p.max) + ' мин', oneLine: p.line, open: () => this.openPractice(p.id), hasWarn: !!p.warn, hasTech: !!p.tech, noTech: !p.tech, wave: p.tech ? this.wavePath(p.tech) : '',
-      icon: 'ph-' + ({ anchor: 'anchor-simple', onetask: 'target', scan: 'person-simple', descent: 'moon-stars', ground: 'hand-palm', name: 'chat-teardrop-text', move: 'person-simple-walk', pmr: 'hand-fist', metta: 'heart', safe: 'house-line', leaves: 'leaf', woop: 'flag-checkered', bestself: 'sun-horizon' }[p.id] || { med: 'flower-lotus', trance: 'moon-stars', psy: 'lightbulb', breath: 'wind', body: 'person-simple-walk' }[p.dir]) };
+      icon: 'ph-' + ({ anchor: 'anchor-simple', onetask: 'target', scan: 'person-simple', descent: 'moon-stars', ground: 'hand-palm', name: 'chat-teardrop-text', move: 'person-simple-walk', walk5: 'footprints', pmr: 'hand-fist', metta: 'heart', safe: 'house-line', leaves: 'leaf', woop: 'flag-checkered', bestself: 'sun-horizon' }[p.id] || { med: 'flower-lotus', trance: 'moon-stars', psy: 'lightbulb', breath: 'wind', body: 'person-simple-walk' }[p.dir]) };
   }
   wavePath(tech) {
     const tot = tech.reduce((a, [, d]) => a + d, 0) || 1, W = 36, x0 = 8, LO = 34, HI = 18;
@@ -2593,6 +2646,15 @@ class Component extends DCLogic {
     else if (!s.plan && PM[s.pid] && PM[s.pid].steps) { const n = PM[s.pid].steps.length, w = total / n; segs = PM[s.pid].steps.map((_, i) => ({ flex: 1, fill: clamp((el - i * w) / w) })); }
     const base = { segs, subtitle: '', inOrb: true, progress: Math.max(0, el / total * 100) + '%', elapsedLabel: mmss(Math.max(0, el)), leftLabel: mmss(total - Math.max(0, el)), next: '' };
     if (el < 0) return { ...base, scale: .62, label: String(Math.ceil(-el)), sub: '', subtitle: 'Приготовься', labelSize: '46px/1', cycleLabel: '' };
+    const pw = PM[s.pid];
+    if (!s.plan && pw && pw.walk) {
+      const W = walkAt(pw, total), n = W.length, ends = W.map((w, k) => k < n - 1 ? W[k + 1].at : total), e = Math.max(0, el);
+      let i = W.findIndex((w, k) => e < ends[k]); if (i < 0) i = n - 1;
+      const st = W[i], nx = W[i + 1], since = el - st.at;
+      const scale = .6 + .025 * Math.sin(el / 8 * Math.PI * 2) + (i > 0 && since >= 0 && since < 1.4 ? .07 * Math.sin(since / 1.4 * Math.PI) : 0);
+      return { ...base, segs: W.map((w, k) => ({ flex: ends[k] - w.at, fill: clamp((el - w.at) / (ends[k] - w.at)) })), scale, label: '', sub: '', subtitle: '', labelSize: '46px/1', cycleLabel: '',
+        next: nx && ends[i] - e <= 15 ? 'Дальше: ' + nx.t.toLowerCase() : '', walk: true, wStage: 'Этап ' + (i + 1) + ' из ' + n, wShort: (i + 1) + ' из ' + n + ' · ' + mmss(e), wIcon: 'ph ph-' + st.icon, wTitle: st.t, wCue: st.cue };
+    }
     if (s.plan) {
       const pl = s.plan, sl = pl.slots.find(x => el < x.t0 + x.d) || pl.slots[pl.slots.length - 1];
       if (!sl) return { ...base, scale: .7, label: '', sub: '', labelSize: '30px/1', cycleLabel: '' };
@@ -2711,16 +2773,17 @@ class Component extends DCLogic {
 
 
 
-        const jumpList = [['splFirst', 'Запуск — первый раз'], ['splNext', 'Запуск — повторный'], ['onbB', 'Онбординг'], ['today', 'Сегодня'], ['recs', 'Подбор практики'], ['detail', 'Карточка практики'], ['player', 'Плеер дыхания'], ['after', '«Как теперь?»'], ['catalog', 'Каталог'], ['hidden', 'Скрытое'], ['editor', 'Редактор: ритм'], ['progplay', 'Плеер техники с раундами'], ['course', 'Курс'], ['program', 'Практика из шагов'], ['progEdit', 'Редактор: из шагов'], ['timer', 'Таймер медитации'], ['timerRun', 'Таймер — сессия'], ['metro', 'Метроном'], ['metroRun', 'Метроном — сессия'], ['progress', 'Прогресс'], ['empty', 'Пустые состояния'], ['settings', 'Настройки'], ['paywall', 'Экран подписки'], ['introEnd', 'Конец первой недели']];
+        const jumpList = [['splFirst', 'Запуск — первый раз'], ['splNext', 'Запуск — повторный'], ['onbB', 'Онбординг'], ['today', 'Сегодня'], ['recs', 'Подбор практики'], ['detail', 'Карточка практики'], ['player', 'Плеер дыхания'], ['walk', 'Плеер прогулки'], ['after', '«Как теперь?»'], ['catalog', 'Каталог'], ['hidden', 'Скрытое'], ['editor', 'Редактор: ритм'], ['progplay', 'Плеер техники с раундами'], ['course', 'Курс'], ['program', 'Практика из шагов'], ['progEdit', 'Редактор: из шагов'], ['timer', 'Таймер медитации'], ['timerRun', 'Таймер — сессия'], ['metro', 'Метроном'], ['metroRun', 'Метроном — сессия'], ['progress', 'Прогресс'], ['empty', 'Пустые состояния'], ['settings', 'Настройки'], ['paywall', 'Экран подписки'], ['introEnd', 'Конец первой недели']];
     const jumps = jumpList.map(([k, label]) => ({
-      label, bg: sc === k || (sc === 'onb' && k === 'onbB') || (k === 'progplay' && sc === 'player' && s.playTheme) ? '#fff' : 'transparent',
+      label, bg: sc === k || (sc === 'onb' && k === 'onbB') || (k === 'progplay' && sc === 'player' && s.playTheme) || (k === 'walk' && sc === 'player' && s.pid === 'walk5') ? '#fff' : 'transparent',
       go: () => {
         const b = s.before || { e: .5, t: .55 };
         this.setState({ del: null, mRun: false, tRun: false, running: false });
         if (k === 'splFirst') return this.runSplash('onb');
         if (k === 'splNext') return this.runSplash('today');
         if (k === 'onbB') return this.setState({ screen: 'onb', onbStep: 0, obGoal: null });
-        if (k === 'player') return this.start(s.pid, s.minutes);
+        if (k === 'player') return this.start(s.pid === 'walk5' ? 'box' : s.pid, s.pid === 'walk5' ? 4 : s.minutes);
+        if (k === 'walk') { this.start('walk5', 20, { free: true }); this.wLast = 371.9; return this.setState({ elapsed: 372 }); }
         if (k === 'progplay') return this.playPlan([{ kind: 'tech', tid: 'u2' }], s.users.some(u => u.id === 'u2') ? s.users : [...s.users, SEED_U[1]], 'Три раунда', 'own');
         if (k === 'after') return this.setState({ screen: 'after', before: b, draft: b });
         if (k === 'recs') return this.setState({ screen: 'recs', before: b });
@@ -2868,6 +2931,9 @@ class Component extends DCLogic {
         ticks: hi - lo <= 40 ? Array.from({ length: hi - lo - 1 }, (_, i) => { const v = lo + i + 1; return { left: ((v - lo) / (hi - lo) * 100) + '%', bg: v < m ? 'rgba(255,255,255,.55)' : T.line }; }) : [],
         isRec: lo < hi && m === rec, contra: cs.map(t => ({ t })), hasContra: cs.length > 0, bh };
       if (lo >= hi) return { ...base, slider: false };
+      if (p.durs) { const D = p.durs, di = Math.max(0, D.indexOf(m)), ri = Math.max(0, D.indexOf(rec));
+        const sl = this.slider('dur', 0, D.length - 1, di, v => { const mv = D[v]; if (mv !== this.state.minutes) this.setState(st => ({ minutes: mv, durMem: { ...(st.durMem || {}), [st.pid]: mv } })); });
+        return { ...base, ticks: D.slice(1, -1).map((v, i) => ({ left: ((i + 1) / (D.length - 1) * 100) + '%', bg: v < m ? 'rgba(255,255,255,.55)' : T.line })), slider: true, sl, recPct: (ri / (D.length - 1) * 100) + '%', lo: D[0] + ' мин', hi: D[D.length - 1] + ' мин' }; }
       const sl = this.slider('dur', lo, hi, Math.max(lo, Math.min(hi, m)), v => { if (v !== this.state.minutes) this.setState(st => ({ minutes: v, durMem: { ...(st.durMem || {}), [st.pid]: v } })); });
       return { ...base, slider: true, sl, recPct: ((rec - lo) / (hi - lo) * 100) + '%', lo: lo + ' мин', hi: hi + ' мин' };
     })();
@@ -2882,7 +2948,7 @@ class Component extends DCLogic {
       const D = sc === 'detail', P = sc === 'player', A = sc === 'after', showPlay = P && !s.running;
       const f = k => sc === k ? { op: 1, pe: 'auto', tf: 'none' } : { op: 0, pe: 'none', tf: k === 'detail' ? 'translateY(-10px)' : 'translateY(14px)' };
       return { d: f('detail'), p: f('player'), a: f('after'),
-        bh: D ? '56px' : P ? '204px' : '282px', stageTop: A ? '170px' : '238px', cursor: P ? 'pointer' : 'default',
+        bh: D ? '56px' : P ? '204px' : '282px', stageTop: A ? '170px' : P && !s.plan && PM[s.pid] && PM[s.pid].walk ? '175px' : '238px', cursor: P ? 'pointer' : 'default',
         tap: ev => { if (this.state.screen === 'player') this.tglPause(ev); },
         center: ev => { ev.stopPropagation(); if (this.state.screen === 'detail') { this.setState({ whyOpen: false, sheetOpen: false, durSheet: false }); this.start(this.state.pid, this.state.minutes); } else this.tglPause(ev); },
         centerLabel: D ? 'Начать' : 'Продолжить',
@@ -2997,7 +3063,11 @@ class Component extends DCLogic {
           const ir = v === Tn.rec;
           return { ...base, label: Tn.label, num: fmtN(v), sl, lo: fmtN(Tn.lo) + ' с', hi: fmtN(Tn.hi) + ' с', recPct: ((Tn.rec - Tn.lo) / (Tn.hi - Tn.lo) * 100) + '%',
             recChip: ir ? 'рекомендуем' : 'рек. ' + fmtN(Tn.rec) + ' с', recIcon: ir ? 'ph-check' : 'ph-sparkle', recBg: ir ? T.subtle : 'transparent', recRing: ir ? 'none' : 'inset 0 0 0 1.5px ' + T.line, setRec: () => set(Tn.rec), hasNote: !!Tn.note, note: Tn.note ? Tn.note(v) : '' }; })();
-        return { ctl, ctlL: [ctl[0]], ctlR: [setBtn], prow, pset, stopEv: ev => ev.stopPropagation() };
+        const wk = !s.plan && !!(PM[s.pid] && PM[s.pid].walk);
+        const wb = (key, icon, hint, run, fill) => ({ key, icon, hint, on: true, bg: fill ? PT.pill : 'transparent', ring: 'none', fg: fill ? PT.ink : pcur.deep, toggle: ev => { ev.stopPropagation(); run(); } });
+        const wL = [wb('wprev', 'ph-fill ph-skip-back', 'К началу этапа', () => this.walkSkip(-1))];
+        const wR = [wb('wnext', 'ph-fill ph-skip-forward', 'Следующий этап', () => this.walkSkip(1))];
+        return { ctl, ctlL: wk ? wL : [ctl[0]], ctlR: wk ? wR : [setBtn], prow, pset, stopEv: ev => ev.stopPropagation() };
       })(),
       hasDoneSteps: !!(s.plan && s.plan.segCount > 1 && sc === 'after'), doneSteps: s.plan ? s.plan.titles.join(' → ') : '',
       skipAfter: () => this.setState(st => ({ note: '', noteOpen: false, screen: 'today', tab: 'today', afterKind: null, sessions: [{ pid: st.sessPid, title: st.afterTitle, kind: st.afterKind === 'timer' ? 'timer' : undefined, b: st.before || { e: 0, t: 0 }, noB: !st.before, r: null, when: 'Только что', sec: this.playedSec(st) }, ...st.sessions], before: null })),

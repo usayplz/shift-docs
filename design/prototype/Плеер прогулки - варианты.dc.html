@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Плеер прогулки</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#ECEBFB;font-family:'Nunito Sans',system-ui,sans-serif;color:#3E3F68;-webkit-font-smoothing:antialiased}
+a{color:#5A5FB0}a:hover{color:#3E3F68}
+</style>
+</helmet>
+
+<section data-screen-label="w1 — состояния" style="padding:48px;display:flex;flex-direction:column;gap:28px">
+  <div style="display:flex;flex-direction:column;gap:10px;max-width:980px">
+    <div style="font:800 30px/1.12 Nunito,sans-serif;letter-spacing:-0.5px"><a href="#w1">w1</a> «Орб чувства»: состояния и тексты</div>
+    <div style="font-size:15px;line-height:1.5;color:#64658E;text-wrap:pretty">Экран показывает не фразу диктора, а короткую подсказку этапа: название + до 60 знаков. Полный текст звучит в наушниках. Напоминания «Если мысли увели…» экран не меняют — только голос.</div>
+    <div style="display:flex;flex-direction:column;gap:4px;font-size:14px;line-height:1.5;color:#3E3F68;text-wrap:pretty">
+      <div><b>Кнопки прибиты к низу.</b> Середина экрана сжимается: сначала орб (250 → 160), потом подсказка. Название этапа остаётся всегда.</div>
+      <div><b>⏮</b> — к началу этапа: чаша и фраза заново. Повторное нажатие в первые 3 с — предыдущий этап. <b>⏭</b> — сразу к чаше следующего.</div>
+    </div>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start">
+
+    <!-- s1 pause -->
+    <div id="s1" style="width:360px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;background:#1E1E22;color:#FFFFFF;padding:6px 9px;border-radius:999px">s1</span><span style="font:800 19px/1.2 Nunito,sans-serif">На паузе</span></div>
+        <div style="font-size:13.5px;line-height:1.45;color:#64658E;text-wrap:pretty;min-height:39px">Орб приглушён и не пульсирует, ⏸ → ▶ «Дальше». Ряд кнопок не меняется.</div>
+      </div>
+      <div style="width:360px;height:780px;background:#1E1E22;border-radius:44px;padding:8px;box-sizing:border-box">
+        <div style="width:100%;height:100%;border-radius:37px;overflow:hidden;position:relative;background:linear-gradient(180deg,#F5F9FF 0%,#CCE0FF 100%);display:flex;flex-direction:column;padding:44px 20px 24px;box-sizing:border-box">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+            <div style="width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-x" style="font-size:20px;color:#3E3F68"></i></div>
+            <div style="font:800 16px/1.2 Nunito,sans-serif;color:#3E3F68">Прогулка пяти чувств</div>
+            <div style="width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-heart" style="font-size:20px;color:#3E3F68"></i></div>
+          </div>
+          <div style="margin-top:16px;text-align:center;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#24508F">На паузе · этап 3 из 8</div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px">
+            <div style="position:relative;width:250px;height:250px;display:flex;align-items:center;justify-content:center;opacity:.5">
+              <div style="position:absolute;width:250px;height:250px;border-radius:50%;background:#86BAFF;opacity:.18"></div>
+              <div style="position:absolute;width:196px;height:196px;border-radius:50%;background:#86BAFF;opacity:.3"></div>
+              <div style="position:absolute;width:142px;height:142px;border-radius:50%;background:#86BAFF;opacity:.55"></div>
+              <div style="position:absolute;width:92px;height:92px;border-radius:50%;background:#86BAFF"></div>
+              <i class="ph ph-eye" style="position:relative;font-size:44px;color:#24508F"></i>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center">
+              <div style="font:800 26px/1.2 Nunito,sans-serif;color:#24508F">Зрение</div>
+              <div style="font-size:15px;line-height:1.45;font-weight:600;color:#64658E;max-width:270px;text-wrap:pretty">Свет и тени, цвета, движение</div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div style="text-align:center;font-size:14px;font-weight:800;color:#24508F">Дальше: запахи и воздух</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;gap:3px">
+                <div style="flex:2;height:4px;border-radius:2px;background:#24508F"></div>
+                <div style="flex:3;height:4px;border-radius:2px;background:#24508F"></div>
+                <div style="flex:3;height:4px;border-radius:2px;background:rgba(36,80,143,.16);overflow:hidden"><div style="width:40%;height:100%;background:#24508F"></div></div>
+                <div style="flex:2.5;height:4px;border-radius:2px;background:rgba(36,80,143,.16)"></div>
+                <div style="flex:2.5;height:4px;border-radius:2px;background:rgba(36,80,143,.16)"></div>
+                <div style="flex:3;height:4px;border-radius:2px;background:rgba(36,80,143,.16)"></div>
+                <div style="flex:3;height:4px;border-radius:2px;background:rgba(36,80,143,.16)"></div>
+                <div style="flex:1;height:4px;border-radius:2px;background:rgba(36,80,143,.16)"></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:#64658E;font-variant-numeric:tabular-nums"><span>6:12</span><span>−13:48</span></div>
+            </div>
+            <div style="display:flex;align-items:flex-start;justify-content:space-between">
+              <div style="width:56px;display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-speaker-high" style="font-size:20px;color:#3E3F68"></i></div><span style="font-size:11.5px;font-weight:800;color:#3E3F68;line-height:1">Звук</span></div>
+              <div style="width:56px;display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center"><i class="ph-fill ph-skip-back" style="font-size:22px;color:#24508F"></i></div><span style="font-size:11.5px;font-weight:800;color:#3E3F68;line-height:1">Этап</span></div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px;margin-top:-24px"><div style="width:68px;height:68px;flex:none;border-radius:50%;background:#FFFFFF;box-shadow:0 14px 30px -10px rgba(40,45,90,.35);display:flex;align-items:center;justify-content:center"><i class="ph-fill ph-play" style="font-size:28px;color:#24508F"></i></div><span style="font-size:11.5px;font-weight:800;color:#24508F;line-height:1">Дальше</span></div>
+              <div style="width:56px;display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center"><i class="ph-fill ph-skip-forward" style="font-size:22px;color:#24508F"></i></div><span style="font-size:11.5px;font-weight:800;color:#3E3F68;line-height:1">Этап</span></div>
+              <div style="width:56px;display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-moon" style="font-size:20px;color:#3E3F68"></i></div><span style="font-size:11.5px;font-weight:800;color:#3E3F68;line-height:1">Карман</span></div>
+            </div>
+            <div style="text-align:center;font-size:14px;font-weight:700;color:#24508F;padding:4px">Закончить и оценить</div>
+          </div>
+        </div>
+      </div>
+      <div style="font-size:13px;line-height:1.45;color:#64658E;text-wrap:pretty">Пауза ставится и тапом по орбу, и кнопкой гарнитуры. После паузы фраза не повторяется — продолжаем с той же секунды.</div>
+    </div>
+
+    <!-- s2 stage change -->
+    <div id="s2" style="width:360px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;background:#1E1E22;color:#FFFFFF;padding:6px 9px;border-radius:999px">s2</span><span style="font:800 19px/1.2 Nunito,sans-serif">Смена этапа (чаша)</span></div>
+        <div style="font-size:13.5px;line-height:1.45;color:#64658E;text-wrap:pretty;min-height:39px">На ударе чаши кольца орба расходятся волной, иконка и название сменяются плавно.</div>
+      </div>
+      <div style="width:360px;height:780px;background:#1E1E22;border-radius:44px;padding:8px;box-sizing:border-box">
+        <div style="width:100%;height:100%;border-radius:37px;overflow:hidden;position:relative;background:linear-gradient(180deg,#F5F9FF 0%,#CCE0FF 100%);display:flex;flex-direction:column;padding:44px 20px 24px;box-sizing:border-box">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+            <div style="width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-x" style="font-size:20px;color:#3E3F68"></i></div>
+            <div style="font:800 16px/1.2 Nunito,sans-serif;color:#3E3F68">Прогулка пяти чувств</div>
+            <div style="width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-heart" style="font-size:20px;color:#3E3F68"></i></div>
+          </div>
+          <div style="margin-top:16px;text-align:center;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#24508F">Этап 5 из 8</div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px">
+            <div style="position:relative;width:250px;height:250px;display:flex;align-items:center;justify-content:center">
+              <div style="position:absolute;width:300px;height:300px;border-radius:50%;box-shadow:inset 0 0 0 2px rgba(134,186,255,.55)"></div>
+              <div style="position:absolute;width:262px;height:262px;border-radius:50%;background:#86BAFF;opacity:.26"></div>
+              <div style="position:absolute;width:204px;height:204px;border-radius:50%;background:#86BAFF;opacity:.38"></div>
+              <div style="position:absolute;width:148px;height:148px;border-radius:50%;background:#86BAFF;opacity:.62"></div>
+              <div style="position:absolute;width:96px;height:96px;border-radius:50%;background:#86BAFF"></div>
+              <i class="ph ph-person-simple-walk" style="position:relative;font-size:44px;color:#24508F"></i>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center">
+              <div style="font:800 26px/1.2 Nunito,sans-serif;color:#24508F">Тело</div>
+              <div style="font-size:15px;line-height:1.45;font-weight:600;color:#3E3F68;max-width:270px;text-wrap:pretty">Перекат стопы, ритм шагов, движение рук</div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div style="text-align:center;font-size:14px;font-weight:800;color:#24508F">Дальше: удивительное</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;gap:3px">
+                <div style="flex:2;height:4px;border-radius:2px;background:#24508F"></div>
+                <div style="flex:3;height:4px;border-radius:2px;background:#24508F"></div>
+                <div style="flex:3;height:4px;border-radius:2px;background:#24508F"></div>
+                <div style="flex:2.5;height:4px;border-radius:2px;background:#24508F"></div>
+                <div style="flex:2.5;height:4px;border-radius:2px;background:rgba(36,80,143,.16);overflow:hidden"><div style="width:2%;height:100%;background:#24508F"></div></div>
+                <div style="flex:3;height:4px;border-radius:2px;background:rgba(36,80,143,.16)"></div>
+                <div style="flex:3;height:4px;border-radius:2px;background:rgba(36,80,143,.16)"></div>
+                <div style="flex:1;height:4px;border-radius:2px;background:rgba(36,80,143,.16)"></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:#64658E;font-variant-numeric:tabular-nums"><span>10:32</span><span>−9:28</span></div>
+            </div>
+            <div style="display:flex;align-items:flex-start;justify-content:space-between">
+              <div style="width:56px;display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-speaker-high" style="font-size:20px;color:#3E3F68"></i></div><span style="font-size:11.5px;font-weight:800;color:#3E3F68;line-height:1">Звук</span></div>
+              <div style="width:56px;display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center"><i class="ph-fill ph-skip-back" style="font-size:22px;color:#24508F"></i></div><span style="font-size:11.5px;font-weight:800;color:#3E3F68;line-height:1">Этап</span></div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px;margin-top:-24px"><div style="width:68px;height:68px;flex:none;border-radius:50%;background:#FFFFFF;box-shadow:0 14px 30px -10px rgba(40,45,90,.35);display:flex;align-items:center;justify-content:center"><i class="ph-fill ph-pause" style="font-size:28px;color:#24508F"></i></div><span style="font-size:11.5px;font-weight:800;color:#24508F;line-height:1">Пауза</span></div>
+              <div style="width:56px;display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center"><i class="ph-fill ph-skip-forward" style="font-size:22px;color:#24508F"></i></div><span style="font-size:11.5px;font-weight:800;color:#3E3F68;line-height:1">Этап</span></div>
+              <div style="width:56px;display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-moon" style="font-size:20px;color:#3E3F68"></i></div><span style="font-size:11.5px;font-weight:800;color:#3E3F68;line-height:1">Карман</span></div>
+            </div>
+            <div style="text-align:center;font-size:14px;font-weight:700;color:#24508F;padding:4px">Закончить и оценить</div>
+          </div>
+        </div>
+      </div>
+      <div style="font-size:13px;line-height:1.45;color:#64658E;text-wrap:pretty">0 с — чаша, волна колец ~1,2 с и короткая вибрация. Иконка и текст меняются за 600 мс. Через 1,2 с — фраза этапа. Обложка на экране блокировки меняется вместе с иконкой.</div>
+    </div>
+
+    <!-- s3 large font -->
+    <div id="s3" style="width:360px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;background:#1E1E22;color:#FFFFFF;padding:6px 9px;border-radius:999px">s3</span><span style="font:800 19px/1.2 Nunito,sans-serif">Шрифт 130 %</span></div>
+        <div style="font-size:13.5px;line-height:1.45;color:#64658E;text-wrap:pretty;min-height:39px">Самая длинная подсказка («Удивительное») при крупном системном шрифте. Орб ужат до 170, кнопки на месте.</div>
+      </div>
+      <div style="width:360px;height:780px;background:#1E1E22;border-radius:44px;padding:8px;box-sizing:border-box">
+        <div style="width:100%;height:100%;border-radius:37px;overflow:hidden;position:relative;background:linear-gradient(180deg,#F5F9FF 0%,#CCE0FF 100%);display:flex;flex-direction:column;padding:44px 20px 24px;box-sizing:border-box">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+            <div style="width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-x" style="font-size:20px;color:#3E3F68"></i></div>
+            <div style="font:800 20px/1.2 Nunito,sans-serif;color:#3E3F68;text-align:center;min-width:0">Прогулка пяти чувств</div>
+            <div style="width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-heart" style="font-size:20px;color:#3E3F68"></i></div>
+          </div>
+          <div style="margin-top:16px;text-align:center;font-size:15.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#24508F">Этап 6 из 8</div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px">
+            <div style="position:relative;width:170px;height:170px;display:flex;align-items:center;justify-content:center">
+              <div style="position:absolute;width:170px;height:170px;border-radius:50%;background:#86BAFF;opacity:.18"></div>
+              <div style="position:absolute;width:134px;height:134px;border-radius:50%;background:#86BAFF;opacity:.3"></div>
+              <div style="position:absolute;width:98px;height:98px;border-radius:50%;background:#86BAFF;opacity:.55"></div>
+              <div style="position:absolute;width:64px;height:64px;border-radius:50%;background:#86BAFF"></div>
+              <i class="ph ph-sparkle" style="position:relative;font-size:32px;color:#24508F"></i>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center">
+              <div style="font:800 34px/1.15 Nunito,sans-serif;color:#24508F">Удивительное</div>
+              <div style="font-size:19.5px;line-height:1.4;font-weight:600;color:#3E3F68;max-width:290px;text-wrap:pretty">Найди то, мимо чего обычно проходишь</div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div style="text-align:center;font-size:18px;font-weight:800;color:#24508F">Дальше: всё сразу</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;gap:3px">
+                <div style="flex:2;height:4px;border-radius:2px;background:#24508F"></div>
+                <div style="flex:3;height:4px;border-radius:2px;background:#24508F"></div>
+                <div style="flex:3;height:4px;border-radius:2px;background:#24508F"></div>
+                <div style="flex:2.5;height:4px;border-radius:2px;background:#24508F"></div>
+                <div style="flex:2.5;height:4px;border-radius:2px;background:#24508F"></div>
+                <div style="flex:3;height:4px;border-radius:2px;background:rgba(36,80,143,.16);overflow:hidden"><div style="width:36%;height:100%;background:#24508F"></div></div>
+                <div style="flex:3;height:4px;border-radius:2px;background:rgba(36,80,143,.16)"></div>
+                <div style="flex:1;height:4px;border-radius:2px;background:rgba(36,80,143,.16)"></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:17px;font-weight:700;color:#64658E;font-variant-numeric:tabular-nums"><span>14:05</span><span>−5:55</span></div>
+            </div>
+            <div style="display:flex;align-items:flex-start;justify-content:space-between">
+              <div style="width:60px;display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-speaker-high" style="font-size:20px;color:#3E3F68"></i></div><span style="font-size:15px;font-weight:800;color:#3E3F68;line-height:1">Звук</span></div>
+              <div style="width:60px;display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center"><i class="ph-fill ph-skip-back" style="font-size:22px;color:#24508F"></i></div><span style="font-size:15px;font-weight:800;color:#3E3F68;line-height:1">Этап</span></div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px;margin-top:-24px"><div style="width:68px;height:68px;flex:none;border-radius:50%;background:#FFFFFF;box-shadow:0 14px 30px -10px rgba(40,45,90,.35);display:flex;align-items:center;justify-content:center"><i class="ph-fill ph-pause" style="font-size:28px;color:#24508F"></i></div><span style="font-size:15px;font-weight:800;color:#24508F;line-height:1">Пауза</span></div>
+              <div style="width:60px;display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center"><i class="ph-fill ph-skip-forward" style="font-size:22px;color:#24508F"></i></div><span style="font-size:15px;font-weight:800;color:#3E3F68;line-height:1">Этап</span></div>
+              <div style="width:60px;display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-moon" style="font-size:20px;color:#3E3F68"></i></div><span style="font-size:15px;font-weight:800;color:#3E3F68;line-height:1">Карман</span></div>
+            </div>
+            <div style="text-align:center;font-size:18px;font-weight:700;color:#24508F;padding:4px">Закончить и оценить</div>
+          </div>
+        </div>
+      </div>
+      <div style="font-size:13px;line-height:1.45;color:#64658E;text-wrap:pretty">Иконки и кнопки в dp не растут, растёт только текст. При 200 % подсказка прячется, остаются орб 120 и название. Подсказка — максимум 3 строки, без многоточия: тексты пишем короткими.</div>
+    </div>
+
+    <!-- stage texts -->
+    <div id="texts" style="width:560px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;background:#1E1E22;color:#FFFFFF;padding:6px 9px;border-radius:999px">Тексты</span><span style="font:800 19px/1.2 Nunito,sans-serif">Этапы: название и подсказка</span></div>
+        <div style="font-size:13.5px;line-height:1.45;color:#64658E;text-wrap:pretty;min-height:39px">Отдельные поля в данных практики, рядом с аудио. «Дальше: …» берётся из названия следующего этапа в нижнем регистре.</div>
+      </div>
+      <div style="background:#FFFFFF;border-radius:24px;padding:8px 20px;display:flex;flex-direction:column">
+        <div style="display:grid;grid-template-columns:36px 132px minmax(0,1fr) 40px;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid #E6E6F5;font-size:11.5px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:#8C8DAE"><span></span><span>Этап · время</span><span>Подсказка на экране</span><span style="text-align:right">Зн.</span></div>
+        <div style="display:grid;grid-template-columns:36px 132px minmax(0,1fr) 40px;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid #F0F0F8">
+          <div style="width:36px;height:36px;border-radius:50%;background:#E1EEFE;display:flex;align-items:center;justify-content:center"><i class="ph ph-footprints" style="font-size:18px;color:#24508F"></i></div>
+          <div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:15px;font-weight:800;color:#24508F">Шаг</span><span style="font-size:12px;font-weight:700;color:#8C8DAE;font-variant-numeric:tabular-nums">0:00–2:00</span></div>
+          <div style="font-size:14px;line-height:1.4;font-weight:600;color:#3E3F68">Обычный шаг. Стопы, руки, спокойный выдох</div>
+          <div style="font-size:12.5px;font-weight:700;color:#8C8DAE;text-align:right;font-variant-numeric:tabular-nums">41</div>
+        </div>
+        <div style="display:grid;grid-template-columns:36px 132px minmax(0,1fr) 40px;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid #F0F0F8">
+          <div style="width:36px;height:36px;border-radius:50%;background:#E1EEFE;display:flex;align-items:center;justify-content:center"><i class="ph ph-ear" style="font-size:18px;color:#24508F"></i></div>
+          <div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:15px;font-weight:800;color:#24508F">Слух</span><span style="font-size:12px;font-weight:700;color:#8C8DAE;font-variant-numeric:tabular-nums">2:00–5:00</span></div>
+          <div style="font-size:14px;line-height:1.4;font-weight:600;color:#3E3F68">Звуки рядом и вдали, громкие и едва слышные</div>
+          <div style="font-size:12.5px;font-weight:700;color:#8C8DAE;text-align:right;font-variant-numeric:tabular-nums">43</div>
+        </div>
+        <div style="display:grid;grid-template-columns:36px 132px minmax(0,1fr) 40px;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid #F0F0F8">
+          <div style="width:36px;height:36px;border-radius:50%;background:#E1EEFE;display:flex;align-items:center;justify-content:center"><i class="ph ph-eye" style="font-size:18px;color:#24508F"></i></div>
+          <div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:15px;font-weight:800;color:#24508F">Зрение</span><span style="font-size:12px;font-weight:700;color:#8C8DAE;font-variant-numeric:tabular-nums">5:00–8:00</span></div>
+          <div style="font-size:14px;line-height:1.4;font-weight:600;color:#3E3F68">Свет и тени, цвета, движение</div>
+          <div style="font-size:12.5px;font-weight:700;color:#8C8DAE;text-align:right;font-variant-numeric:tabular-nums">28</div>
+        </div>
+        <div style="display:grid;grid-template-columns:36px 132px minmax(0,1fr) 40px;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid #F0F0F8">
+          <div style="width:36px;height:36px;border-radius:50%;background:#E1EEFE;display:flex;align-items:center;justify-content:center"><i class="ph ph-wind" style="font-size:18px;color:#24508F"></i></div>
+          <div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:15px;font-weight:800;color:#24508F">Запахи и воздух</span><span style="font-size:12px;font-weight:700;color:#8C8DAE;font-variant-numeric:tabular-nums">8:00–10:30</span></div>
+          <div style="font-size:14px;line-height:1.4;font-weight:600;color:#3E3F68">Тёплый или прохладный? Ветер, слабые запахи</div>
+          <div style="font-size:12.5px;font-weight:700;color:#8C8DAE;text-align:right;font-variant-numeric:tabular-nums">43</div>
+        </div>
+        <div style="display:grid;grid-template-columns:36px 132px minmax(0,1fr) 40px;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid #F0F0F8">
+          <div style="width:36px;height:36px;border-radius:50%;background:#E1EEFE;display:flex;align-items:center;justify-content:center"><i class="ph ph-person-simple-walk" style="font-size:18px;color:#24508F"></i></div>
+          <div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:15px;font-weight:800;color:#24508F">Тело</span><span style="font-size:12px;font-weight:700;color:#8C8DAE;font-variant-numeric:tabular-nums">10:30–13:00</span></div>
+          <div style="font-size:14px;line-height:1.4;font-weight:600;color:#3E3F68">Перекат стопы, ритм шагов, движение рук</div>
+          <div style="font-size:12.5px;font-weight:700;color:#8C8DAE;text-align:right;font-variant-numeric:tabular-nums">39</div>
+        </div>
+        <div style="display:grid;grid-template-columns:36px 132px minmax(0,1fr) 40px;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid #F0F0F8">
+          <div style="width:36px;height:36px;border-radius:50%;background:#E1EEFE;display:flex;align-items:center;justify-content:center"><i class="ph ph-sparkle" style="font-size:18px;color:#24508F"></i></div>
+          <div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:15px;font-weight:800;color:#24508F">Удивительное</span><span style="font-size:12px;font-weight:700;color:#8C8DAE;font-variant-numeric:tabular-nums">13:00–16:00</span></div>
+          <div style="font-size:14px;line-height:1.4;font-weight:600;color:#3E3F68">Найди то, мимо чего обычно проходишь</div>
+          <div style="font-size:12.5px;font-weight:700;color:#8C8DAE;text-align:right;font-variant-numeric:tabular-nums">36</div>
+        </div>
+        <div style="display:grid;grid-template-columns:36px 132px minmax(0,1fr) 40px;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid #F0F0F8">
+          <div style="width:36px;height:36px;border-radius:50%;background:#E1EEFE;display:flex;align-items:center;justify-content:center"><i class="ph ph-circles-three" style="font-size:18px;color:#24508F"></i></div>
+          <div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:15px;font-weight:800;color:#24508F">Всё сразу</span><span style="font-size:12px;font-weight:700;color:#8C8DAE;font-variant-numeric:tabular-nums">16:00–19:00</span></div>
+          <div style="font-size:14px;line-height:1.4;font-weight:600;color:#3E3F68">Звуки, свет, воздух, шаги. Ничего не выбирай</div>
+          <div style="font-size:12.5px;font-weight:700;color:#8C8DAE;text-align:right;font-variant-numeric:tabular-nums">44</div>
+        </div>
+        <div style="display:grid;grid-template-columns:36px 132px minmax(0,1fr) 40px;gap:12px;align-items:center;padding:11px 0">
+          <div style="width:36px;height:36px;border-radius:50%;background:#E1EEFE;display:flex;align-items:center;justify-content:center"><i class="ph ph-flower-lotus" style="font-size:18px;color:#24508F"></i></div>
+          <div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:15px;font-weight:800;color:#24508F">Остановка</span><span style="font-size:12px;font-weight:700;color:#8C8DAE;font-variant-numeric:tabular-nums">19:00–20:00</span></div>
+          <div style="font-size:14px;line-height:1.4;font-weight:600;color:#3E3F68">Замедлись. Вдох… и выдох. Как ты сейчас?</div>
+          <div style="font-size:12.5px;font-weight:700;color:#8C8DAE;text-align:right;font-variant-numeric:tabular-nums">40</div>
+        </div>
+      </div>
+      <div style="font-size:13px;line-height:1.45;color:#64658E;text-wrap:pretty">В 20:00 последняя чаша → экран итога, как у таймера медитации. Если вышел раньше — «Закончить и оценить» засчитывает пройденные этапы.</div>
+    </div>
+
+  </div>
+</section>
+
+<section data-screen-label="Плеер прогулки" style="padding:48px;display:flex;flex-direction:column;gap:28px">
+  <div style="display:flex;flex-direction:column;gap:10px;max-width:980px">
+    <div style="font:800 30px/1.12 Nunito,sans-serif;letter-spacing:-0.5px">Прогулка пяти чувств: три варианта плеера</div>
+    <div style="font-size:15px;line-height:1.5;color:#64658E;text-wrap:pretty">Дыхательный плеер ведёт по ритму, и на него смотрят. На прогулке глаза на дороге, телефон в кармане, а практика идёт главами: 8 этапов от «Шага» до «Остановки», между ними чаша. Поэтому на экране этап, а не фаза, и крупные кнопки для одного взгляда.</div>
+    <div style="display:flex;flex-direction:column;gap:4px;font-size:14px;line-height:1.5;color:#3E3F68;text-wrap:pretty">
+      <div><b>⏮ / ⏭ здесь нужны.</b> Этап — глава: шумная улица — пропустить «Слух», вернуться — повторить вступление этапа. ⏮ ведёт к началу этапа (к его чаше и фразе).</div>
+      <div><b>Время вторично.</b> Главное — «Этап 3 из 8» и что сейчас слушать. Секундомер мелко.</div>
+      <div><b>Основной пульт — вне экрана</b>: шторка и экран блокировки, кнопки гарнитуры (<a href="#w4">w4</a>).</div>
+    </div>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start">
+
+    <!-- W1 -->
+    <div id="w1" style="width:360px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;background:#1E1E22;color:#FFFFFF;padding:6px 9px;border-radius:999px">w1</span><span style="font:800 19px/1.2 Nunito,sans-serif">Орб чувства</span><span style="font:800 11px/1 'Nunito Sans',sans-serif;letter-spacing:.8px;color:#3F5220;background:#E8F3E2;padding:5px 8px;border-radius:999px">ВЫБРАНО</span></div>
+        <div style="font-size:13.5px;line-height:1.45;color:#64658E;text-wrap:pretty;min-height:39px">Скелет дыхательного плеера: в орбе иконка чувства, под ним этап и подсказка. Прогресс из 8 сегментов, ряд 2 | ⏸ | 2 с ⏮ ⏭.</div>
+      </div>
+      <div style="width:360px;height:780px;background:#1E1E22;border-radius:44px;padding:8px;box-sizing:border-box">
+        <div style="width:100%;height:100%;border-radius:37px;overflow:hidden;position:relative;background:linear-gradient(180deg,#F5F9FF 0%,#CCE0FF 100%);display:flex;flex-direction:column;padding:44px 20px 24px;box-sizing:border-box">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+            <div style="width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-x" style="font-size:20px;color:#3E3F68"></i></div>
+            <div style="font:800 16px/1.2 Nunito,sans-serif;color:#3E3F68">Прогулка пяти чувств</div>
+            <div style="width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-heart" style="font-size:20px;color:#3E3F68"></i></div>
+          </div>
+          <div style="margin-top:16px;text-align:center;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#24508F">Этап 3 из 8</div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px">
+            <div style="position:relative;width:250px;height:250px;display:flex;align-items:center;justify-content:center">
+              <div style="position:absolute;width:250px;height:250px;border-radius:50%;background:#86BAFF;opacity:.18"></div>
+              <div style="position:absolute;width:196px;height:196px;border-radius:50%;background:#86BAFF;opacity:.3"></div>
+              <div style="position:absolute;width:142px;height:142px;border-radius:50%;background:#86BAFF;opacity:.55"></div>
+              <div style="position:absolute;width:92px;height:92px;border-radius:50%;background:#86BAFF"></div>
+              <i class="ph ph-eye" style="position:relative;font-size:44px;color:#24508F"></i>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center">
+              <div style="font:800 26px/1.2 Nunito,sans-serif;color:#24508F">Зрение</div>
+              <div style="font-size:15px;line-height:1.45;font-weight:600;color:#3E3F68;max-width:270px;text-wrap:pretty">Свет и тени, цвета, движение. Иногда поднимай взгляд выше.</div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div style="text-align:center;font-size:14px;font-weight:800;color:#24508F">Дальше: запахи и воздух</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;gap:3px">
+                <div style="flex:2;height:4px;border-radius:2px;background:#24508F"></div>
+                <div style="flex:3;height:4px;border-radius:2px;background:#24508F"></div>
+                <div style="flex:3;height:4px;border-radius:2px;background:rgba(36,80,143,.16);overflow:hidden"><div style="width:40%;height:100%;background:#24508F"></div></div>
+                <div style="flex:2.5;height:4px;border-radius:2px;background:rgba(36,80,143,.16)"></div>
+                <div style="flex:2.5;height:4px;border-radius:2px;background:rgba(36,80,143,.16)"></div>
+                <div style="flex:3;height:4px;border-radius:2px;background:rgba(36,80,143,.16)"></div>
+                <div style="flex:3;height:4px;border-radius:2px;background:rgba(36,80,143,.16)"></div>
+                <div style="flex:1;height:4px;border-radius:2px;background:rgba(36,80,143,.16)"></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:#64658E;font-variant-numeric:tabular-nums"><span>6:12</span><span>−13:48</span></div>
+            </div>
+            <div style="display:flex;align-items:flex-start;justify-content:space-between">
+              <div style="width:56px;display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-speaker-high" style="font-size:20px;color:#3E3F68"></i></div><span style="font-size:11.5px;font-weight:800;color:#3E3F68;line-height:1">Звук</span></div>
+              <div style="width:56px;display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center"><i class="ph-fill ph-skip-back" style="font-size:22px;color:#24508F"></i></div><span style="font-size:11.5px;font-weight:800;color:#3E3F68;line-height:1">Этап</span></div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px;margin-top:-24px"><div style="width:68px;height:68px;flex:none;border-radius:50%;background:#FFFFFF;box-shadow:0 14px 30px -10px rgba(40,45,90,.35);display:flex;align-items:center;justify-content:center"><i class="ph-fill ph-pause" style="font-size:28px;color:#24508F"></i></div><span style="font-size:11.5px;font-weight:800;color:#24508F;line-height:1">Пауза</span></div>
+              <div style="width:56px;display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center"><i class="ph-fill ph-skip-forward" style="font-size:22px;color:#24508F"></i></div><span style="font-size:11.5px;font-weight:800;color:#3E3F68;line-height:1">Этап</span></div>
+              <div style="width:56px;display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-moon" style="font-size:20px;color:#3E3F68"></i></div><span style="font-size:11.5px;font-weight:800;color:#3E3F68;line-height:1">Карман</span></div>
+            </div>
+            <div style="text-align:center;font-size:14px;font-weight:700;color:#24508F;padding:4px">Закончить и оценить</div>
+          </div>
+        </div>
+      </div>
+      <div style="font-size:13px;line-height:1.45;color:#64658E;text-wrap:pretty">Орб не дышит, а медленно пульсирует, ~8 с на цикл: живой, но не задаёт ритм. На чаше иконка сменяется с мягкой вспышкой колец. «Звук» — громкость голоса и чаши, «Карман» — тёмный режим <a href="#w3">w3</a>.</div>
+    </div>
+
+    <!-- W2 -->
+    <div id="w2" style="width:360px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;background:#1E1E22;color:#FFFFFF;padding:6px 9px;border-radius:999px">w2</span><span style="font:800 19px/1.2 Nunito,sans-serif">Тропинка</span></div>
+        <div style="font-size:13.5px;line-height:1.45;color:#64658E;text-wrap:pretty;min-height:39px">Вся прогулка — вертикальный маршрут из 8 точек. Текущий этап раскрыт: полная фраза как субтитр. Тап по точке — перейти.</div>
+      </div>
+      <div style="width:360px;height:780px;background:#1E1E22;border-radius:44px;padding:8px;box-sizing:border-box">
+        <div style="width:100%;height:100%;border-radius:37px;overflow:hidden;position:relative;background:linear-gradient(180deg,#F5F9FF 0%,#CCE0FF 100%);display:flex;flex-direction:column;padding:44px 20px 24px;box-sizing:border-box">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+            <div style="width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-x" style="font-size:20px;color:#3E3F68"></i></div>
+            <div style="font:800 16px/1.2 Nunito,sans-serif;color:#3E3F68">Прогулка пяти чувств</div>
+            <div style="width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-heart" style="font-size:20px;color:#3E3F68"></i></div>
+          </div>
+
+          <div style="flex:1;position:relative;margin-top:18px;display:flex;flex-direction:column">
+            <div style="position:absolute;left:15px;top:14px;bottom:14px;width:2px;background:rgba(36,80,143,.18)"></div>
+            <div style="position:absolute;left:15px;top:14px;height:96px;width:2px;background:#24508F"></div>
+
+            <div style="position:relative;height:40px;display:flex;align-items:center;gap:14px;opacity:.55">
+              <div style="width:32px;height:32px;flex:none;border-radius:50%;background:#24508F;display:flex;align-items:center;justify-content:center"><i class="ph ph-check" style="font-size:16px;color:#FFFFFF"></i></div>
+              <div style="flex:1;font-size:15px;font-weight:800;color:#3E3F68">Шаг</div><div style="font-size:12.5px;font-weight:700;color:#64658E;font-variant-numeric:tabular-nums">0:00</div>
+            </div>
+            <div style="position:relative;height:40px;display:flex;align-items:center;gap:14px;opacity:.55">
+              <div style="width:32px;height:32px;flex:none;border-radius:50%;background:#24508F;display:flex;align-items:center;justify-content:center"><i class="ph ph-check" style="font-size:16px;color:#FFFFFF"></i></div>
+              <div style="flex:1;font-size:15px;font-weight:800;color:#3E3F68">Слух</div><div style="font-size:12.5px;font-weight:700;color:#64658E;font-variant-numeric:tabular-nums">2:00</div>
+            </div>
+
+            <div style="position:relative;margin:6px 0 8px;display:flex;gap:14px">
+              <div style="width:32px;height:32px;flex:none;border-radius:50%;background:#86BAFF;box-shadow:0 0 0 6px rgba(134,186,255,.35);display:flex;align-items:center;justify-content:center;margin-top:14px"><i class="ph ph-eye" style="font-size:17px;color:#24508F"></i></div>
+              <div style="flex:1;background:rgba(255,255,255,.8);border-radius:20px;padding:14px 16px;display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;align-items:baseline;justify-content:space-between"><span style="font:800 19px/1.2 Nunito,sans-serif;color:#24508F">Зрение</span><span style="font-size:12.5px;font-weight:700;color:#64658E;font-variant-numeric:tabular-nums">1:12 / 3:00</span></div>
+                <div style="font-size:14px;line-height:1.45;font-weight:600;color:#3E3F68;text-wrap:pretty">Переведи внимание на то, что видно. Свет и тени, цвета, движение. Иногда поднимай взгляд выше: к деревьям, крышам, небу.</div>
+                <div style="height:3px;border-radius:2px;background:rgba(36,80,143,.14);overflow:hidden"><div style="width:40%;height:100%;background:#24508F"></div></div>
+              </div>
+            </div>
+
+            <div style="position:relative;height:40px;display:flex;align-items:center;gap:14px">
+              <div style="width:32px;height:32px;flex:none;border-radius:50%;background:#F5F9FF;box-shadow:inset 0 0 0 2px rgba(36,80,143,.25);display:flex;align-items:center;justify-content:center"><i class="ph ph-wind" style="font-size:16px;color:#64658E"></i></div>
+              <div style="flex:1;font-size:15px;font-weight:700;color:#3E3F68">Запахи и воздух</div><div style="font-size:12.5px;font-weight:700;color:#8C8DAE;font-variant-numeric:tabular-nums">8:00</div>
+            </div>
+            <div style="position:relative;height:40px;display:flex;align-items:center;gap:14px">
+              <div style="width:32px;height:32px;flex:none;border-radius:50%;background:#F5F9FF;box-shadow:inset 0 0 0 2px rgba(36,80,143,.25);display:flex;align-items:center;justify-content:center"><i class="ph ph-footprints" style="font-size:16px;color:#64658E"></i></div>
+              <div style="flex:1;font-size:15px;font-weight:700;color:#3E3F68">Тело</div><div style="font-size:12.5px;font-weight:700;color:#8C8DAE;font-variant-numeric:tabular-nums">10:30</div>
+            </div>
+            <div style="position:relative;height:40px;display:flex;align-items:center;gap:14px">
+              <div style="width:32px;height:32px;flex:none;border-radius:50%;background:#F5F9FF;box-shadow:inset 0 0 0 2px rgba(36,80,143,.25);display:flex;align-items:center;justify-content:center"><i class="ph ph-sparkle" style="font-size:16px;color:#64658E"></i></div>
+              <div style="flex:1;font-size:15px;font-weight:700;color:#3E3F68">Удивительное</div><div style="font-size:12.5px;font-weight:700;color:#8C8DAE;font-variant-numeric:tabular-nums">13:00</div>
+            </div>
+            <div style="position:relative;height:40px;display:flex;align-items:center;gap:14px">
+              <div style="width:32px;height:32px;flex:none;border-radius:50%;background:#F5F9FF;box-shadow:inset 0 0 0 2px rgba(36,80,143,.25);display:flex;align-items:center;justify-content:center"><i class="ph ph-circles-three" style="font-size:16px;color:#64658E"></i></div>
+              <div style="flex:1;font-size:15px;font-weight:700;color:#3E3F68">Всё сразу</div><div style="font-size:12.5px;font-weight:700;color:#8C8DAE;font-variant-numeric:tabular-nums">16:00</div>
+            </div>
+            <div style="position:relative;height:40px;display:flex;align-items:center;gap:14px">
+              <div style="width:32px;height:32px;flex:none;border-radius:50%;background:#F5F9FF;box-shadow:inset 0 0 0 2px rgba(36,80,143,.25);display:flex;align-items:center;justify-content:center"><i class="ph ph-flower-lotus" style="font-size:16px;color:#64658E"></i></div>
+              <div style="flex:1;font-size:15px;font-weight:700;color:#3E3F68">Остановка</div><div style="font-size:12.5px;font-weight:700;color:#8C8DAE;font-variant-numeric:tabular-nums">19:00</div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:0 4px">
+              <div style="font-size:13px;font-weight:700;color:#64658E;font-variant-numeric:tabular-nums;width:48px">6:12</div>
+              <div style="display:flex;align-items:center;gap:22px">
+                <i class="ph-fill ph-skip-back" style="font-size:24px;color:#24508F"></i>
+                <div style="width:68px;height:68px;flex:none;border-radius:50%;background:#FFFFFF;box-shadow:0 14px 30px -10px rgba(40,45,90,.35);display:flex;align-items:center;justify-content:center"><i class="ph-fill ph-pause" style="font-size:28px;color:#24508F"></i></div>
+                <i class="ph-fill ph-skip-forward" style="font-size:24px;color:#24508F"></i>
+              </div>
+              <div style="font-size:13px;font-weight:700;color:#64658E;font-variant-numeric:tabular-nums;width:48px;text-align:right">−13:48</div>
+            </div>
+            <div style="text-align:center;font-size:14px;font-weight:700;color:#24508F;padding:4px">Закончить и оценить</div>
+          </div>
+        </div>
+      </div>
+      <div style="font-size:13px;line-height:1.45;color:#64658E;text-wrap:pretty">Плюс: видно, сколько осталось и что впереди, удобно перед стартом и для повторных прогулок. Минус: много текста — на ходу его будут читать вместо того, чтобы смотреть вокруг.</div>
+    </div>
+
+    <!-- W3 -->
+    <div id="w3" style="width:360px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;background:#1E1E22;color:#FFFFFF;padding:6px 9px;border-radius:999px">w3</span><span style="font:800 19px/1.2 Nunito,sans-serif">Карманный режим</span></div>
+        <div style="font-size:13.5px;line-height:1.45;color:#64658E;text-wrap:pretty;min-height:39px">Чёрный экран, тусклые цвета, одно слово крупно. Вся нижняя половина — зона паузы: попасть можно не глядя.</div>
+      </div>
+      <div style="width:360px;height:780px;background:#1E1E22;border-radius:44px;padding:8px;box-sizing:border-box">
+        <div style="width:100%;height:100%;border-radius:37px;overflow:hidden;position:relative;background:#000000;display:flex;flex-direction:column;padding:44px 20px 24px;box-sizing:border-box">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+            <div style="width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center"><i class="ph ph-x" style="font-size:20px;color:#6B7486"></i></div>
+            <div style="font-size:13px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#6B7486">3 из 8 · 6:12</div>
+            <div style="width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center"><i class="ph ph-sun" style="font-size:20px;color:#6B7486"></i></div>
+          </div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center">
+            <i class="ph ph-eye" style="opacity:.8;font-size:56px;color:#B3CDEB"></i>
+            <div style="font:800 40px/1.1 Nunito,sans-serif;color:#B3CDEB">Зрение</div>
+            <div style="font-size:16px;line-height:1.45;font-weight:600;color:#6B7486;max-width:260px;text-wrap:pretty">Свет и тени, цвета, движение</div>
+          </div>
+          <div style="height:230px;border-radius:30px;box-shadow:inset 0 0 0 1.5px rgba(179,205,235,.14);background:rgba(179,205,235,.04);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px">
+            <i class="ph-fill ph-pause" style="opacity:.85;font-size:44px;color:#B3CDEB"></i>
+            <div style="font-size:14px;font-weight:700;color:#6B7486">Тап — пауза</div>
+          </div>
+          <div style="margin-top:18px;display:flex;gap:3px;opacity:.7">
+            <div style="flex:2;height:3px;border-radius:2px;background:#B3CDEB"></div>
+            <div style="flex:3;height:3px;border-radius:2px;background:#B3CDEB"></div>
+            <div style="flex:3;height:3px;border-radius:2px;background:rgba(179,205,235,.18);overflow:hidden"><div style="width:40%;height:100%;background:#B3CDEB"></div></div>
+            <div style="flex:2.5;height:3px;border-radius:2px;background:rgba(179,205,235,.18)"></div>
+            <div style="flex:2.5;height:3px;border-radius:2px;background:rgba(179,205,235,.18)"></div>
+            <div style="flex:3;height:3px;border-radius:2px;background:rgba(179,205,235,.18)"></div>
+            <div style="flex:3;height:3px;border-radius:2px;background:rgba(179,205,235,.18)"></div>
+            <div style="flex:1;height:3px;border-radius:2px;background:rgba(179,205,235,.18)"></div>
+          </div>
+        </div>
+      </div>
+      <div style="font-size:13px;line-height:1.45;color:#64658E;text-wrap:pretty">Не отдельный плеер, а состояние <a href="#w1">w1</a>: включается кнопкой «Карман» или сам через 15 с без касаний. Яркость минимальная, ⏮ ⏭ спрятаны от случайных нажатий. Экран можно гасить — звук не прерывается.</div>
+    </div>
+
+  </div>
+</section>
+
+<section data-screen-label="Вокруг плеера" style="padding:48px;display:flex;flex-direction:column;gap:28px">
+  <div style="display:flex;flex-direction:column;gap:10px;max-width:980px">
+    <div style="font:800 30px/1.12 Nunito,sans-serif;letter-spacing:-0.5px">Вокруг плеера: экран блокировки и старт</div>
+    <div style="font-size:15px;line-height:1.5;color:#64658E;text-wrap:pretty">Большую часть 20 минут экран выключен. Пульт — медиа-уведомление и кнопки наушников, а подготовку лучше сделать до выхода.</div>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start">
+
+    <!-- W4 -->
+    <div id="w4" style="width:360px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;background:#1E1E22;color:#FFFFFF;padding:6px 9px;border-radius:999px">w4</span><span style="font:800 19px/1.2 Nunito,sans-serif">Экран блокировки</span><span style="font:800 11px/1 'Nunito Sans',sans-serif;letter-spacing:.8px;color:#3F5220;background:#E8F3E2;padding:5px 8px;border-radius:999px">ОБЯЗАТЕЛЬНО</span></div>
+        <div style="font-size:13.5px;line-height:1.45;color:#64658E;text-wrap:pretty;min-height:39px">Медиа-плеер Android: в заголовке текущее чувство, ⏮ ⏭ переключают этапы. Работает и в шторке, и на часах.</div>
+      </div>
+      <div style="width:360px;height:780px;background:#1E1E22;border-radius:44px;padding:8px;box-sizing:border-box">
+        <div style="width:100%;height:100%;border-radius:37px;overflow:hidden;position:relative;background:linear-gradient(170deg,#1B2333 0%,#2E3F5C 55%,#4B5F80 100%);display:flex;flex-direction:column;padding:60px 14px 28px;box-sizing:border-box">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:6px;color:#FFFFFF">
+            <div style="font:300 76px/1 'Nunito Sans',sans-serif;letter-spacing:-2px">16:42</div>
+            <div style="font-size:15px;font-weight:600;opacity:.8">Чт, 5 ноября</div>
+          </div>
+          <div style="margin-top:40px;border-radius:28px;background:linear-gradient(135deg,#24508F 0%,#3F72BE 100%);padding:18px 18px 16px;display:flex;flex-direction:column;gap:14px;box-shadow:0 18px 40px -16px rgba(0,0,0,.6)">
+            <div style="display:flex;align-items:center;gap:12px">
+              <div style="width:48px;height:48px;flex:none;border-radius:14px;background:#86BAFF;display:flex;align-items:center;justify-content:center"><i class="ph ph-eye" style="font-size:26px;color:#24508F"></i></div>
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:3px">
+                <div style="font:800 17px/1.2 Nunito,sans-serif;color:#FFFFFF">Зрение · 3 из 8</div>
+                <div style="font-size:13px;font-weight:600;color:rgba(255,255,255,.72)">Shift · Прогулка пяти чувств</div>
+              </div>
+              <div style="height:30px;padding:0 10px;border-radius:15px;background:rgba(255,255,255,.16);display:flex;align-items:center;gap:5px;color:#FFFFFF;font-size:12px;font-weight:700"><i class="ph ph-headphones" style="font-size:15px"></i></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="display:flex;gap:3px">
+                <div style="flex:2;height:4px;border-radius:2px;background:#FFFFFF"></div>
+                <div style="flex:3;height:4px;border-radius:2px;background:#FFFFFF"></div>
+                <div style="flex:3;height:4px;border-radius:2px;background:rgba(255,255,255,.25);overflow:hidden"><div style="width:40%;height:100%;background:#FFFFFF"></div></div>
+                <div style="flex:2.5;height:4px;border-radius:2px;background:rgba(255,255,255,.25)"></div>
+                <div style="flex:2.5;height:4px;border-radius:2px;background:rgba(255,255,255,.25)"></div>
+                <div style="flex:3;height:4px;border-radius:2px;background:rgba(255,255,255,.25)"></div>
+                <div style="flex:3;height:4px;border-radius:2px;background:rgba(255,255,255,.25)"></div>
+                <div style="flex:1;height:4px;border-radius:2px;background:rgba(255,255,255,.25)"></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:rgba(255,255,255,.72);font-variant-numeric:tabular-nums"><span>6:12</span><span>20:00</span></div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:center;gap:36px">
+              <i class="ph-fill ph-skip-back" style="font-size:26px;color:#FFFFFF"></i>
+              <div style="width:58px;height:58px;border-radius:18px;background:#FFFFFF;display:flex;align-items:center;justify-content:center"><i class="ph-fill ph-pause" style="font-size:26px;color:#24508F"></i></div>
+              <i class="ph-fill ph-skip-forward" style="font-size:26px;color:#FFFFFF"></i>
+            </div>
+          </div>
+          <div style="flex:1"></div>
+          <div style="display:flex;justify-content:center"><div style="width:56px;height:56px;border-radius:50%;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center"><i class="ph ph-fingerprint" style="font-size:28px;color:rgba(255,255,255,.8)"></i></div></div>
+        </div>
+      </div>
+      <div style="font-size:13px;line-height:1.45;color:#64658E;text-wrap:pretty">Этапы — главы MediaSession (QUEUE). Гарнитура: один клик — пауза, двойной — следующий этап. Обложка меняет иконку на каждой чаше. Foreground service, чтобы Android не убил звук.</div>
+    </div>
+
+    <!-- W5 -->
+    <div id="w5" style="width:360px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:800 12px/1 'Nunito Sans',sans-serif;letter-spacing:1px;background:#1E1E22;color:#FFFFFF;padding:6px 9px;border-radius:999px">w5</span><span style="font:800 19px/1.2 Nunito,sans-serif">Перед прогулкой</span></div>
+        <div style="font-size:13.5px;line-height:1.45;color:#64658E;text-wrap:pretty;min-height:39px">Короткая настройка вместо пустого старта: безопасность, наушники, режим подсказок. Старт — когда вышел за дверь.</div>
+      </div>
+      <div style="width:360px;height:780px;background:#1E1E22;border-radius:44px;padding:8px;box-sizing:border-box">
+        <div style="width:100%;height:100%;border-radius:37px;overflow:hidden;position:relative;background:linear-gradient(180deg,#F5F9FF 0%,#CCE0FF 100%);display:flex;flex-direction:column;padding:44px 20px 24px;box-sizing:border-box">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+            <div style="width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-x" style="font-size:20px;color:#3E3F68"></i></div>
+            <div style="width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center"><i class="ph ph-heart" style="font-size:20px;color:#3E3F68"></i></div>
+          </div>
+          <div style="margin-top:14px;display:flex;flex-direction:column;gap:8px">
+            <div style="font:800 28px/1.15 Nunito,sans-serif;color:#24508F;letter-spacing:-.3px">Прогулка пяти чувств</div>
+            <div style="font-size:14px;font-weight:700;color:#64658E">20 мин · 8 этапов · на улице</div>
+          </div>
+          <div style="margin-top:18px;display:flex;justify-content:space-between">
+            <div style="width:36px;height:36px;border-radius:50%;background:rgba(134,186,255,.45);display:flex;align-items:center;justify-content:center"><i class="ph ph-footprints" style="font-size:18px;color:#24508F"></i></div>
+            <div style="width:36px;height:36px;border-radius:50%;background:rgba(134,186,255,.45);display:flex;align-items:center;justify-content:center"><i class="ph ph-ear" style="font-size:18px;color:#24508F"></i></div>
+            <div style="width:36px;height:36px;border-radius:50%;background:rgba(134,186,255,.45);display:flex;align-items:center;justify-content:center"><i class="ph ph-eye" style="font-size:18px;color:#24508F"></i></div>
+            <div style="width:36px;height:36px;border-radius:50%;background:rgba(134,186,255,.45);display:flex;align-items:center;justify-content:center"><i class="ph ph-wind" style="font-size:18px;color:#24508F"></i></div>
+            <div style="width:36px;height:36px;border-radius:50%;background:rgba(134,186,255,.45);display:flex;align-items:center;justify-content:center"><i class="ph ph-person-simple-walk" style="font-size:18px;color:#24508F"></i></div>
+            <div style="width:36px;height:36px;border-radius:50%;background:rgba(134,186,255,.45);display:flex;align-items:center;justify-content:center"><i class="ph ph-sparkle" style="font-size:18px;color:#24508F"></i></div>
+            <div style="width:36px;height:36px;border-radius:50%;background:rgba(134,186,255,.45);display:flex;align-items:center;justify-content:center"><i class="ph ph-circles-three" style="font-size:18px;color:#24508F"></i></div>
+            <div style="width:36px;height:36px;border-radius:50%;background:rgba(134,186,255,.45);display:flex;align-items:center;justify-content:center"><i class="ph ph-flower-lotus" style="font-size:18px;color:#24508F"></i></div>
+          </div>
+
+          <div style="margin-top:20px;background:rgba(255,255,255,.8);border-radius:22px;padding:6px 16px;display:flex;flex-direction:column">
+            <div style="display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid rgba(36,80,143,.1)"><i class="ph ph-eye" style="flex:none;font-size:20px;color:#24508F"></i><div style="font-size:14px;line-height:1.4;font-weight:600;color:#3E3F68">Глаза открыты, за дорогой следи как всегда</div></div>
+            <div style="display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid rgba(36,80,143,.1)"><i class="ph ph-headphones" style="flex:none;font-size:20px;color:#24508F"></i><div style="font-size:14px;line-height:1.4;font-weight:600;color:#3E3F68">Один наушник или режим прозрачности — чтобы слышать улицу</div></div>
+            <div style="display:flex;gap:12px;align-items:center;padding:12px 0"><i class="ph ph-device-mobile" style="flex:none;font-size:20px;color:#24508F"></i><div style="font-size:14px;line-height:1.4;font-weight:600;color:#3E3F68">Телефон можно убрать в карман</div></div>
+          </div>
+
+          <div style="margin-top:18px;display:flex;flex-direction:column;gap:8px">
+            <div style="font-size:13px;font-weight:800;color:#64658E">Подсказки</div>
+            <div style="display:flex;gap:2px;padding:4px;border-radius:24px;background:rgba(255,255,255,.5)">
+              <div style="flex:1;height:40px;border-radius:20px;background:#FFFFFF;display:flex;align-items:center;justify-content:center;gap:6px;font-size:14px;font-weight:800;color:#24508F"><i class="ph ph-microphone" style="font-size:17px"></i>Голос и чаша</div>
+              <div style="flex:1;height:40px;border-radius:20px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:14px;font-weight:800;color:#64658E"><i class="ph ph-bell" style="font-size:17px"></i>Только чаша</div>
+            </div>
+          </div>
+          <div style="margin-top:14px;display:flex;align-items:center;justify-content:space-between">
+            <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:#3E3F68"><i class="ph ph-vibrate" style="font-size:20px;color:#24508F"></i>Вибрация на смене этапа</div>
+            <div style="width:46px;height:28px;border-radius:14px;background:#24508F;position:relative"><div style="position:absolute;right:3px;top:3px;width:22px;height:22px;border-radius:50%;background:#FFFFFF"></div></div>
+          </div>
+
+          <div style="flex:1"></div>
+          <div style="height:56px;border-radius:28px;background:#24508F;display:flex;align-items:center;justify-content:center;gap:8px;font:800 17px/1 Nunito,sans-serif;color:#FFFFFF;box-shadow:0 14px 30px -12px rgba(36,80,143,.6)"><i class="ph-fill ph-play" style="font-size:18px"></i>Начать прогулку</div>
+        </div>
+      </div>
+      <div style="font-size:13px;line-height:1.45;color:#64658E;text-wrap:pretty">«Только чаша» — для тех, кто уже знает порядок: 8 ударов чаши и тишина, как таймер медитации. Вибрация выручает на шумной улице, когда чашу не слышно.</div>
+    </div>
+
+  </div>
+</section>
+</x-dc>
+</body>
+</html>
