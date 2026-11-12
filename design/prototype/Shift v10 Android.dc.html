@@ -112,13 +112,13 @@ button{font-family:inherit;color:inherit}button:focus:not(:focus-visible){outlin
           <div style="display:flex;flex-direction:column;gap:10px">
             <div style="display:flex;align-items:center;justify-content:space-between;gap:10px"><div style="font:800 18px/1.2 Nunito,sans-serif">На сегодня</div><sc-if value="{{ pref.on }}" hint-placeholder-val="{{ false }}"><button onClick="{{ pref.edit }}" style="border:none;cursor:pointer;height:32px;padding:0 12px 0 8px;border-radius:16px;background:{{ pref.soft }};color:{{ t.ink }};font-size:13px;font-weight:700;display:flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:50%;background:{{ pref.color }}"></span>{{ pref.name }}</button></sc-if></div>
             <sc-for list="{{ dailyClean }}" as="p" hint-placeholder-count="3">
-              <button onClick="{{ p.open }}" style="flex:none;border:none;cursor:pointer;text-align:left;background:{{ t.card }};border-radius:20px;padding:12px 16px 12px 12px;display:flex;align-items:center;gap:14px">
+              <button onClick="{{ p.open }}" style="flex:none;border:none;cursor:pointer;text-align:left;background:{{ t.card }};border-radius:20px;padding:12px 16px 12px 12px;display:flex;align-items:center;gap:14px;box-shadow:{{ p.ownRing }}">
                 <div style="width:48px;height:48px;flex:none;border-radius:16px;background:{{ p.soft }};display:flex;align-items:center;justify-content:center">
                   <sc-if value="{{ p.hasTech }}" hint-placeholder-val="{{ false }}"><svg width="52" height="52" viewBox="-2 -2 56 56"><path d="{{ p.wave }}" fill="none" stroke="{{ p.deep }}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></sc-if>
                   <sc-if value="{{ p.noTech }}" hint-placeholder-val="{{ true }}"><i class="ph {{ p.icon }}" style="font-size:24px;line-height:1;color:{{ p.deep }}"></i></sc-if>
                 </div>
                 <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:3px">
-                  <div style="display:flex;align-items:center;gap:6px"><span style="font-weight:800;font-size:15px;color:{{ t.ink }}">{{ p.title }}</span><sc-if value="{{ p.locked }}" hint-placeholder-val="{{ false }}"><i class="ph-fill ph-lock-simple" aria-label="Shift Plus" style="font-size:14px;color:{{ t.muted }}"></i></sc-if></div>
+                  <sc-if value="{{ p.own }}" hint-placeholder-val="{{ false }}"><div style="font-size:11px;font-weight:800;letter-spacing:1px;color:{{ p.ownFg }}">ТВОЯ ПРАКТИКА</div></sc-if><div style="display:flex;align-items:center;gap:6px"><span style="font-weight:800;font-size:15px;color:{{ t.ink }}">{{ p.title }}</span><sc-if value="{{ p.locked }}" hint-placeholder-val="{{ false }}"><i class="ph-fill ph-lock-simple" aria-label="Shift Plus" style="font-size:14px;color:{{ t.muted }}"></i></sc-if></div>
                   <div style="font-size:13px;color:{{ t.muted }}">{{ p.meta }}</div>
                 </div>
                 <i class="ph ph-caret-right" style="font-size:20px;color:{{ t.label }};flex:none"></i>
@@ -185,10 +185,10 @@ button{font-family:inherit;color:inherit}button:focus:not(:focus-visible){outlin
           <div style="display:flex;flex-direction:column;gap:10px">
             <div style="font-size:14px;font-weight:700;color:{{ t.muted2 }}">Или</div>
             <sc-for list="{{ alts }}" as="p" hint-placeholder-count="2">
-              <button onClick="{{ p.open }}" style="flex:none;border:none;cursor:pointer;text-align:left;background:{{ t.card }};border-radius:20px;padding:12px 16px 12px 12px;display:flex;align-items:center;gap:14px">
+              <button onClick="{{ p.open }}" style="flex:none;border:none;cursor:pointer;text-align:left;background:{{ t.card }};border-radius:20px;padding:12px 16px 12px 12px;display:flex;align-items:center;gap:14px;box-shadow:{{ p.ownRing }}">
                 <div style="width:48px;height:48px;flex:none;border-radius:16px;background:{{ p.soft }};display:flex;align-items:center;justify-content:center"><div style="width:24px;height:24px;border-radius:50%;background:{{ p.color }}"></div></div>
                 <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:3px">
-                  <div style="display:flex;align-items:center;gap:6px"><span style="font-weight:800;font-size:15px;color:{{ t.ink }}">{{ p.title }}</span><sc-if value="{{ p.locked }}" hint-placeholder-val="{{ false }}"><i class="ph-fill ph-lock-simple" aria-label="Shift Plus" style="font-size:14px;color:{{ t.muted }}"></i></sc-if></div>
+                  <sc-if value="{{ p.own }}" hint-placeholder-val="{{ false }}"><div style="font-size:11px;font-weight:800;letter-spacing:1px;color:{{ p.ownFg }}">ТВОЯ ПРАКТИКА</div></sc-if><div style="display:flex;align-items:center;gap:6px"><span style="font-weight:800;font-size:15px;color:{{ t.ink }}">{{ p.title }}</span><sc-if value="{{ p.locked }}" hint-placeholder-val="{{ false }}"><i class="ph-fill ph-lock-simple" aria-label="Shift Plus" style="font-size:14px;color:{{ t.muted }}"></i></sc-if></div>
                   <div style="font-size:13px;color:{{ t.muted }}">{{ p.meta }}</div>
                 </div>
               </button>
@@ -461,21 +461,11 @@ button{font-family:inherit;color:inherit}button:focus:not(:focus-visible){outlin
       <sc-if value="{{ isCatalogFeed }}" hint-placeholder-val="{{ false }}">
         <div style="position:absolute;inset:0;overflow-y:auto;padding:62px 20px 140px;display:flex;flex-direction:column;gap:22px">
           <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
-            <div style="font:800 26px/1.15 Nunito,sans-serif">Каталог</div>
-            <div style="position:relative">
-              <button onClick="{{ toggleCatAdd }}" aria-label="Создать" style="width:44px;height:44px;border-radius:50%;border:none;cursor:pointer;background:{{ t.card }};display:flex;align-items:center;justify-content:center"><i class="ph ph-plus" style="font-size:20px;color:{{ t.ink }}"></i></button>
-              <sc-if value="{{ catAddOpen }}" hint-placeholder-val="{{ false }}">
-                <div style="position:absolute;right:0;top:46px;z-index:5;min-width:200px;background:{{ t.card }};border-radius:20px;padding:6px;box-shadow:0 18px 40px -12px rgba(20,25,60,.32);display:flex;flex-direction:column">
-                  <div style="padding:8px 12px 4px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:{{ t.label }}">Своя практика</div>
-                  <button onClick="{{ addTech }}" style="border:none;background:none;cursor:pointer;text-align:left;padding:11px 12px;border-radius:12px;font-size:14px;font-weight:700;color:{{ t.ink }};display:flex;align-items:center;gap:10px"><i class="ph ph-sparkle" style="font-size:20px;color:{{ t.accentText }}"></i>Дыхательный ритм</button>
-                  <button onClick="{{ addProg }}" style="border:none;background:none;cursor:pointer;text-align:left;padding:11px 12px;border-radius:12px;font-size:14px;font-weight:700;color:{{ t.ink }};display:flex;align-items:center;gap:10px"><i class="ph ph-stack" style="font-size:20px;color:{{ t.accentText }}"></i>Из нескольких практик</button>
-                </div>
-              </sc-if>
-            </div>
+            <div style="font:800 26px/1.15 Nunito,sans-serif">Библиотека</div>
           </div>
           <div style="flex:none;height:44px;border-radius:22px;background:{{ t.card }};box-shadow:0 0 0 2px {{ srch.ring }};display:flex;align-items:center;gap:10px;padding:0 8px 0 16px;margin-top:-6px;transition:box-shadow .2s">
             <i class="ph ph-magnifying-glass" style="font-size:20px;color:{{ t.muted }}"></i>
-            <input value="{{ srch.q }}" onChange="{{ srch.setQ }}" placeholder="Поиск" aria-label="Поиск по каталогу" style="flex:1;min-width:0;border:none;outline:none;background:none;font:600 15px Nunito,sans-serif;color:{{ t.ink }}">
+            <input value="{{ srch.q }}" onChange="{{ srch.setQ }}" placeholder="Поиск" aria-label="Поиск по библиотеке" style="flex:1;min-width:0;border:none;outline:none;background:none;font:600 15px Nunito,sans-serif;color:{{ t.ink }}">
             <sc-if value="{{ srch.hasQ }}" hint-placeholder-val="{{ false }}"><button onClick="{{ srch.clear }}" aria-label="Очистить" style="width:28px;height:28px;flex:none;border:none;border-radius:50%;background:{{ t.subtle }};cursor:pointer;display:flex;align-items:center;justify-content:center;color:{{ t.muted }};font-size:16px;line-height:1">×</button></sc-if>
           </div>
           <sc-if value="{{ srch.active }}" hint-placeholder-val="{{ false }}">
@@ -512,25 +502,38 @@ button{font-family:inherit;color:inherit}button:focus:not(:focus-visible){outlin
             </sc-if>
           </sc-if>
           <sc-if value="{{ srch.idle }}" hint-placeholder-val="{{ true }}">
-          <div style="display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:-10px -20px 0;padding:0 20px;flex:none">
+          <div role="tablist" style="display:flex;gap:24px;flex:none;margin-top:-10px;box-shadow:inset 0 -1px 0 {{ t.divider }}">
+            <sc-for list="{{ libTabs }}" as="lt" hint-placeholder-count="3">
+              <button onClick="{{ lt.pick }}" role="tab" style="border:none;background:none;cursor:pointer;padding:8px 0 11px;font:800 16px/1.2 Nunito,sans-serif;color:{{ lt.fg }};box-shadow:inset 0 -2.5px 0 {{ lt.line }}">{{ lt.name }}</button>
+            </sc-for>
+          </div>
+          <sc-if value="{{ hasChips }}" hint-placeholder-val="{{ true }}"><div style="display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:-8px -20px 0;padding:0 20px;flex:none">
             <sc-for list="{{ filterOpts }}" as="g" hint-placeholder-count="5">
               <button onClick="{{ g.pick }}" aria-label="{{ g.aria }}" style="flex:none;border:none;cursor:pointer;height:40px;min-width:40px;padding:{{ g.pad }};border-radius:20px;font-size:13px;font-weight:700;white-space:nowrap;background:{{ g.bg }};color:{{ g.fg }};display:flex;align-items:center;justify-content:center"><sc-if value="{{ g.heart }}" hint-placeholder-val="{{ false }}"><i class="ph ph-heart" style="font-size:18px"></i></sc-if>{{ g.name }}</button>
             </sc-for>
-          </div>
+          </div></sc-if>
           <sc-if value="{{ hasMine }}" hint-placeholder-val="{{ true }}">
-            <div style="display:flex;flex-direction:column;gap:8px;margin-top:-4px">
-              <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:{{ t.label }}">Инструменты и мои практики</div>
-              <div style="display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -20px;padding:0 20px"><sc-for list="{{ mineStrip }}" as="rp" hint-placeholder-count="3"><button onClick="{{ rp.open }}" style="flex:none;width:158px;box-sizing:border-box;border:none;cursor:pointer;text-align:left;background:{{ t.card }};border-radius:18px;padding:10px 12px 10px 10px;display:flex;align-items:center;gap:10px"><span style="width:36px;height:36px;flex:none;border-radius:12px;background:{{ rp.soft }};display:flex;align-items:center;justify-content:center"><sc-if value="{{ rp.noLotus }}" hint-placeholder-val="{{ true }}"><i class="{{ rp.iconCls }}" style="font-size:20px;line-height:1;color:{{ rp.deep }}"></i></sc-if><sc-if value="{{ rp.isLotus }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 256 256" style="width:20px;height:20px;display:block;color:{{ rp.deep }}" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><path d="M128 35 C93 70 93 141 128 186 C163 141 163 70 128 35 Z"></path><path d="M108 181 C73 173 40 146 33 100 C65 100 93 115 108 136"></path><path d="M148 181 C183 173 216 146 223 100 C191 100 163 115 148 136"></path><path d="M38 221 L218 221"></path></svg></sc-if></span><span style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font:800 13.5px/1.2 Nunito,sans-serif;color:{{ t.ink }};overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow-wrap:anywhere">{{ rp.title }}</span><span style="font-size:12px;font-weight:700;color:{{ t.muted }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ rp.range }}</span></span></button></sc-for><button onClick="{{ toggleCatAdd }}" style="flex:none;width:158px;box-sizing:border-box;border:none;cursor:pointer;text-align:left;background:none;border-radius:18px;padding:10px;display:flex;align-items:center;gap:10px;box-shadow:inset 0 0 0 1.5px {{ t.line }}"><span style="width:36px;height:36px;flex:none;border-radius:12px;display:flex;align-items:center;justify-content:center"><i class="ph ph-plus" style="font-size:20px;color:{{ t.accentText }}"></i></span><span style="font:800 13.5px/1.2 Nunito,sans-serif;color:{{ t.accentText }}">Своя практика</span></button></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:-6px"><sc-for list="{{ mineStrip }}" as="rp" hint-placeholder-count="3"><button onClick="{{ rp.open }}" style="min-width:0;box-sizing:border-box;border:none;cursor:pointer;text-align:left;background:{{ t.card }};border-radius:18px;padding:10px 12px 10px 10px;display:flex;align-items:center;gap:10px"><span style="width:36px;height:36px;flex:none;border-radius:12px;background:{{ rp.soft }};display:flex;align-items:center;justify-content:center"><sc-if value="{{ rp.noLotus }}" hint-placeholder-val="{{ true }}"><i class="{{ rp.iconCls }}" style="font-size:20px;line-height:1;color:{{ rp.deep }}"></i></sc-if><sc-if value="{{ rp.isLotus }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 256 256" style="width:20px;height:20px;display:block;color:{{ rp.deep }}" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><path d="M128 35 C93 70 93 141 128 186 C163 141 163 70 128 35 Z"></path><path d="M108 181 C73 173 40 146 33 100 C65 100 93 115 108 136"></path><path d="M148 181 C183 173 216 146 223 100 C191 100 163 115 148 136"></path><path d="M38 221 L218 221"></path></svg></sc-if></span><span style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font:800 13.5px/1.2 Nunito,sans-serif;color:{{ t.ink }};overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow-wrap:anywhere">{{ rp.title }}</span><span style="font-size:12px;font-weight:700;color:{{ t.muted }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ rp.range }}</span></span></button></sc-for></div>
+          </sc-if>
+          <sc-if value="{{ isMy }}" hint-placeholder-val="{{ false }}">
+            <div style="position:relative;margin-top:-6px;flex:none">
+              <button onClick="{{ toggleCatAdd }}" style="width:100%;height:52px;border:none;cursor:pointer;background:none;border-radius:18px;box-shadow:inset 0 0 0 1.5px {{ t.line }};display:flex;align-items:center;justify-content:center;gap:8px;font:800 15px Nunito,sans-serif;color:{{ t.accentText }}"><i class="ph ph-plus" style="font-size:18px"></i>Создать практику</button>
+              <sc-if value="{{ catAddOpen }}" hint-placeholder-val="{{ false }}">
+                <div style="position:absolute;left:0;right:0;top:58px;z-index:5;min-width:200px;background:{{ t.card }};border-radius:20px;padding:6px;box-shadow:0 18px 40px -12px rgba(20,25,60,.32);display:flex;flex-direction:column">
+                  <div style="padding:8px 12px 4px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:{{ t.label }}">Своя практика</div>
+                  <button onClick="{{ addTech }}" style="border:none;background:none;cursor:pointer;text-align:left;padding:11px 12px;border-radius:12px;font-size:14px;font-weight:700;color:{{ t.ink }};display:flex;align-items:center;gap:10px"><i class="ph ph-sparkle" style="font-size:20px;color:{{ t.accentText }}"></i>Дыхательный ритм</button>
+                  <button onClick="{{ addProg }}" style="border:none;background:none;cursor:pointer;text-align:left;padding:11px 12px;border-radius:12px;font-size:14px;font-weight:700;color:{{ t.ink }};display:flex;align-items:center;gap:10px"><i class="ph ph-stack" style="font-size:20px;color:{{ t.accentText }}"></i>Из нескольких практик</button>
+                </div>
+              </sc-if>
             </div>
           </sc-if>
           <sc-if value="{{ hasCourses }}" hint-placeholder-val="{{ true }}">
             <div style="display:flex;flex-direction:column;gap:8px;margin-top:-8px">
-              <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:{{ t.label }}">Курсы</div>
-              <div style="display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -20px;padding:0 20px">
+              <div style="display:flex;flex-direction:column;gap:8px">
                 <sc-for list="{{ courseCards }}" as="cc" hint-placeholder-count="3">
-                  <button onClick="{{ cc.open }}" style="flex:none;width:236px;border:none;cursor:pointer;text-align:left;background:{{ t.card }};border-radius:22px;padding:14px;display:flex;flex-direction:column;gap:10px">
+                  <button onClick="{{ cc.open }}" style="flex:none;width:100%;box-sizing:border-box;border:none;cursor:pointer;text-align:left;background:{{ t.card }};border-radius:22px;padding:16px;display:flex;flex-direction:column;gap:10px">
                     <span style="display:flex;align-items:center;gap:10px"><span style="width:40px;height:40px;flex:none;border-radius:13px;background:{{ cc.soft }};display:flex;align-items:center;justify-content:center"><i class="ph ph-calendar-check" style="font-size:21px;color:{{ cc.deep }}"></i></span><span style="flex:1;min-width:0;font:800 15px/1.25 Nunito,sans-serif;color:{{ t.ink }};text-wrap:balance">{{ cc.name }}</span></span>
-                    <span style="font-size:13px;line-height:1.35;color:{{ t.muted }};min-height:35px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;text-wrap:pretty">{{ cc.line }}</span>
+                    <span style="font-size:13px;line-height:1.35;color:{{ t.muted }};text-wrap:pretty">{{ cc.line }}</span>
                     <span style="display:flex;gap:3px"><sc-for list="{{ cc.segs }}" as="sg" hint-placeholder-count="7"><span style="flex:1;height:4px;border-radius:2px;background:{{ sg.bg }}"></span></sc-for></span>
                     <span style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span style="font-size:12px;font-weight:800;color:{{ t.muted2 }};white-space:nowrap">{{ cc.state }}</span><span style="height:32px;padding:0 14px;border-radius:16px;background:{{ cc.btnBg }};color:{{ cc.btnFg }};display:flex;align-items:center;font-size:13px;font-weight:800;white-space:nowrap">{{ cc.btn }}</span></span>
                   </button>
@@ -541,7 +544,7 @@ button{font-family:inherit;color:inherit}button:focus:not(:focus-visible){outlin
           <div style="display:flex;flex-direction:column;gap:8px;margin-top:-12px">
             <sc-for list="{{ feedGroups }}" as="fg" hint-placeholder-count="3">
               <div style="display:flex;flex-direction:column;gap:8px">
-                <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:{{ t.label }};margin-top:6px">{{ fg.name }}</div>
+                <sc-if value="{{ fg.hasName }}" hint-placeholder-val="{{ true }}"><div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:{{ t.label }};margin-top:6px">{{ fg.name }}</div></sc-if>
             <sc-for list="{{ fg.items }}" as="p" hint-placeholder-count="2">
               <div onClick="{{ p.open }}" style="cursor:pointer;background:{{ t.card }};border-radius:22px;padding:16px;display:flex;align-items:center;gap:14px">
                 <div style="width:48px;height:48px;flex:none;border-radius:16px;background:{{ p.soft }};display:flex;align-items:center;justify-content:center">
@@ -569,6 +572,35 @@ button{font-family:inherit;color:inherit}button:focus:not(:focus-visible){outlin
         </div>
       </sc-if>
 
+      <!-- ARTICLE -->
+      <sc-if value="{{ isArticle }}" hint-placeholder-val="{{ false }}">
+        <div data-screen-label="Материал" style="position:absolute;inset:0;overflow-y:auto;padding:0 20px 56px;display:flex;flex-direction:column;gap:14px">
+          <div style="position:sticky;top:0;z-index:6;flex:none;background:{{ t.bg }};margin:0 -20px;padding:62px 20px 6px;display:flex;align-items:center"><button onClick="{{ art.back }}" aria-label="Назад" style="width:44px;height:44px;flex:none;border-radius:50%;border:none;background:{{ t.card }};cursor:pointer;display:flex;align-items:center;justify-content:center"><div style="width:10px;height:10px;border-left:2.5px solid {{ t.ink }};border-bottom:2.5px solid {{ t.ink }};transform:rotate(45deg);margin-left:4px"></div></button></div>
+          <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:{{ t.label }}">{{ art.kicker }}</div>
+          <div style="display:flex;align-items:flex-start;gap:8px;margin-top:-6px"><div style="flex:1;min-width:0;font:800 26px/1.15 Nunito,sans-serif;color:{{ t.ink }};text-wrap:balance">{{ art.title }}</div><button onClick="{{ art.tglFav }}" aria-label="{{ art.favLabel }}" style="width:44px;height:44px;flex:none;border:none;background:none;margin:-8px -10px -8px 0;cursor:pointer;display:flex;align-items:center;justify-content:center"><i class="{{ art.favIcon }}" style="font-size:24px;color:{{ art.favIc }}"></i></button></div>
+          <div style="font-size:16px;line-height:1.45;color:{{ t.muted }};text-wrap:pretty">{{ art.line }}</div>
+          <sc-if value="{{ art.isVideo }}" hint-placeholder-val="{{ false }}">
+            <div style="position:relative;flex:none;aspect-ratio:16/9;border-radius:22px;background:{{ art.vbg }};display:flex;align-items:center;justify-content:center;margin-top:4px"><span style="width:64px;height:64px;border-radius:50%;background:{{ t.accent }};display:flex;align-items:center;justify-content:center"><i class="ph ph-play" style="font-size:26px;color:#fff"></i></span></div>
+          </sc-if>
+          <sc-for list="{{ art.blocks }}" as="b" hint-placeholder-count="3">
+            <sc-if value="{{ b.h }}" hint-placeholder-val="{{ false }}"><div style="font:800 18px/1.25 Nunito,sans-serif;color:{{ t.ink }};margin-top:8px">{{ b.t }}</div></sc-if>
+            <sc-if value="{{ b.p }}" hint-placeholder-val="{{ true }}"><div style="font-size:16px;line-height:1.6;color:{{ t.ink }};text-wrap:pretty">{{ b.t }}</div></sc-if>
+          </sc-for>
+          <sc-if value="{{ art.hasRel }}" hint-placeholder-val="{{ true }}">
+            <div style="display:flex;flex-direction:column;gap:8px;margin-top:14px">
+              <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:{{ t.label }}">Попробовать</div>
+              <sc-for list="{{ art.rel }}" as="rp" hint-placeholder-count="2">
+                <button onClick="{{ rp.open }}" style="border:none;cursor:pointer;text-align:left;background:{{ t.card }};border-radius:22px;padding:12px 16px 12px 12px;display:flex;align-items:center;gap:14px">
+                  <span style="width:48px;height:48px;flex:none;border-radius:16px;background:{{ rp.soft }};display:flex;align-items:center;justify-content:center"><sc-if value="{{ rp.hasWave }}" hint-placeholder-val="{{ false }}"><svg width="52" height="52" viewBox="0 0 52 52"><path d="{{ rp.wave }}" fill="none" stroke="{{ rp.deep }}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></sc-if><sc-if value="{{ rp.noWave }}" hint-placeholder-val="{{ true }}"><i class="{{ rp.icon }}" style="font-size:24px;line-height:1;color:{{ rp.deep }}"></i></sc-if></span>
+                  <span style="flex:1;min-width:0;font-weight:800;font-size:15px;line-height:1.25;color:{{ t.ink }}">{{ rp.title }}</span>
+                  <span style="flex:none;font-size:12px;font-weight:800;color:{{ t.muted2 }};white-space:nowrap">{{ rp.range }}</span>
+                </button>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+      </sc-if>
+
       <!-- HIDDEN PRACTICES -->
       <sc-if value="{{ isHiddenScr }}" hint-placeholder-val="{{ false }}">
         <div data-screen-label="Скрытое" style="position:absolute;inset:0;overflow-y:auto;padding:0 20px 40px;display:flex;flex-direction:column;gap:12px">
@@ -577,7 +609,7 @@ button{font-family:inherit;color:inherit}button:focus:not(:focus-visible){outlin
               <button onClick="{{ hidBack }}" aria-label="Назад" style="width:44px;height:44px;flex:none;border-radius:50%;border:none;background:{{ t.card }};cursor:pointer;display:flex;align-items:center;justify-content:center"><div style="width:10px;height:10px;border-left:2.5px solid {{ t.ink }};border-bottom:2.5px solid {{ t.ink }};transform:rotate(45deg);margin-left:4px"></div></button>
               <div style="font:800 26px/1.15 Nunito,sans-serif">Скрытое</div>
             </div>
-            <div style="font-size:13px;line-height:1.45;color:{{ t.muted }};text-wrap:pretty">Практики, которые ты попросил не предлагать. Вернёшь — снова появятся в Каталоге и подборках.</div>
+            <div style="font-size:13px;line-height:1.45;color:{{ t.muted }};text-wrap:pretty">Практики, которые ты попросил не предлагать. Вернёшь — снова появятся в Библиотеке и подборках.</div>
           </div>
           <sc-for list="{{ hidGroups }}" as="hg" hint-placeholder-count="1">
           <div style="display:flex;flex-direction:column;gap:8px">
@@ -632,7 +664,7 @@ button{font-family:inherit;color:inherit}button:focus:not(:focus-visible){outlin
                 <sc-if value="{{ dy.isCur }}" hint-placeholder-val="{{ false }}"><button onClick="{{ dy.start }}" style="border:none;cursor:pointer;height:40px;padding:0 16px;border-radius:20px;background:{{ t.accent }};color:#fff;font-size:14px;font-weight:800;white-space:nowrap">Начать</button></sc-if><sc-if value="{{ dy.isLock }}" hint-placeholder-val="{{ false }}"><button onClick="{{ dy.unlock }}" style="border:none;cursor:pointer;height:40px;padding:0 14px;border-radius:20px;background:{{ t.second }};color:{{ t.ink }};font-size:14px;font-weight:800;white-space:nowrap;display:flex;align-items:center;gap:6px"><i class="ph-fill ph-lock-simple" style="font-size:14px"></i>Plus</button></sc-if><sc-if value="{{ dy.isWait }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;align-items:flex-end;gap:2px;flex:none"><span style="font-size:13px;font-weight:800;color:{{ t.muted }}">Завтра</span><button onClick="{{ dy.force }}" style="border:none;background:none;cursor:pointer;padding:0;font-size:12px;font-weight:700;color:{{ t.muted2 }}">открыть (демо)</button></div></sc-if>
               </div>
             </sc-for>
-            <sc-if value="{{ cv.finished }}" hint-placeholder-val="{{ false }}"><div style="background:{{ t.summary }};border-radius:22px;padding:16px;font-size:14px;line-height:1.5;color:{{ t.body2 }}">Курс пройден. Практики остаются в каталоге — возвращайся к тем, что сдвигали сильнее.</div></sc-if>
+            <sc-if value="{{ cv.finished }}" hint-placeholder-val="{{ false }}"><div style="background:{{ t.summary }};border-radius:22px;padding:16px;font-size:14px;line-height:1.5;color:{{ t.body2 }}">Курс пройден. Практики остаются в библиотеке — возвращайся к тем, что сдвигали сильнее.</div></sc-if>
           </div>
         </div>
       </sc-if>
@@ -1136,6 +1168,12 @@ button{font-family:inherit;color:inherit}button:focus:not(:focus-visible){outlin
               <sc-if value="{{ editIsNew }}" hint-placeholder-val="{{ true }}"></sc-if>
             </div>
             <input value="{{ edit.name }}" onChange="{{ setName }}" placeholder="Название практики" style="font:800 26px/1.2 Nunito,sans-serif;color:{{ t.ink }};border:none;border-bottom:2px solid {{ t.line }};background:transparent;padding:6px 0 10px;outline:none;width:100%">
+            <div style="flex:none;display:flex;flex-direction:column;gap:10px;margin-top:-6px">
+              <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:{{ t.label }}">Цель</div>
+              <div style="display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -20px;padding:0 20px;flex:none">
+                <sc-for list="{{ wh.goals }}" as="g" hint-placeholder-count="4"><button onClick="{{ g.pick }}" aria-pressed="{{ g.pressed }}" style="flex:none;height:40px;padding:0 16px;border-radius:20px;cursor:pointer;font-size:14px;font-weight:800;white-space:nowrap;display:flex;align-items:center;gap:8px;background:{{ g.bg }};color:{{ g.fg }};border:1.5px solid {{ g.bd }}"><span style="width:10px;height:10px;border-radius:50%;flex:none;background:{{ g.dot }}"></span>{{ g.name }}</button></sc-for>
+              </div>
+            </div>
             <sc-if value="{{ editSaved }}" hint-placeholder-val="{{ false }}">
               <div style="display:flex;gap:8px">
                 <button onClick="{{ dupTech }}" style="border:none;cursor:pointer;height:40px;padding:0 14px;border-radius:14px;background:{{ t.card }};font-size:13px;font-weight:800;color:{{ t.ink }}">Дублировать</button>
@@ -1250,6 +1288,12 @@ button{font-family:inherit;color:inherit}button:focus:not(:focus-visible){outlin
               <sc-if value="{{ peIsNew }}" hint-placeholder-val="{{ true }}"></sc-if>
             </div>
             <input value="{{ pe.name }}" onChange="{{ setProgName }}" placeholder="Название практики" style="font:800 26px/1.2 Nunito,sans-serif;color:{{ t.ink }};border:none;border-bottom:2px solid {{ t.line }};background:transparent;padding:6px 0 10px;outline:none;width:100%">
+            <div style="flex:none;display:flex;flex-direction:column;gap:10px;margin-top:-6px">
+              <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:{{ t.label }}">Цель</div>
+              <div style="display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -20px;padding:0 20px;flex:none">
+                <sc-for list="{{ wh.goals }}" as="g" hint-placeholder-count="4"><button onClick="{{ g.pick }}" aria-pressed="{{ g.pressed }}" style="flex:none;height:40px;padding:0 16px;border-radius:20px;cursor:pointer;font-size:14px;font-weight:800;white-space:nowrap;display:flex;align-items:center;gap:8px;background:{{ g.bg }};color:{{ g.fg }};border:1.5px solid {{ g.bd }}"><span style="width:10px;height:10px;border-radius:50%;flex:none;background:{{ g.dot }}"></span>{{ g.name }}</button></sc-for>
+              </div>
+            </div>
             <div style="font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:{{ t.label }}">Шаги</div>
             <sc-if value="{{ pe.empty }}" hint-placeholder-val="{{ false }}"><div style="font-size:13px;color:{{ t.muted }};line-height:1.5">Добавь практику или паузу — они пройдут одной сессией.</div></sc-if>
             <sc-for list="{{ peSteps }}" as="st" hint-placeholder-count="3">
@@ -1778,8 +1822,8 @@ button{font-family:inherit;color:inherit}button:focus:not(:focus-visible){outlin
             <span style="font-size:11px;font-weight:800;color:{{ navColor.today }}">Сегодня</span>
           </button>
           <button onClick="{{ tabCatalog }}" style="flex:1;border:none;background:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 0;border-radius:22px">
-            <i class="{{ navIcon.catalog }} ph-squares-four" style="font-size:24px;line-height:1;color:{{ navColor.catalog }}"></i>
-            <span style="font-size:11px;font-weight:800;color:{{ navColor.catalog }}">Каталог</span>
+            <i class="{{ navIcon.catalog }} ph-books" style="font-size:24px;line-height:1;color:{{ navColor.catalog }}"></i>
+            <span style="font-size:11px;font-weight:800;color:{{ navColor.catalog }}">Библиотека</span>
           </button>
           <button onClick="{{ tabProgress }}" style="flex:1;border:none;background:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 0;border-radius:22px">
             <span style="width:24px;height:24px;display:flex;align-items:flex-end;justify-content:center;gap:3.5px;padding-bottom:2px;box-sizing:border-box;color:{{ navColor.progress }}"><span style="width:3.5px;height:13px;border-radius:2px;background:currentColor"></span><span style="width:3.5px;height:19px;border-radius:2px;background:currentColor"></span><span style="width:3.5px;height:9px;border-radius:2px;background:currentColor"></span></span>
@@ -1856,6 +1900,22 @@ const sNorm = x => (x || '').toLowerCase().replace(/ё/g, 'е');
 const sParts = (text, toks, hl) => { const t = text || '', n = sNorm(t); let ranges = []; toks.forEach(k => { let i = n.indexOf(k); while (i >= 0 && k) { ranges.push([i, i + k.length]); i = n.indexOf(k, i + k.length); } }); if (!ranges.length) return [{ t, bg: 'transparent' }];
   ranges.sort((a, b) => a[0] - b[0]); const m = []; ranges.forEach(r => { const l = m[m.length - 1]; if (l && r[0] <= l[1]) l[1] = Math.max(l[1], r[1]); else m.push([...r]); });
   const out = []; let p = 0; m.forEach(([a, b]) => { if (a > p) out.push({ t: t.slice(p, a), bg: 'transparent' }); out.push({ t: t.slice(a, b), bg: hl }); p = b; }); if (p < t.length) out.push({ t: t.slice(p), bg: 'transparent' }); return out; };
+const KTOP = { sleep: 'Сон', stress: 'Стресс', breath: 'Дыхание', focus: 'Внимание', body: 'Тело' };
+const KNOW = [
+  { id: 'k1', type: 'article', topic: 'breath', title: 'Почему длинный выдох успокаивает', line: 'Что происходит с сердцем, когда выдох длиннее вдоха', pids: ['exhale', 'sighs'], body: [['p', 'На вдохе сердце бьётся чуть быстрее, на выдохе — чуть медленнее. Это обычная работа организма, её называют дыхательной аритмией.'], ['p', 'Когда выдох длиннее вдоха, замедляющая часть цикла занимает больше времени. Тело получает сигнал, что спешить некуда: пульс снижается, напряжение понемногу отпускает.'], ['h', 'Как попробовать'], ['p', 'Вдох на 4 счёта, выдох на 6–8. Хватит двух-трёх минут. Не тяни выдох через силу — он должен оставаться удобным.']] },
+  { id: 'k2', type: 'article', topic: 'sleep', title: 'Как устроен сон: два механизма', line: 'Давление сна и внутренние часы — почему не спится, даже если устал', pids: ['scan', 'exhale'], body: [['p', 'Сном управляют два процесса. Первый — давление сна: чем дольше ты бодрствуешь, тем сильнее хочется спать. Второй — внутренние часы, которые примерно раз в сутки переключают тело между бодростью и отдыхом.'], ['p', 'Засыпать легко, когда оба совпадают: давление высокое, а часы показывают ночь. Долгий дневной сон снижает давление, яркий свет поздним вечером сдвигает часы.'], ['h', 'Что помогает'], ['p', 'Вставать в одно и то же время, видеть дневной свет утром, приглушать свет за час до сна. Практики на расслабление не усыпляют напрямую — они снимают напряжение, которое мешает уснуть.']] },
+  { id: 'k3', type: 'video', topic: 'stress', title: 'Стресс: что происходит в теле', line: 'Реакция «бей или беги» и как из неё выходить', pids: ['sighs', 'ground'], body: [['p', 'В видео — зачем телу реакция на стресс, почему она не выключается сама и что помогает вернуться в спокойное состояние.']] },
+  { id: 'k4', type: 'article', topic: 'focus', title: 'Внимание уходит — и это нормально', line: 'Почему отвлекаться — часть тренировки, а не ошибка', pids: ['anchor', 'box'], body: [['p', 'Во время практики мысли уходят у всех. Тренировка не в том, чтобы не отвлекаться, а в том, чтобы заметить это и вернуться.'], ['p', 'Каждое возвращение — одно повторение, как в спортзале. Десять раз отвлёкся и десять раз вернулся — хорошая сессия.']] },
+  { id: 'k5', type: 'article', topic: 'body', title: 'Зачем гулять без телефона', line: 'Как прогулка с вниманием к ощущениям разгружает голову', pids: ['walk5'], body: [['p', 'На обычной прогулке голова продолжает работать: планы, переписка, новости. Тело идёт, а отдыха нет.'], ['p', 'Если по очереди переключать внимание на звуки, то, что видишь, запахи и шаги, мыслям остаётся меньше места. Двадцати минут обычно хватает, чтобы вернуться с другим настроением.']] },
+  { id: 'k6', type: 'video', topic: 'breath', title: 'Квадратное дыхание: разбор техники', line: 'Как считать, где держать паузу и когда остановиться', pids: ['box'], body: [['p', 'Короткий разбор: ритм 4–4–4–4, как сидеть, что делать, если задержка даётся тяжело.']] },
+  { id: 'k7', type: 'article', topic: 'sleep', title: 'Мысли перед сном: что с ними делать', line: 'Почему спорить с мыслями бесполезно и что работает лучше', pids: ['leaves', 'scan'], body: [['p', 'Чем сильнее стараешься не думать, тем настойчивее мысль возвращается. Попытка «выключить голову» сама становится напряжением.'], ['p', 'Работает другое: замечать мысль и отпускать её, не разбирая. Или занять внимание телом — медленно пройтись им от стоп до макушки.']] },
+  { id: 'k8', type: 'article', topic: 'stress', title: 'Назвать эмоцию: зачем это нужно', line: 'Одно точное слово снижает накал чувства', pids: ['name'], body: [['p', 'Когда называешь чувство словом — «злюсь», «тревожно», «обидно», — оно становится немного слабее. В исследованиях это называют маркировкой эмоций.'], ['p', 'Точность важнее красоты. «Плохо» почти не помогает, «устал и раздражён» — помогает.']] },
+  { id: 'k9', type: 'article', topic: 'body', title: 'Мышечное напряжение и как его отпускать', line: 'Почему сначала напрячь, а потом расслабить — проще, чем сразу расслабить', pids: ['pmr'], body: [['p', 'Команду «расслабься» мышцы выполняют плохо: часто мы не замечаем, что они напряжены.'], ['p', 'Если сначала намеренно напрячь группу мышц на несколько секунд, а потом отпустить, разница становится заметной, и расслабление идёт глубже.']] },
+  { id: 'k10', type: 'article', topic: 'focus', title: 'Как выбрать практику под состояние', line: 'Два вопроса, которые подскажут, с чего начать', pids: ['box', 'exhale'], body: [['p', 'Спроси себя о двух вещах: сколько сейчас энергии и сколько напряжения. Этого достаточно, чтобы выбрать направление.'], ['p', 'Много напряжения — начинай с выдоха и тела. Мало энергии — с движения и активирующего дыхания. Спокойно и бодро — подойдут практики на внимание.']] },
+];
+const KM = Object.fromEntries(KNOW.map(k => [k.id, k]));
+const kMeta = k => k.type === 'video' ? 'Видео' : 'Статья';
+const kIcon = k => k.type === 'video' ? 'ph ph-play-circle' : 'ph ph-article';
 const DIRS = { breath: 'Дыхание', med: 'Медитация', trance: 'Транс', psy: 'Психотехника', body: 'Тело' };
 const P = [
   { id: 'box', title: 'Квадратное дыхание', sub: '4 · 4 · 4 · 4', dir: 'breath', goal: 'focus', min: 2, max: 10, rec: 4, contra: ['Беременность — без задержек','Панические атаки — без задержек','Головокружение — сделай паузу'], line: 'Ровный ритм собирает внимание', why: 'Равные отрезки вдоха, задержки, выдоха и паузы выравнивают ритм и возвращают внимание в одну точку.', tech: [['in', 4], ['hold', 4], ['out', 4], ['holdEmpty', 4]] },
@@ -1879,6 +1939,19 @@ const P = [
   { id: 'walk5', title: 'Прогулка пяти чувств', sub: 'на улице', dir: 'med', goal: 'calm', min: 10, max: 30, rec: 20, durs: [10, 20, 30], contra: ['Глаза открыты — за дорогой следи как всегда', 'Оживлённая улица — один наушник или режим прозрачности'], line: 'Внимательность на ходу', why: 'Восемь коротких этапов: шаг, слух, зрение, воздух, тело, удивительное, всё сразу, остановка. Внимание переходит от чувства к чувству, чаша отмечает смену этапа. Идёшь своим обычным шагом, телефон можно убрать в карман.', effects: ['Возвращает в «здесь и сейчас» на ходу', 'Снижает прокручивание мыслей', 'Обычная прогулка становится отдыхом'], steps: WALK.map(w => w.t + ' — ' + w.cue.charAt(0).toLowerCase() + w.cue.slice(1)), walk: WALK },
 ];
 const PM = Object.fromEntries(P.map(p => [p.id, p]));
+// Подбор: цели практики (1–2) и действие (calm / neutral / up)
+const WHEN = {
+  box: [['focus'], 'calm'], anchor: [['focus'], 'neutral'], onetask: [['focus', 'energy'], 'neutral'], woop: [['focus'], 'neutral'],
+  sighs: [['calm', 'energy'], 'calm'], ground: [['calm'], 'calm'], name: [['calm'], 'calm'], reson: [['calm'], 'calm'], metta: [['calm'], 'calm'], safe: [['calm'], 'calm'], walk5: [['calm'], 'calm'],
+  exhale: [['sleep'], 'calm'], scan: [['sleep'], 'calm'], descent: [['sleep'], 'calm'], pmr: [['sleep'], 'calm'], leaves: [['sleep'], 'calm'],
+  activate: [['energy'], 'up'], move: [['energy'], 'up'], bestself: [['energy'], 'neutral'],
+};
+P.forEach(p => { const w = WHEN[p.id] || [[p.goal], 'neutral']; p.goals = w[0]; p.effect = w[1]; });
+const TOD_GOAL = { morning: 'energy', day: 'focus', evening: 'sleep' };
+const effOf = x => x.effect || ((x.goals || []).some(g => g === 'sleep' || g === 'calm') ? 'calm' : (x.goals || []).length && (x.goals || []).every(g => g === 'energy') ? 'up' : 'neutral');
+const whenGoals = (o, users) => { if (o.goals) return o.goals.slice(0, 1); if (!o.steps) return [];
+  const gs = o.steps.filter(st => st.kind === 'tech').flatMap(st => { const b = PM[st.tid]; if (b) return b.goals.slice(0, 1); const u = (users || []).find(z => z.id === st.tid); return ((u && u.goals) || []).slice(0, 1); });
+  const n = {}; gs.forEach(g => { n[g] = (n[g] || 0) + 1; }); return gs.length ? [gs.reduce((a, g) => n[g] > n[a] ? g : a, gs[0])] : []; };
 const EFF = { box: ['Собирает внимание в одну точку','Успокаивает без сонливости','Выравнивает дыхание после стресса'], anchor: ['Тренирует возвращать внимание','Снижает фоновую тревогу','Помогает замечать, куда уплывают мысли'], onetask: ['Снимает ступор перед задачей','Превращает «надо» в действие','Снижает прокрастинацию'], exhale: ['Замедляет пульс','Готовит тело ко сну','Снимает напряжение в груди и плечах'], scan: ['Глубокий отдых за короткое время','Помогает заснуть','Возвращает чувство тела'], descent: ['Мягкий переход ко сну','Утихомиривает поток мыслей','Расслабляет всё тело'], sighs: ['Быстро снижает острую тревогу','Успокаивает за 1–2 минуты','Возвращает ровное дыхание'], ground: ['Возвращает в настоящий момент','Помогает при наплыве мыслей','Снижает остроту переживаний'], name: ['Снижает накал эмоции','Даёт паузу перед реакцией','Проясняет, что происходит'], activate: ['Бодрит без кофе','Поднимает уровень энергии','Проясняет голову'], move: ['Снимает вялость','Разгоняет кровь после сидения','Возвращает бодрость'], reson: ['Выравнивает сердечный ритм','Снижает стресс','Даёт устойчивое спокойствие'], pmr: ['Снимает мышечные зажимы','Помогает заснуть','Учит отличать напряжение от расслабления'], metta: ['Смягчает самокритику','Добавляет тепла к себе и другим','Снижает раздражение'], safe: ['Даёт ощущение опоры','Снижает тревогу','Создаёт ресурс, к которому можно вернуться'], leaves: ['Помогает отпустить навязчивые мысли','Учит не цепляться за мысли','Готовит ко сну'], woop: ['Превращает желание в план','Готовит к препятствиям заранее','Повышает шанс довести дело до конца'], bestself: ['Поднимает настроение и мотивацию','Проясняет, чего хочется','Добавляет оптимизма'] };
 const PH = { in: 'Вдох', hold: 'Задержка', out: 'Выдох', rest: 'Свободное дыхание', guide: 'Практика', top: 'Довдох', holdEmpty: 'Задержка' };
 const KINDS = ['in', 'out', 'hold', 'top'];
@@ -1923,7 +1996,7 @@ const techOf = (b, tune) => { const T = TUNE[b.id], v = tune && tune[b.id]; retu
 const pCyc = b => b.tech ? b.tech.reduce((a, x) => a + x[1], 0) : 60;
 const unitOf = (b, st) => b.tech ? st.unit : 'min';
 const SEED_U = [
-  { id: 'u1', name: 'Вечерний 4-7-8', blocks: [{ phases: [{ k: 'in', d: 4 }, { k: 'hold', d: 7 }, { k: 'out', d: 8 }], repeats: 8 }], rounds: 1, rest: 0, origin: 'own' },
+  { id: 'u1', name: 'Вечерний 4-7-8', blocks: [{ phases: [{ k: 'in', d: 4 }, { k: 'hold', d: 7 }, { k: 'out', d: 8 }], repeats: 8 }], rounds: 1, rest: 0, origin: 'own', goals: ['sleep'] },
   { id: 'u2', name: 'Три раунда', blocks: [{ phases: [{ k: 'in', d: 1.5 }, { k: 'out', d: 1.5 }], repeats: 30 }, { phases: [{ k: 'holdEmpty', d: 60 }], repeats: 1 }, { phases: [{ k: 'in', d: 2 }, { k: 'hold', d: 15 }], repeats: 1 }], rounds: 3, rest: 30, origin: 'own' },
 ];
 const PROGS = [
@@ -1932,6 +2005,7 @@ const PROGS = [
   { id: 'pr3', name: 'Собраться перед делом', goal: 'focus', builtin: true, steps: [{ kind: 'tech', tid: 'sighs', min: 1 }, { kind: 'tech', tid: 'box', min: 3 }, { kind: 'tech', tid: 'woop', min: 3, unit: 'min' }] },
   { id: 'pr4', name: 'Утренний запуск', goal: 'energy', builtin: true, steps: [{ kind: 'tech', tid: 'activate', min: 2 }, { kind: 'rest', sec: 30 }, { kind: 'tech', tid: 'bestself', min: 3, unit: 'min' }] },
 ];
+PROGS.forEach(p => { p.goals = [p.goal]; });
 const uid = () => 'u' + Math.random().toString(36).slice(2, 9);
 const clone = o => JSON.parse(JSON.stringify(o));
 
@@ -1971,17 +2045,22 @@ function defaultGoal(q, tod) {
   const ev = tod === 'evening';
   return { calmEnergy: 'focus', tenseEnergy: ev ? 'calm' : 'focus', calmTired: ev ? 'sleep' : 'energy', tenseTired: ev ? 'sleep' : 'calm' }[q];
 }
-function recommend(q, goal, tod, minutes) {
+function recommend(q, goal, tod, minutes, own, freeAll, daily) {
   const tense = q === 'tenseEnergy' || q === 'tenseTired';
-  let ids, route;
-  if (goal === 'focus') { ids = tense ? ['box', 'sighs', 'onetask', 'woop'] : ['anchor', 'box', 'onetask', 'woop']; route = tense ? 'Снизим напряжение, энергию сохраним' : 'Удержим ясность'; }
-  else if (goal === 'calm') { ids = ['sighs', 'reson', 'ground', 'name', 'safe', 'metta']; route = 'Снизим напряжение'; }
-  else if (goal === 'sleep') { ids = tense ? ['exhale', 'pmr', 'scan', 'descent'] : ['scan', 'exhale', 'pmr', 'leaves', 'descent']; route = tense ? 'Сначала выдохнуть, потом вниз — ко сну' : 'Мягко вниз — ко сну'; }
-  else { ids = tense ? ['sighs', 'move', 'onetask'] : ['activate', 'move', 'onetask', 'bestself']; route = tense ? 'Сначала 2 мин успокоения, потом вверх' : 'Поднимем энергию'; }
-  if (tod === 'evening' && goal !== 'energy') ids = ids.filter(i => !['activate', 'move'].includes(i));
-  const vis = ids.filter(i => !HID.has(i)); if (vis.length) ids = vis; else { const alt = P.filter(p => p.goal === (goal === 'focus' || goal === 'calm' || goal === 'sleep' ? goal : 'energy') && !HID.has(p.id)).map(p => p.id); if (alt.length) ids = alt.slice(0, 3); }
-  const a = ids.filter(i => PM[i].min <= minutes), b = ids.filter(i => PM[i].min > minutes);
-  return { ids: [...a, ...b], route };
+  const route = goal === 'focus' ? (tense ? 'Снизим напряжение, энергию сохраним' : 'Удержим ясность') : goal === 'calm' ? 'Снизим напряжение' : goal === 'sleep' ? (tense ? 'Сначала выдохнуть, потом вниз — ко сну' : 'Мягко вниз — ко сну') : (tense ? 'Сначала 2 мин успокоения, потом вверх' : 'Поднимем энергию');
+  if (daily && (!goal || (goal === 'sleep' && tod !== 'evening'))) goal = TOD_GOAL[tod];   // «На сегодня»: без цели — по времени суток
+  const ER = { calm: 0, neutral: 1, up: 2 };
+  const mk = (x, i, isOwn) => ({ id: x.id, own: isOwn, kind: x.kind, goals: x.goals || [], eff: effOf(x), min: x.min, free: isOwn || FREE.has(x.id), i });
+  const all = [...P.filter(p => !HID.has(p.id)).map((p, i) => mk(p, i, false)), ...(own || []).map((u, i) => mk(u, 1000 + i, true))].filter(x => x.goals.length);
+  const okEve = x => !(tod === 'evening' && x.eff === 'up' && goal !== 'energy');            // 3
+  const key = x => [tense ? ER[x.eff] : 0, x.min <= minutes ? 0 : 1, freeAll || x.free ? 0 : 1, x.goals[0] !== goal ? 1 : 0, x.i];   // 2, 4, 5
+  const cmp = (a, b) => { const ka = key(a), kb = key(b); for (let k = 0; k < ka.length; k++) if (ka[k] !== kb[k]) return ka[k] - kb[k]; return 0; };
+  let list = all.filter(x => x.goals.includes(goal) && okEve(x)).sort(cmp);                  // 1
+  const o = list.find(x => x.own), oi = list.indexOf(o);
+  if (o && oi > 1 && !list[1].own && key(o).slice(0, 3).join() <= key(list[1]).slice(0, 3).join()) { list.splice(oi, 1); list.splice(1, 0, o); }
+  if (daily) { let n = 0; list = list.filter(x => !x.own || ++n === 1); }                    // 6
+  if (!list.length) list = P.filter(p => p.goals.includes(goal)).slice(0, 3).map((p, i) => mk(p, i, false));
+  return { list, ids: list.map(x => x.id), route };
 }
 const FAV0 = ['sighs', 'exhale'];
 const FREE_Q = { calmEnergy: ['box', 'anchor'], tenseEnergy: ['sighs', 'ground'], calmTired: ['move', 'onetask'], tenseTired: ['exhale', 'name'] };
@@ -2863,16 +2942,21 @@ class Component extends DCLogic {
     const pcur = { color: cur.color, deep: cur.deep, playerBg: cur.playerBg };
     const beforeQ = s.before ? quadOf(s.before) : 'calmEnergy';
     const goal = s.goal || defaultGoal(beforeQ, tod);
-    const rec0 = recommend(beforeQ, goal, tod, Infinity), rec = this.free() ? rec0 : { ...rec0, ids: [...rec0.ids.filter(i => FREE.has(i)), ...rec0.ids.filter(i => !FREE.has(i))] };
-    const mainP = PM[rec.ids[0]], mainMin = mainP.rec ?? fit(mainP, 3);
-    const dailyIds = { morning: ['activate', 'box', 'anchor'], day: ['sighs', 'move', 'onetask'], evening: ['exhale', 'leaves', 'scan'] }[tod];
+    const ownList = [...s.users.map(u => ({ id: u.id, kind: 'tech', goals: (u.goals || []).slice(0, 1), min: Math.max(1, Math.round(techDur(u) / 60)) })), ...s.uprogs.map(p => ({ id: p.id, kind: 'prog', goals: whenGoals(p, s.users), min: Math.max(1, Math.round(this.progMeta(p).dur / 60)) }))];
+    const rec = recommend(beforeQ, goal, tod, Infinity, ownList, this.free());
+    const recCard = x => { if (!x.own) return { ...this.card(PM[x.id]), own: false, ownRing: 'none', ownFg: '' };
+      const fg = T.ownDeep;
+      const base = { ...G.own, own: true, ownRing: 'inset 0 0 0 1.5px ' + T.ownRing, ownFg: fg, locked: false, hasTech: false, noTech: true, wave: '', soft: T.ownSoft, deep: fg, minLabel: x.min + ' мин' };
+      if (x.kind === 'tech') { const u = s.users.find(z => z.id === x.id), go = () => this.startUser(u); return { ...base, title: u.name || 'Своя практика', meta: 'Дыхание · ' + x.min + ' мин', icon: 'ph-sparkle', why: patternOf(u), open: go, start: go }; }
+      const pr = s.uprogs.find(z => z.id === x.id), m = this.progMeta(pr); return { ...base, title: pr.name, meta: m.meta, icon: 'ph-stack', why: m.infos.map(z => z.title).join(' → '), open: () => this.go('program', { progId: pr.id }), start: () => this.startProg(pr) }; };
+    const m0 = rec.list[0], mainP = m0.own ? null : PM[m0.id], mainMin = mainP ? mainP.rec ?? fit(mainP, 3) : m0.min;
     const goCatalog = () => this.setState({ screen: 'catalog', tab: 'catalog', running: false, mRun: false, tRun: false, picker: false });
-    const pg = s.prefGoal, eveSp = tod === 'evening' && (!pg || pg === 'sleep'), dIds = pg ? [...new Set([...P.filter(p => p.goal === pg).map(p => p.id).slice(0, 2), ...dailyIds].filter(id => !HID.has(id)))].slice(0, 3) : dailyIds.filter(id => !HID.has(id));
-    const dSort = this.free() ? dIds : [...dIds.filter(i => FREE.has(i)), ...dIds.filter(i => !FREE.has(i))];
+    const pg = s.prefGoal, eveSp = tod === 'evening' && (!pg || pg === 'sleep');
+    const dSort = recommend('calmEnergy', pg || null, tod, Infinity, ownList, this.free(), true).list.filter(x => !(eveSp && x.id === 'exhale')).slice(0, eveSp ? 2 : 3);
 
 
 
-        const jumpList = [['splFirst', 'Запуск — первый раз'], ['splNext', 'Запуск — повторный'], ['onbB', 'Онбординг'], ['today', 'Сегодня'], ['recs', 'Подбор практики'], ['detail', 'Карточка практики'], ['player', 'Плеер дыхания'], ['walk', 'Плеер прогулки'], ['walkNight', 'Плеер прогулки — вечер'], ['after', '«Как теперь?»'], ['catalog', 'Каталог'], ['hidden', 'Скрытое'], ['editor', 'Редактор: ритм'], ['progplay', 'Плеер техники с раундами'], ['course', 'Курс'], ['program', 'Практика из шагов'], ['progEdit', 'Редактор: из шагов'], ['timer', 'Таймер медитации'], ['timerRun', 'Таймер — сессия'], ['metro', 'Метроном'], ['metroRun', 'Метроном — сессия'], ['progress', 'Прогресс'], ['empty', 'Пустые состояния'], ['settings', 'Настройки'], ['paywall', 'Экран подписки'], ['introEnd', 'Конец первой недели']];
+        const jumpList = [['splFirst', 'Запуск — первый раз'], ['splNext', 'Запуск — повторный'], ['onbB', 'Онбординг'], ['today', 'Сегодня'], ['recs', 'Подбор практики'], ['detail', 'Карточка практики'], ['player', 'Плеер дыхания'], ['walk', 'Плеер прогулки'], ['walkNight', 'Плеер прогулки — вечер'], ['after', '«Как теперь?»'], ['catalog', 'Библиотека'], ['article', 'Материал'], ['hidden', 'Скрытое'], ['editor', 'Редактор: ритм'], ['progplay', 'Плеер техники с раундами'], ['course', 'Курс'], ['program', 'Практика из шагов'], ['progEdit', 'Редактор: из шагов'], ['timer', 'Таймер медитации'], ['timerRun', 'Таймер — сессия'], ['metro', 'Метроном'], ['metroRun', 'Метроном — сессия'], ['progress', 'Прогресс'], ['empty', 'Пустые состояния'], ['settings', 'Настройки'], ['paywall', 'Экран подписки'], ['introEnd', 'Конец первой недели']];
     const jumps = jumpList.map(([k, label]) => ({
       label, bg: sc === k || (sc === 'onb' && k === 'onbB') || (k === 'progplay' && sc === 'player' && s.playTheme) || (k === 'walk' && sc === 'player' && s.pid === 'walk5' && !s.walkNight) || (k === 'walkNight' && sc === 'player' && s.pid === 'walk5' && s.walkNight) ? '#fff' : 'transparent',
       go: () => {
@@ -2901,7 +2985,7 @@ class Component extends DCLogic {
     const toggles = items => items.map(([label, hint, on, fn], i) => ({ label, hint, border: i === items.length - 1 ? 'none' : '1px solid ' + T.divider, track: on ? T.accent : T.line, knob: on ? '23px' : '3px', toggle: fn }));
     const tc = k => () => this.setState(st => ({ contra: { ...st.contra, [k]: !st.contra[k] } }));
     const filterKeys = ['all', ...GOALS];
-    const favIds = (s.favs ?? FAV0).filter(id => PM[id] || id === 'timer' || id === 'metro' || s.users.some(u => u.id === id));
+    const favIds = (s.favs ?? FAV0).filter(id => PM[id] || KM[id] || id === 'timer' || id === 'metro' || s.users.some(u => u.id === id));
     const recentIds = favIds;
     const showP = P.filter(p => !HID.has(p.id)).filter(p => s.filter === 'all' || s.filter === 'fav' || s.filter === 'recent' || p.goal === s.filter);
 
@@ -3095,6 +3179,10 @@ class Component extends DCLogic {
       jumps,
       isSession: sc === 'detail' || sc === 'player' || sc === 'after',
       pdur, pinfo, ses, dScroll: this.dScroll, dScrRef: this.dScrRef, dsh: { on: sc === 'detail' && !!s.durSheet, open: () => { if (pdur.slider) this.setState({ durSheet: true }); }, close: () => this.setState({ durSheet: false }) }, whyOn: sc === 'detail' && !!s.whyOpen, closeWhy: () => this.setState({ whyOpen: false }), isTodayB: sc === 'today', isRecs: sc === 'recs', isAfter: sc === 'after', isAllSess: sc === 'allSess', isProgress: sc === 'progress', isSettings: sc === 'settings',
+      wh: (() => { const ed = sc === 'editor' ? e : sc === 'progEdit' ? pe : null, set = sc === 'editor' ? upd : pupd;
+        const gs = ed ? whenGoals(ed, s.users) : [];
+        const chip = on => ({ bg: on ? T.selBg : T.card, fg: on ? T.selFg : T.ink, bd: on ? T.selBg : T.line, pressed: on ? 'true' : 'false' });
+        return { goals: GOALS.map(k => { const on = gs.includes(k); return { name: G[k].name, dot: G[k].color, ...chip(on), pick: () => set(x => { x.goals = on ? [] : [k]; }) }; }) }; })(),
       isEditor: sc === 'editor' && !!e, isProgram: sc === 'program', isProgEdit: sc === 'progEdit' && !!pe, isTimer: sc === 'timer', isTimerRun: sc === 'timerRun', isTimerDone: sc === 'timerDone', isMetro: sc === 'metro',
       isOnb: sc === 'onb', ob: this.obVals(s, T, dark), spl: this.splVals(s, dark),
       stop: ev => ev.stopPropagation(),
@@ -3117,7 +3205,7 @@ class Component extends DCLogic {
       navIcon: Object.fromEntries(nav.map(t => [t, 'ph'])),
       tabToday: tabGo('today'), tabCatalog: tabGo('catalog'), tabProgress: tabGo('progress'), tabSettings: tabGo('settings'),
       greeting: { morning: 'Доброе утро', day: 'Добрый день', evening: 'Добрый вечер' }[tod],
-      dailyClean: [...(eveSp ? [{ title: 'Перед сном', meta: 'Удлинённый выдох · 3 мин, затем тишина', soft: T.sl1, deep: T.sli, icon: 'ph-moon-stars', hasTech: false, noTech: true, open: () => this.start('exhale', 3) }] : []), ...dSort.filter(id => !(eveSp && id === 'exhale')).map(id => this.card(PM[id]))],
+      dailyClean: [...(eveSp ? [{ title: 'Перед сном', meta: 'Удлинённый выдох · 3 мин, затем тишина', soft: T.sl1, deep: T.sli, icon: 'ph-moon-stars', hasTech: false, noTech: true, own: false, ownRing: 'none', ownFg: '', open: () => this.start('exhale', 3) }] : []), ...dSort.map(recCard)],
       goToday: () => this.setState({ screen: 'today', tab: 'today', running: false }),
       goProgress: () => this.setState({ screen: 'progress', tab: 'progress' }),
       back: () => this.setState(st => ({ screen: ['detail', 'player'].includes(st.prev) ? 'today' : st.prev })),
@@ -3125,8 +3213,8 @@ class Component extends DCLogic {
       beforeQuad: Q[beforeQ],
       goalOpts: GOALS.map(k => ({ name: G[k].name, bg: goal === k ? T.selBg : T.card, fg: goal === k ? T.selFg : T.ink, pick: () => this.setState({ goal: k }) })),
       route: rec.route,
-      main: { ...this.card(mainP), meta: DIRS[mainP.dir] + (mainP.sub ? ' · ' + mainP.sub : ''), minLabel: mainMin + ' мин', start: () => this.start(mainP.id, mainMin) },
-      alts: rec.ids.slice(1, 3).map(id => this.card(PM[id])),
+      main: mainP ? { ...this.card(mainP), meta: DIRS[mainP.dir] + (mainP.sub ? ' · ' + mainP.sub : ''), minLabel: mainMin + ' мин', start: () => this.start(mainP.id, mainMin) } : recCard(m0),
+      alts: rec.list.slice(1, 3).map(recCard),
       cur,
       ...(() => { const pv = this.pvS(), paused = sc === 'player' && !s.running; const wkOn = sc === 'player' && !!pv.walk;
         return { play: { ...pv, elapsedLabel: '', segs: (pv.segs || []).map(g => ({ ...g, glow: g.flash ? '0 0 10px 1px ' + pcur.color : 'none' })) }, brOp: sc === 'player' && !pv.walk && s.elapsed >= 0 ? (Math.max(0, Math.min(1, (pv.scale - .55) / .45)) * (dark ? .06 : .3)).toFixed(3) : '0', ringOp: pv.walk ? 0 : 1, notWalk: !pv.walk,
@@ -3176,7 +3264,7 @@ class Component extends DCLogic {
       confirmAfter: () => this.setState(st => { const note = (st.note || '').trim(), r = st.acSt && st.acSt.k === st.sessions.length ? st.acSt.i : null, timer = st.afterKind === 'timer', base = { pid: st.sessPid, title: st.afterTitle, r, note, when: 'Только что', sec: this.playedSec(st) }; return { screen: 'today', tab: 'today', running: false, note: '', noteOpen: false, afterKind: null, sessions: st.before ? [{ ...base, b: st.before }, ...st.sessions] : [{ ...base, kind: timer ? 'timer' : undefined, b: { e: 0, t: 0 }, noB: true }, ...st.sessions] }; }), noteVal: s.note || '', setNote: ev => this.setState({ note: ev.target.value }),
       ...(() => { const mkS0 = id => { if (!PM[id]) { const u = s.users.find(x => x.id === id); return { key: id, title: u.name || 'Своя практика', range: Math.max(1, Math.round(techDur(u) / 60)) + ' мин', soft: G.own.soft, deep: G.own.deep, iconCls: 'ph ph-sparkle', open: () => this.openEditor(u, false) }; } const x = this.card(PM[id]); return { key: id, title: x.title, range: x.range, soft: x.soft, deep: x.deep, iconCls: 'ph ' + x.icon, open: x.open }; };
         const TL = { timer: () => ({ key: 'timer', title: 'Таймер', range: durText(c.dur), soft: T.subtle, deep: T.accentText, iconCls: '', isLotus: true, open: () => this.go('timer', {}) }), metro: () => ({ key: 'metro', title: 'Метроном', range: mc.bpm + ' уд/мин', soft: T.subtle, deep: T.accentText, iconCls: 'ph ph-metronome', open: () => this.go('metro', {}) }) };
-        const mkS = id => { const x = TL[id] ? TL[id]() : mkS0(id); return { isLotus: false, ...x, noLotus: !x.isLotus }; };
+        const mkS = id => { const x = TL[id] ? TL[id]() : KM[id] ? { key: id, title: KM[id].title, range: kMeta(KM[id]), soft: T.subtle, deep: T.accentText, iconCls: kIcon(KM[id]), open: () => this.go('article', { artId: id }) } : mkS0(id); return { isLotus: false, ...x, noLotus: !x.isLotus }; };
         const favL = recentIds.map(mkS), fs = s.favs ?? FAV0;
         const tf = (id, nm) => { const on = fs.includes(id); return { icon: on ? 'ph-fill ph-heart' : 'ph ph-heart', ic: on ? '#E86A6A' : T.ink, label: (on ? 'Убрать из избранного: ' : 'В избранное: ') + nm, tgl: () => this.setState(st => { const f = st.favs ?? FAV0; return { favs: f.includes(id) ? f.filter(x => x !== id) : [...f, id] }; }) }; };
         const cc = COURSES.find(x => { const d = s.cDone[x.id] || 0; return d > 0 && d < x.days.length; });
@@ -3229,7 +3317,8 @@ class Component extends DCLogic {
         hasHidden: ids.length > 0, hidEmpty: ids.length === 0, hidLabel: 'Скрытое · ' + ids.length,
         openHidden: () => this.setState({ screen: 'hidden' }), hidBack: () => this.setState({ screen: 'catalog', tab: 'catalog' }), isHiddenScr: sc === 'hidden' }; })(),
       ...(() => {
-        const favMode = s.filter === 'fav', all = s.filter === 'all' || favMode;
+        const tabOn = { pr: true, co: COURSES.length > 0, kn: KNOW.length > 0, my: true }, lt0 = s.libTab || 'pr', lt = tabOn[lt0] ? lt0 : 'pr', isKn = lt === 'kn', isCo = lt === 'co', isPr = lt === 'pr', isMy = lt === 'my';
+        const favMode = false, gf = s.filter === 'fav' ? 'all' : s.filter, all = gf === 'all' || isMy;
         const tile = { soft: T.subtle, deep: T.accentText };
         const row = (o) => ({ hasWave: false, noWave: true, hasEdit: false, wave: '', tag: '', meta: '', ...o, hasTag: !!o.tag });
         let items = [];
@@ -3244,37 +3333,61 @@ class Component extends DCLogic {
         const GN = { 'Инструмент': 'Инструменты', 'Моя': 'Мои практики', 'Курс': 'Курсы', '': 'Практики' };
         const exp = s.catExp || {}, LIM = 4;
         const fsF = new Set(s.favs ?? FAV0);
-        const mineStrip = s.filter !== 'all' ? [] : items.filter(x => x.tag === 'Инструмент' || x.tag === 'Моя').map(x => ({ title: x.key === 'timer' ? 'Таймер' : x.title, range: x.tag === 'Инструмент' ? x.sub.split(' · ')[0] : (x.meta || x.sub), soft: x.soft, deep: x.deep, iconCls: x.icon, isLotus: !!x.isLotus, noLotus: !x.isLotus, open: x.open }));
+        const itemsAll = items;
+        const mineStrip = gf !== 'all' || !isPr ? [] : items.filter(x => x.tag === 'Инструмент').map(x => ({ title: x.key === 'timer' ? 'Таймер' : x.title, range: x.tag === 'Инструмент' ? x.sub.split(' · ')[0] : (x.meta || x.sub), soft: x.soft, deep: x.deep, iconCls: x.icon, isLotus: !!x.isLotus, noLotus: !x.isLotus, open: x.open }));
         if (favMode) items = items.filter(x => fsF.has(x.key === 'timer' || x.key === 'metro' ? x.key : x.key.slice(1)));
-        const courseCards = COURSES.filter(cc => !favMode && (s.filter === 'all' || cc.goal === s.filter)).map((cc, i) => { const k = this.courseCard(cc, T), done = s.cDone[cc.id] || 0, n = cc.days.length, fin = done >= n;
+        const cf = 'all';
+        const courseCards = COURSES.filter(cc => isCo && (cf === 'all' || cc.goal === cf)).map((cc, i) => { const k = this.courseCard(cc, T), done = s.cDone[cc.id] || 0, n = cc.days.length, fin = done >= n;
           return { ...k, i, started: done > 0 && !fin, fin, state: fin ? 'Пройден' : done ? 'День ' + (done + 1) + ' из ' + n : k.days, btn: fin ? 'Повторить' : done ? 'Продолжить' : 'Начать', btnBg: done && !fin ? T.accent : T.subtle, btnFg: done && !fin ? '#fff' : T.accentText }; }).sort((a, b) => (b.started - a.started) || (a.fin - b.fin) || (a.i - b.i));
         const plain = x => ({ ...x, hasTag: false, hasEdit: false, intense: !!x.intense }), noMore = { hasMore: false, moreLabel: '', toggleMore: () => {} };
-        const pr0 = items.filter(x => x.tag === ''), feedGroups = (favMode ? [{ name: 'Избранное', items: items.map(plain), ...noMore }] : [{ name: 'Практики', items: [...pr0.filter(x => x.key[0] === 'x'), ...pr0.filter(x => x.key[0] !== 'x')].map(plain), ...noMore }]).filter(g => g.items.length);
+        const pr0 = items.filter(x => x.tag === ''), feedGroups0 = (favMode ? [{ name: 'Избранное', items: items.map(plain), ...noMore }] : [{ name: 'Практики', items: [...pr0.filter(x => x.key[0] === 'x'), ...pr0.filter(x => x.key[0] !== 'x')].map(plain), ...noMore }]).filter(g => g.items.length);
+        const kf = 'all', kfs = new Set(s.favs ?? FAV0);
+        const kRow = k => plain(row({ key: k.id, title: k.title, sub: k.line, meta: kMeta(k), icon: kIcon(k), ...tile, open: () => this.go('article', { artId: k.id }) }));
+        const myOwn = itemsAll.filter(x => x.tag === 'Моя').map(x => ({ ...plain(x), hasEdit: !!x.hasEdit }));
+        const myFav = !isMy ? [] : [...itemsAll.filter(x => (x.key === 'timer' || x.key === 'metro') && kfs.has(x.key)).map(plain), ...P.filter(p => kfs.has(p.id) && !HID.has(p.id)).map(p => { const k = this.card(p); return plain(row({ key: 'x' + p.id, locked: k.locked, title: k.title, sub: k.oneLine, meta: k.range, icon: 'ph ' + k.icon, hasWave: !!k.hasTech, noWave: !k.hasTech, wave: k.wave, soft: k.soft, deep: k.deep, open: k.open })); }), ...KNOW.filter(k => kfs.has(k.id)).map(kRow)];
+        const knRows = KNOW.filter(k => kf === 'all' || (kf === 'fav' ? kfs.has(k.id) : k.topic === kf)).map(k => plain(row({ key: k.id, title: k.title, sub: k.line, meta: kMeta(k), icon: kIcon(k), ...tile, open: () => this.go('article', { artId: k.id }) })));
+        const feedGroups = (isMy ? [...(myOwn.length ? [{ name: 'Мои практики', items: myOwn, ...noMore }] : []), { name: 'Избранное', items: myFav, ...noMore }] : isKn ? (knRows.length ? [{ name: '', items: knRows, ...noMore }] : []) : isCo ? [] : feedGroups0.map(g => ({ ...g, name: '' }))).map(g => ({ ...g, hasName: !!g.name }));
+        const chip = (sel, set) => k => ({ name: k[1], heart: k[0] === 'fav', aria: k[0] === 'fav' ? 'Избранное' : k[1], pad: k[0] === 'fav' ? '0' : '0 14px', bg: sel === k[0] ? T.selBg : T.card, fg: sel === k[0] ? T.selFg : T.ink, pick: () => this.setState(set(k[0])) });
+        const gChips = GOALS.map(k => [k, G[k].name]);
+        const filterOpts = !isPr ? [] : isKn ? [['all', 'Все'], ...Object.entries(KTOP)].map(chip(kf, k => ({ knF: k }))) : [['all', 'Все'], ...gChips].map(chip(gf, k => ({ filter: k })));
+        const libTabs = [['pr', 'Практики'], ['co', 'Курсы'], ['kn', 'Знания'], ['my', 'Моё']].filter(x => tabOn[x[0]]).map(([k, name]) => ({ name, fg: lt === k ? T.ink : T.muted, line: lt === k ? T.accentText : 'transparent', pick: () => this.setState({ libTab: k, catAdd: false }) }));
         const srch = (() => {
           const q = s.catQ || '', nq = sNorm(q).trim(), toks = nq.split(/\s+/).filter(Boolean);
+          const wn = o => { const gs = (o.goals || []).filter(g => G[g] && g !== 'own'); return { gN: gs.map(g => G[g].name), hay: sNorm(gs.map(g => G[g].name).join(' ')) }; };
           const ix = [];
           ix.push({ kind: 'tool', key: 'timer', title: 'Таймер медитации', sub: durText(c.dur), icon: '', ...tile, noWave: false, isLotus: true, hay: 'инструмент', open: () => this.go('timer', {}) });
           ix.push({ kind: 'tool', key: 'metro', title: 'Метроном', sub: mc.bpm + ' уд/мин · ' + mc.beats + '/4', icon: 'ph ph-metronome', ...tile, hay: 'инструмент', open: () => this.go('metro', {}) });
-          s.users.forEach((u, i) => { const m = myTechs[i]; ix.push({ kind: 'own', key: 'u' + u.id, title: m.name, sub: m.pattern, meta: Math.max(1, Math.round(techDur(u) / 60)) + ' мин', icon: 'ph ph-sparkle', ...tile, hay: 'своя дыхание', open: () => this.startUser(u) }); });
-          allProgs.forEach((pr, i) => { if (HID.has(pr.id)) return; const pc = progCards[i], g = G[pr.goal || 'own']; ix.push({ kind: pr.builtin ? 'prog' : 'own', key: 'p' + i, locked: pc.locked, title: pc.name, sub: pc.chain, meta: pc.meta, icon: 'ph ph-stack', soft: pc.soft, deep: pc.deep, goalName: pr.goal ? g.name : '', hay: sNorm(g.name || ''), open: pc.open }); });
+          s.users.forEach((u, i) => { const m = myTechs[i]; ix.push({ kind: 'own', key: 'u' + u.id, title: m.name, sub: m.pattern, meta: Math.max(1, Math.round(techDur(u) / 60)) + ' мин', icon: 'ph ph-sparkle', ...tile, hay: 'своя дыхание', _w: wn({ goals: (u.goals || []).slice(0, 1) }), open: () => this.startUser(u) }); });
+          allProgs.forEach((pr, i) => { if (HID.has(pr.id)) return; const pc = progCards[i], g = G[pr.goal || 'own']; ix.push({ kind: pr.builtin ? 'prog' : 'own', key: 'p' + i, locked: pc.locked, title: pc.name, sub: pc.chain, meta: pc.meta, icon: 'ph ph-stack', soft: pc.soft, deep: pc.deep, goalName: pr.goal ? g.name : '', hay: sNorm(g.name || ''), _w: wn({ goals: whenGoals(pr, s.users) }), open: pc.open }); });
           COURSES.forEach(cc => { const k = this.courseCard(cc, T); ix.push({ kind: 'course', key: 'c' + cc.id, title: k.name, sub: k.line, meta: k.days, icon: 'ph ph-calendar-check', soft: k.soft, deep: k.deep, goalName: G[cc.goal].name, hay: sNorm(G[cc.goal].name + ' курс'), open: k.open }); });
-          P.forEach(p => { if (HID.has(p.id)) return; const k = this.card(p); ix.push({ kind: 'prog', key: 'x' + p.id, locked: k.locked, title: k.title, sub: k.oneLine, meta: k.range, icon: 'ph ' + k.icon, hasWave: !!k.hasTech, noWave: !k.hasTech, wave: k.wave, soft: k.soft, deep: k.deep, goalName: G[p.goal].name, hay: sNorm([p.sub, DIRS[p.dir], G[p.goal].name].join(' ')), open: k.open }); });
+          P.forEach(p => { if (HID.has(p.id)) return; const k = this.card(p); ix.push({ kind: 'prog', key: 'x' + p.id, locked: k.locked, title: k.title, sub: k.oneLine, meta: k.range, icon: 'ph ' + k.icon, hasWave: !!k.hasTech, noWave: !k.hasTech, wave: k.wave, soft: k.soft, deep: k.deep, goalName: G[p.goal].name, hay: sNorm([p.sub, DIRS[p.dir], G[p.goal].name].join(' ')), _w: wn(p), open: k.open }); });
+          KNOW.forEach(k => ix.push({ kind: 'kn', key: k.id, title: k.title, sub: k.line, meta: kMeta(k), icon: kIcon(k), ...tile, hay: sNorm(KTOP[k.topic] + ' ' + (k.type === 'video' ? 'видео' : 'статья') + ' знания'), open: () => this.go('article', { artId: k.id }) }));
           const hl = dark ? 'rgba(174,178,242,.28)' : '#E0D7FC';
-          const hit = x => toks.every(k => sNorm(x.title).includes(k) || sNorm(x.sub).includes(k) || x.hay.includes(k));
-          const res = !nq ? [] : ix.filter(hit).map(x => { const tm = toks.some(k => sNorm(x.title).includes(k)), sm = toks.some(k => sNorm(x.sub).includes(k)), gm = x.goalName && toks.some(k => sNorm(x.goalName).includes(k));
-            const sp = !tm && !sm && gm ? [{ t: 'Цель: ', bg: 'transparent' }, { t: x.goalName, bg: hl }, { t: ' · ' + (x.sub || ''), bg: 'transparent' }] : sParts(x.sub, toks, hl);
+          const hit = x => toks.every(k => sNorm(x.title).includes(k) || sNorm(x.sub).includes(k) || x.hay.includes(k) || (x._w && x._w.hay.includes(k)));
+          const res = !nq ? [] : ix.filter(hit).map(x => { const tm = toks.some(k => sNorm(x.title).includes(k)), sm = toks.some(k => sNorm(x.sub).includes(k)), gN = [...(x.goalName ? [x.goalName] : []), ...(x._w ? x._w.gN : [])].find(n => toks.some(k => sNorm(n).includes(k)));
+            const sp = !tm && !sm && gN ? [{ t: 'Цель: ', bg: 'transparent' }, { t: gN, bg: hl }, { t: ' · ' + (x.sub || ''), bg: 'transparent' }] : sParts(x.sub, toks, hl);
             return { hasWave: false, noWave: true, isLotus: false, wave: '', meta: '', locked: false, ...x, score: tm ? 3 : sm ? 2 : 1, tParts: sParts(x.title, toks, hl), sParts: sp }; }).sort((a, b) => b.score - a.score);
-          const GRP = [['prog', 'Практики'], ['course', 'Курсы'], ['own', 'Мои практики'], ['tool', 'Инструменты']];
+          const GRP = [['prog', 'Практики'], ['course', 'Курсы'], ['kn', 'Знания'], ['own', 'Мои практики'], ['tool', 'Инструменты']];
           const groups = GRP.map(([k, n]) => ({ name: n, items: res.filter(x => x.kind === k) })).filter(g => g.items.length);
           const hidP = nq ? P.filter(p => HID.has(p.id) && toks.every(k => sNorm(p.title).includes(k))) : [];
           return { q, hasQ: !!q, active: !!nq, idle: !nq, hasRes: res.length > 0, isEmpty: !!nq && !res.length, groups,
             count: 'Найдено: ' + res.length, ring: nq ? T.accentText : 'transparent',
             emptyTitle: 'По «' + q.trim() + '» ничего нет', own: G.own,
             hidHit: hidP.length > 0, hidText: hidP.length ? 'Есть в Скрытом: ' + hidP[0].title : '', openHidden: () => this.setState({ screen: 'hidden' }),
-            addOwn: () => this.setState({ catAdd: true, catQ: '' }),
+            addOwn: () => this.setState({ catAdd: true, catQ: '', libTab: 'my' }),
             setQ: ev => this.setState({ catQ: ev.target.value }), clear: () => this.setState({ catQ: '' }) };
         })();
-        return { feedGroups, courseCards, hasCourses: courseCards.length > 0, mineStrip, hasMine: s.filter === 'all', feedEmpty: feedGroups.length === 0 && courseCards.length === 0, feedEmptyT: favMode ? 'В избранном пока пусто' : 'Здесь пока пусто', feedEmptyS: favMode ? 'Отметь практику или инструмент сердцем — они появятся здесь' : 'Выбери «Все» или верни скрытые практики', srch,
+        const kFav = false, eFav = isMy;
+        const ak = KM[s.artId] || KNOW[0], aOn = (s.favs ?? FAV0).includes(ak.id);
+        const art = { kicker: kMeta(ak) + ' · ' + KTOP[ak.topic], title: ak.title, line: ak.line, isVideo: ak.type === 'video', vbg: T.subtle,
+          blocks: ak.body.map(([k, x]) => ({ h: k === 'h', p: k === 'p', t: x })),
+          rel: ak.pids.filter(id => PM[id] && !HID.has(id)).map(id => { const k = this.card(PM[id]); return { title: k.title, range: k.range, soft: k.soft, deep: k.deep, icon: 'ph ' + k.icon, hasWave: !!k.hasTech, noWave: !k.hasTech, wave: k.wave, open: k.open }; }),
+          favIcon: aOn ? 'ph-fill ph-heart' : 'ph ph-heart', favIc: aOn ? '#E86A6A' : T.ink, favLabel: aOn ? 'Убрать из избранного' : 'В избранное',
+          tglFav: () => this.setState(st => { const f = st.favs ?? FAV0; return { favs: f.includes(ak.id) ? f.filter(x => x !== ak.id) : [...f, ak.id] }; }),
+          back: () => this.setState(st => ({ screen: st.prev === 'today' ? 'today' : 'catalog', tab: st.prev === 'today' ? 'today' : 'catalog' })) };
+        art.hasRel = art.rel.length > 0;
+        return { isArticle: sc === 'article', art, libTabs, filterOpts, isMy, hasChips: isPr, hasHidden: isPr && (s.hidden || []).some(id => PM[id] || this.progById(id)),
+          feedGroups, courseCards, hasCourses: courseCards.length > 0, mineStrip, hasMine: gf === 'all' && isPr, feedEmpty: isMy ? myFav.length === 0 : feedGroups.length === 0 && courseCards.length === 0, feedEmptyT: eFav ? 'В избранном пока пусто' : 'Здесь пока пусто', feedEmptyS: kFav ? 'Отметь материал сердцем — он появится здесь' : eFav ? 'Отметь сердцем практику, инструмент или материал — они появятся здесь' : isKn || isCo ? 'Выбери «Все»' : 'Выбери «Все» или верни скрытые практики', srch,
           catAddOpen: !!s.catAdd, toggleCatAdd: () => this.setState(st => ({ catAdd: !st.catAdd })),
           addTech: () => { this.setState({ catAdd: false }); this.newTech(); },
           addProg: () => this.progCap() || this.setState({ catAdd: false, screen: 'progEdit', prev: 'catalog', pedit: { id: uid(), name: '', goal: 'own', steps: [] }, peNew: true, picker: true }) };
@@ -3318,7 +3431,7 @@ class Component extends DCLogic {
       doDel: () => this.setState(st => st.del.kind === 'tech' ? { users: st.users.filter(u => u.id !== st.del.id), del: null, edit: null, screen: 'catalog', tab: 'catalog' } : { uprogs: st.uprogs.filter(p => p.id !== st.del.id), del: null, pedit: null, screen: 'catalog', tab: 'catalog' }),
       dm: (() => { const fav = (s.favs ?? FAV0).includes(s.pid), p = PM[s.pid], close = () => this.setState({ dMenu: false });
         const items = [];
-        if (p && p.tech) items.push({ label: 'Настроить под себя', icon: 'ph ph-sliders-horizontal', ic: T.ink, run: () => { this.setState({ dMenu: false }); const cyc = p.tech.reduce((a, x) => a + x[1], 0); this.openEditor({ id: uid(), name: p.title + ' — моя', blocks: [{ phases: p.tech.map(([k, d]) => ({ k, d })), repeats: Math.max(1, Math.round(s.minutes * 60 / cyc)) }], rounds: 1, rest: 0, origin: 'copied' }, true); } });
+        if (p && p.tech) items.push({ label: 'Настроить под себя', icon: 'ph ph-sliders-horizontal', ic: T.ink, run: () => { this.setState({ dMenu: false }); const cyc = p.tech.reduce((a, x) => a + x[1], 0); this.openEditor({ id: uid(), name: p.title + ' — моя', blocks: [{ phases: p.tech.map(([k, d]) => ({ k, d })), repeats: Math.max(1, Math.round(s.minutes * 60 / cyc)) }], rounds: 1, rest: 0, origin: 'copied', goals: p.goals.slice(0, 1) }, true); } });
         items.push({ label: fav ? 'Убрать из избранного' : 'В избранное', icon: fav ? 'ph-fill ph-heart' : 'ph ph-heart', ic: fav ? '#E86A6A' : T.ink, run: () => this.setState(st => { const f = st.favs ?? FAV0; return { dMenu: false, favs: f.includes(st.pid) ? f.filter(x => x !== st.pid) : [...f, st.pid] }; }) });
         return { open: !!s.dMenu && sc === 'detail', items, close, toggle: () => this.setState(st => ({ dMenu: !st.dMenu })) }; })(),
       cust: (() => { const p = PM[s.pid], fav = (s.favs ?? FAV0).includes(s.pid);
@@ -3341,7 +3454,7 @@ class Component extends DCLogic {
       addRest: () => pupd(x => { x.steps.push({ kind: 'rest', sec: 60 }); }),
       peBack: () => this.setState(st => ({ screen: st.prev === 'program' ? 'program' : 'catalog', picker: false })),
       peSaveBg: pe && pe.steps.length && pe.name.trim() ? T.accent : T.disabled,
-      savePE: () => { if (!pe || !pe.steps.length || !pe.name.trim()) return; this.setState(st => ({ uprogs: st.uprogs.some(p => p.id === pe.id) ? st.uprogs.map(p => p.id === pe.id ? clone(pe) : p) : [...st.uprogs, clone(pe)], screen: 'program', progId: pe.id, peNew: false, picker: false })); },
+      savePE: () => { if (!pe || !pe.steps.length || !pe.name.trim()) return; this.setState(st => ({ uprogs: st.uprogs.some(p => p.id === pe.id) ? st.uprogs.map(p => p.id === pe.id ? { ...clone(pe), goals: whenGoals(pe, st.users) } : p) : [...st.uprogs, { ...clone(pe), goals: whenGoals(pe, st.users) }], screen: 'program', progId: pe.id, peNew: false, picker: false })); },
       startPE: () => { if (pe && pe.steps.length) this.playPlan(pe.steps, s.users, pe.name || 'Своя практика', pe.goal || 'own', true); },
       delProg: () => this.setState({ del: { id: pe.id, name: pe.name || 'практику', kind: 'prog' } }),
       // timer
