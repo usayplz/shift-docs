@@ -206,6 +206,9 @@ button{font-family:inherit;color:inherit}button:focus:not(:focus-visible){outlin
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,{{ wk.sheen }} 0%,rgba(255,255,255,0) 60%);opacity:{{ wk.op }};transition:opacity .7s ease;pointer-events:none"></div>
         <div style="position:absolute;inset:0;background:#FFFFFF;opacity:{{ brOp }};transition:opacity .15s linear;pointer-events:none"></div>
 
+        <sc-if value="{{ volHint }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;left:0;right:0;bottom:202px;z-index:6;display:flex;justify-content:center;pointer-events:none"><button onClick="{{ volOff }}" style="pointer-events:auto;height:36px;padding:0 14px 0 12px;border:none;border-radius:18px;background:{{ pt.glass }};cursor:pointer;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:{{ pt.ink }};white-space:nowrap"><i class="ph ph-speaker-slash" style="font-size:17px"></i>Звук выключен — прибавь громкость</button></div>
+        </sc-if>
         <div style="position:relative;z-index:5;height:44px;flex:none;display:flex;justify-content:space-between;align-items:center">
           <div style="position:relative;width:44px;height:44px;flex:none">
             <button onClick="{{ back }}" aria-label="Назад" style="position:absolute;left:0;top:0;width:44px;height:44px;border-radius:50%;border:none;background:{{ t.card }};cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:{{ ses.d.op }};pointer-events:{{ ses.d.pe }};transition:opacity .4s"><div style="width:10px;height:10px;border-left:2.5px solid {{ t.ink }};border-bottom:2.5px solid {{ t.ink }};transform:rotate(45deg);margin-left:4px"></div></button>
@@ -2956,16 +2959,16 @@ class Component extends DCLogic {
 
 
 
-        const jumpList = [['splFirst', 'Запуск — первый раз'], ['splNext', 'Запуск — повторный'], ['onbB', 'Онбординг'], ['today', 'Сегодня'], ['recs', 'Подбор практики'], ['detail', 'Карточка практики'], ['player', 'Плеер дыхания'], ['walk', 'Плеер прогулки'], ['walkNight', 'Плеер прогулки — вечер'], ['after', '«Как теперь?»'], ['catalog', 'Библиотека'], ['article', 'Материал'], ['hidden', 'Скрытое'], ['editor', 'Редактор: ритм'], ['progplay', 'Плеер техники с раундами'], ['course', 'Курс'], ['program', 'Практика из шагов'], ['progEdit', 'Редактор: из шагов'], ['timer', 'Таймер медитации'], ['timerRun', 'Таймер — сессия'], ['metro', 'Метроном'], ['metroRun', 'Метроном — сессия'], ['progress', 'Прогресс'], ['empty', 'Пустые состояния'], ['settings', 'Настройки'], ['paywall', 'Экран подписки'], ['introEnd', 'Конец первой недели']];
+        const jumpList = [['splFirst', 'Запуск — первый раз'], ['splNext', 'Запуск — повторный'], ['onbB', 'Онбординг'], ['today', 'Сегодня'], ['recs', 'Подбор практики'], ['detail', 'Карточка практики'], ['player', 'Плеер дыхания'], ['playerMute', 'Плеер — звук выключен'], ['walk', 'Плеер прогулки'], ['walkNight', 'Плеер прогулки — вечер'], ['after', '«Как теперь?»'], ['catalog', 'Библиотека'], ['article', 'Материал'], ['hidden', 'Скрытое'], ['editor', 'Редактор: ритм'], ['progplay', 'Плеер техники с раундами'], ['course', 'Курс'], ['program', 'Практика из шагов'], ['progEdit', 'Редактор: из шагов'], ['timer', 'Таймер медитации'], ['timerRun', 'Таймер — сессия'], ['metro', 'Метроном'], ['metroRun', 'Метроном — сессия'], ['progress', 'Прогресс'], ['empty', 'Пустые состояния'], ['settings', 'Настройки'], ['paywall', 'Экран подписки'], ['introEnd', 'Конец первой недели']];
     const jumps = jumpList.map(([k, label]) => ({
       label, bg: sc === k || (sc === 'onb' && k === 'onbB') || (k === 'progplay' && sc === 'player' && s.playTheme) || (k === 'walk' && sc === 'player' && s.pid === 'walk5' && !s.walkNight) || (k === 'walkNight' && sc === 'player' && s.pid === 'walk5' && s.walkNight) ? '#fff' : 'transparent',
       go: () => {
         const b = s.before || { e: .5, t: .55 };
-        this.setState({ del: null, mRun: false, tRun: false, running: false });
+        this.setState({ del: null, mRun: false, tRun: false, running: false, volZero: k === 'playerMute' });
         if (k === 'splFirst') return this.runSplash('onb');
         if (k === 'splNext') return this.runSplash('today');
         if (k === 'onbB') return this.setState({ screen: 'onb', onbStep: 0, obGoal: null });
-        if (k === 'player') return this.start(s.pid === 'walk5' ? 'box' : s.pid, s.pid === 'walk5' ? 4 : s.minutes);
+        if (k === 'player' || k === 'playerMute') return this.start(s.pid === 'walk5' ? 'box' : s.pid, s.pid === 'walk5' ? 4 : s.minutes);
         if (k === 'walk' || k === 'walkNight') { this.start('walk5', 20, { free: true }); this.wLast = 371.9; return this.setState({ elapsed: 372, walkNight: k === 'walkNight' ? true : false }); }
         if (k === 'progplay') return this.playPlan([{ kind: 'tech', tid: 'u2' }], s.users.some(u => u.id === 'u2') ? s.users : [...s.users, SEED_U[1]], 'Три раунда', 'own');
         if (k === 'after') return this.setState({ screen: 'after', before: b, draft: b });
@@ -3386,7 +3389,8 @@ class Component extends DCLogic {
           tglFav: () => this.setState(st => { const f = st.favs ?? FAV0; return { favs: f.includes(ak.id) ? f.filter(x => x !== ak.id) : [...f, ak.id] }; }),
           back: () => this.setState(st => ({ screen: st.prev === 'today' ? 'today' : 'catalog', tab: st.prev === 'today' ? 'today' : 'catalog' })) };
         art.hasRel = art.rel.length > 0;
-        return { isArticle: sc === 'article', art, libTabs, filterOpts, isMy, hasChips: isPr, hasHidden: isPr && (s.hidden || []).some(id => PM[id] || this.progById(id)),
+        return { volHint: sc === 'player' && !!s.volZero && !!(s.voice || (!s.plan && PM[s.pid] && PM[s.pid].walk)), volOff: e => { if (e && e.stopPropagation) e.stopPropagation(); this.setState({ volZero: false }); },
+          isArticle: sc === 'article', art, libTabs, filterOpts, isMy, hasChips: isPr, hasHidden: isPr && (s.hidden || []).some(id => PM[id] || this.progById(id)),
           feedGroups, courseCards, hasCourses: courseCards.length > 0, mineStrip, hasMine: gf === 'all' && isPr, feedEmpty: isMy ? myFav.length === 0 : feedGroups.length === 0 && courseCards.length === 0, feedEmptyT: eFav ? 'В избранном пока пусто' : 'Здесь пока пусто', feedEmptyS: kFav ? 'Отметь материал сердцем — он появится здесь' : eFav ? 'Отметь сердцем практику, инструмент или материал — они появятся здесь' : isKn || isCo ? 'Выбери «Все»' : 'Выбери «Все» или верни скрытые практики', srch,
           catAddOpen: !!s.catAdd, toggleCatAdd: () => this.setState(st => ({ catAdd: !st.catAdd })),
           addTech: () => { this.setState({ catAdd: false }); this.newTech(); },
